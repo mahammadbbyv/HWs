@@ -23,15 +23,9 @@ namespace Calculator
     public partial class MainWindow : Window
     {
         public List<int> nums { get; set; } = new();
-        public string operations { get; set; } = "";
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Divide_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void NumButton_Click(object sender, RoutedEventArgs e)
@@ -43,25 +37,34 @@ namespace Calculator
 
         private void OperationButton_Click(object sender, RoutedEventArgs e)
         {
-            string gettext = sender.ToString();
-            gettext = gettext[32].ToString();
-            int num = Convert.ToInt32(text.Content);
-            nums.Add(num);
-            text2.Content += num.ToString();
-            text2.Content += gettext;
-            operations += gettext;
-            //string tmp = text2.Content.ToString();
-            //MessageBox.Show($"{tmp.Length}", "asd");
-            text.Content = "";
+            if (text.Content.ToString() != string.Empty)
+            {
+                string gettext = sender.ToString();
+                gettext = gettext[32].ToString();
+                int num = Convert.ToInt32(text.Content);
+                nums.Add(num);
+                text2.Content += num.ToString();
+                text2.Content += gettext;
+                text.Content = "";
+            }
+            else
+            {
+                MessageBox.Show("Enter Values!!!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
-            text2.Content += text.Content.ToString();
-            text.Content = string.Empty;
-            var result = new Interpreter().Eval(text2.Content.ToString());
-            text.Content = result.ToString();
-            text2.Content = string.Empty;
+            if(text.Content.ToString() != string.Empty) { 
+                text2.Content += text.Content.ToString();
+                var result = new Interpreter().Eval(text2.Content.ToString());
+                text.Content = result.ToString();
+                text2.Content = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Enter Value!!!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
