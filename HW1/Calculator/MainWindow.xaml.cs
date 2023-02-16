@@ -32,46 +32,73 @@ namespace Calculator
         {
             string gettext = sender.ToString();
             gettext = gettext[32].ToString();
-            text.Content += gettext;
+            textNum.Content += gettext;
+            string? val = textNum.Content.ToString();
+            if (val.Length < 10)
+            {
+                if (((val.Length / 2) + 2) * textNum.FontSize > 600)
+                {
+                    textNum.FontSize *= 0.8;
+                }
+            }
+            else
+            {
+                textError.Content = "Number should be less than 10 figures!!!";
+                string tmp = "";
+                string label = textNum.Content.ToString();
+                for(int i = 0; i < textNum.Content.ToString().Length - 1; i++) {
+                    tmp += label[i];
+                }
+                textNum.Content = tmp;
+            }
         }
 
         private void OperationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (text.Content.ToString() != string.Empty)
+            if (textNum.Content.ToString() != string.Empty)
             {
                 string gettext = sender.ToString();
                 gettext = gettext[32].ToString();
-                int num = Convert.ToInt32(text.Content);
+                int num = Convert.ToInt32(textNum.Content);
                 nums.Add(num);
-                text2.Content += num.ToString();
-                text2.Content += gettext;
-                text.Content = "";
+                textEq.Content += num.ToString();
+                textEq.Content += gettext;
+                textNum.Content = string.Empty;
+                textError.Content = string.Empty;
             }
             else
             {
-                MessageBox.Show("Enter Values!!!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                textError.Content = "Enter Values!!!";
             }
         }
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
-            if(text.Content.ToString() != string.Empty) { 
-                text2.Content += text.Content.ToString();
-                var result = new Interpreter().Eval(text2.Content.ToString());
-                text.Content = result.ToString();
-                text2.Content = string.Empty;
+            //string? equation = textEq.Content.ToString();
+            if(textNum.Content.ToString() != string.Empty) { 
+                textEq.Content += textNum.Content.ToString();
+                var result = new Interpreter().Eval(textEq.Content.ToString());
+                textNum.Content = result.ToString();
+                textEq.Content = string.Empty;
+                if (result.ToString().Length < 10)
+                {
+                    if (((result.ToString().Length / 2) + 2) * textNum.FontSize > 600)
+                    {
+                        textNum.FontSize *= 0.8;
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Enter Value!!!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                textError.Content = "Enter Value!!!";
             }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            if(text.Content != string.Empty)
+            if(textNum.Content != string.Empty)
             {
-                text.Content = string.Empty;
+                textNum.Content = string.Empty;
             }
             else
             {
@@ -79,8 +106,10 @@ namespace Calculator
                 {
                     nums.RemoveAt(i);
                 }
-                text2.Content = string.Empty;
+                textEq.Content = string.Empty;
+                textError.Content = string.Empty;
             }
+            textNum.FontSize = 200;
         }
     }
 }
