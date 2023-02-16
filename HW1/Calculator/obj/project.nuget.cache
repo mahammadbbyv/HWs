@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "3yjIwmW751M7adAOdszh+M+Dr6QX4qtVGX0vGe0Hq3Ht7J8T85MVYsXEYeHM/SdjLocg8KlrYfLv7KtPdVko2w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Calculator\\Calculator\\Calculator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bemga\\.nuget\\packages\\coreclr-ncalc\\2.2.110\\coreclr-ncalc.2.2.110.nupkg.sha512",
+    "C:\\Users\\Bemga\\.nuget\\packages\\dynamicexpresso.core\\2.13.0\\dynamicexpresso.core.2.13.0.nupkg.sha512",
+    "C:\\Users\\Bemga\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
