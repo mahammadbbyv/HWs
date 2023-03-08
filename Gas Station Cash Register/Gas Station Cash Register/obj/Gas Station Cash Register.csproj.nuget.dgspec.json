@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj": {}
+    "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj": {
+    "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
+        "projectUniqueName": "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
         "projectName": "Gas Station Cash Register",
-        "projectPath": "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
+        "projectPath": "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
         "packagesPath": "C:\\Users\\Bemga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\obj\\",
+        "outputPath": "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

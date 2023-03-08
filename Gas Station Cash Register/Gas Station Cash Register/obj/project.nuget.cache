@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jP3Oy/oKSyjZMyK5Ppq82eo4xlK7zDQ5fBBotBLLfto72sl8kdzc+KYiOgeXfpI4kwrG3YNqQAab4t9q0lN7tA==",
+  "dgSpecHash": "1h0c1r5c9uySYzOFK5Cq/S4y7X/e0u4Gd8hwz9OUMmkBj/gXowpCetWAUuuvYTeMmgn7coXeRddJ/u9TDgK0DQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bemga\\OneDrive\\Рабочий стол\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
+  "projectFilePath": "C:\\Users\\Bemga\\HWs\\Gas Station Cash Register\\Gas Station Cash Register\\Gas Station Cash Register.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bemga\\.nuget\\packages\\easendmail\\7.9.1.3\\easendmail.7.9.1.3.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\fluentemail.core\\3.0.2\\fluentemail.core.3.0.2.nupkg.sha512",

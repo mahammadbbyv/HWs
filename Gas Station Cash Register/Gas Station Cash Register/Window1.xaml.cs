@@ -53,7 +53,7 @@ namespace Gas_Station_Cash_Register
             SmtpServer.UseDefaultCredentials = false;
             SmtpServer.Port = 587;
             SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("rasimbabayev9g19@gmail.com", "bsllnlvpsxcghbng");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("rasimbabayev9g19@gmail.com", "your created password");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             Close();
