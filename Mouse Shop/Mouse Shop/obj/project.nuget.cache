@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "p3DJjTTJC+xwXKK/h/RzllBAkv7f+W0WciBaIuiwz1YMwmDRvnJIAvA84PctKl4vKVAsGxbU/WNrRqXi84AUvA==",
+  "dgSpecHash": "u8xmbpe9uxN67njnT4ICoXT0bqqLakEQyFIY08XcRgUkpoeSB8IS6qiwkrld0VrBZm42kY+InXSBr6D51lUzDA==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\Mouse Shop\\Mouse Shop\\Mouse Shop.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\Bemga\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\mvvmlightlibsstd10\\5.4.1.1\\mvvmlightlibsstd10.5.4.1.1.nupkg.sha512",
+    "C:\\Users\\Bemga\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\simpleinjector\\5.4.1\\simpleinjector.5.4.1.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\system.componentmodel\\4.0.1\\system.componentmodel.4.0.1.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\system.runtime\\4.1.0\\system.runtime.4.1.0.nupkg.sha512"

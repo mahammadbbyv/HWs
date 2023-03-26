@@ -35,10 +35,15 @@ namespace Mouse_Shop
             Container.RegisterSingleton<IAuthorization, Authorization>();
             Container.RegisterSingleton<ISerializeService, SerializeService>();
             Container.RegisterSingleton<IVerificationService, VerificationService>();
+            Container.RegisterSingleton<IBasketService, BasketService>();
+            Container.RegisterSingleton<IPurchaseService, PurchaseService>();
 
             Container.RegisterSingleton<WindowViewModel>();
             Container.RegisterSingleton<AuthorizationViewModel>();
             Container.RegisterSingleton<VerifyViewModel>();
+            Container.RegisterSingleton<StoreViewModel>();
+            Container.RegisterSingleton<ProductsViewModel>();
+            Container.RegisterSingleton<CartViewModel>();
         }
 
         private void MainStartup()

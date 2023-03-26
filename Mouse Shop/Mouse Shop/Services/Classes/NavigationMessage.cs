@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mouse_Shop.Messages;
+using Mouse_Shop.Model;
+using Mouse_Shop.ViewModel;
 
 namespace Mouse_Shop.Services.Classes
 {
@@ -18,11 +20,20 @@ namespace Mouse_Shop.Services.Classes
             _messenger = messenger;
         }
 
-        public void SendData<T>(object data) where T : ViewModelBase
+        public void SendData<T>(object data, bool negative = false) where T : ViewModelBase
         {
             _messenger.Send(new DataMessage()
             {
-                Data = data
+                Data = data,
+                IsNegative = negative
+            });
+        }
+
+        public void SendProduct<T>(object data) where T : ViewModelBase
+        {
+            _messenger.Send(new BasketMessage()
+            {
+                product = data
             });
         }
 
@@ -32,6 +43,9 @@ namespace Mouse_Shop.Services.Classes
             {
                 ViewModelType = typeof(T)
             });
+
+            if (data != null)
+                SendData<T>(data);
         }
     }
 }

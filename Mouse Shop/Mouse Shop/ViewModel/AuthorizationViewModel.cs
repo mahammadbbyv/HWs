@@ -20,7 +20,7 @@ namespace Mouse_Shop.ViewModel
     {
         private readonly IAuthorization _authorization;
         private readonly IMyNavigationService _navigationService;
-        public User user { get; set; } = new() { Mail = "rasimbabayev9g19@gmail.com", Name="Maga", Surname="Babayev", Password="ASDqwe123-" };
+        public User user { get; set; } = new();
         public AuthorizationViewModel(IAuthorization authorization, IMyNavigationService navigationService)
         {
             _authorization = authorization;
@@ -48,18 +48,10 @@ namespace Mouse_Shop.ViewModel
             get => new(
             param =>
             {
-                try
-                {
-                    var password = param as PasswordBox;
+                var password = param as PasswordBox;
+                user.Password = password.Password;
 
-                    var res = _authorization.GetUser(user.Mail, user.Password);
-
-                    MessageBox.Show($"{res.Name} logged in");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("User doesn't exist");
-                }
+                _authorization.Authorize(user);
             });
         }
         public RelayCommand VerifyCommand

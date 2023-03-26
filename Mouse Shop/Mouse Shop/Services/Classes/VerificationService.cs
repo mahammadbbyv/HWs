@@ -17,13 +17,13 @@ namespace Mouse_Shop.Services.Classes
         {
             _serializeService = serializeService;
         }
-        public bool IsMatch(string mail, string code)
+        public User IsMatch(string mail, string code)
         {
             using FileStream fs = new("users.json", FileMode.OpenOrCreate);
             using StreamReader sr = new StreamReader(fs);
             Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
             User res = Users.Find(x => x.Mail == mail && x.VerifyCode.ToString() == code);
-            return (res == null ? false : true);
+            return res;
         }
     }
 }

@@ -19,7 +19,19 @@
             <DataTemplate DataType="{x:Type ViewModel:VerifyViewModel}">
                 <View:VerifyView />
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type ViewModel:StoreViewModel}">
+                <View:StoreView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:ProductsViewModel}">
+                <View:ProductsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:CartViewModel}">
+                <View:CartView />
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />

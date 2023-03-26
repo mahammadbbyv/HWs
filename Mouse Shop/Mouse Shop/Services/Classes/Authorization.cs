@@ -36,11 +36,24 @@ namespace Mouse_Shop.Services.Classes
             using StreamReader sr = new(fs);
             if (sr.ReadToEnd() != string.Empty)
             {
+                fs.Position = 0;
                 Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
             }
-            var result = Users.Find(x => x.Mail == user.Mail && x.Password == user.Password);
-            if (result.Confirmed) { }
-            else { }
+            sr.Close();
+            fs.Close();
+            if (CheckExists(user)) { 
+                var result = Users.Find(x => x.Mail == user.Mail && x.Password == user.Password);
+                if (result != null && result.Confirmed && user.Password == result.Password)
+                {
+                    _navigationService.NavigateTo<StoreViewModel>();
+                    File.WriteAllText("current_user.json", _serializeService.Serialize<User>(result));
+                }
+                else { MessageBox.Show("Password is incorrect!"); }
+            }
+            else
+            {
+                MessageBox.Show("There is no such email!");
+            }
 
         }
 
@@ -70,7 +83,8 @@ namespace Mouse_Shop.Services.Classes
                 user.VerifyCode = code;
                 Users.Add(user);
                 sw.Write(JsonSerializer.Serialize(Users));
-            } else if (CheckExists(user))
+            }
+            else if (CheckExists(user))
             {
                 MessageBox.Show("This mail is already used!");
             }
@@ -93,35 +107,42 @@ namespace Mouse_Shop.Services.Classes
         {
             using FileStream fs = new("users.json", FileMode.OpenOrCreate, FileAccess.Read);
             using StreamReader sr = new(fs);
-            if (sr.ReadToEnd() != string.Empty)
+            if (mail != null && password != null)
             {
                 fs.Position = 0;
-                Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
-            }
-            User res = Users.Find(x => x.Mail == mail);
-            if (!res.Confirmed)
-            {
-                MessageBox.Show("Verify your account!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                _navigationService.NavigateTo<VerifyViewModel>();
-                return null;
+                if (sr.ReadToEnd() != string.Empty)
+                {
+                    Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
+                }
+                User res = Users.Find(x => x.Mail == mail && x.Password == password);
+                if (!res.Confirmed)
+                {
+                    MessageBox.Show("Verify your account!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    _navigationService.NavigateTo<VerifyViewModel>();
+                    return new User();
+                }
+                else
+                {
+                    return res;
+                }
             }
             else
             {
-                return res;
+                return new User();
             }
         }
 
         public bool CheckInputs(User user, string confirm)
         {
-            if(Regex.IsMatch(user.Mail, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+            if (Regex.IsMatch(user.Mail, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
             {
-                if(Regex.IsMatch(user.Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}"))
+                if (Regex.IsMatch(user.Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}"))
                 {
-                    if(user.Name.Length > 3)
+                    if (user.Name.Length > 3)
                     {
-                        if(user.Surname.Length > 3)
+                        if (user.Surname.Length > 3)
                         {
-                            if(user.Password == confirm)
+                            if (user.Password == confirm)
                             {
                                 return true;
                             }

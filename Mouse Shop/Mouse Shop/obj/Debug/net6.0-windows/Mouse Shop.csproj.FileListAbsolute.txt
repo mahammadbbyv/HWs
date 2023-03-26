@@ -31,3 +31,10 @@ D:\Desktop\Mouse Shop\Mouse Shop\bin\Debug\net6.0-windows\MaterialDesignThemes.W
 D:\Desktop\Mouse Shop\Mouse Shop\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\VerifyView.g.cs
 D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\VerifyView.baml
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\StoreView.g.cs
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\StoreView.baml
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\ProductsView.g.cs
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\ProductsView.baml
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\CartView.g.cs
+D:\Desktop\Mouse Shop\Mouse Shop\obj\Debug\net6.0-windows\View\CartView.baml
+D:\Desktop\Mouse Shop\Mouse Shop\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

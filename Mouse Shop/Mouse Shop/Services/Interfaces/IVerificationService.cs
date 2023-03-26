@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mouse_Shop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Mouse_Shop.Services.Interfaces
 {
     internal interface IVerificationService
     {
-        public bool IsMatch(string mail, string code);
+        public User IsMatch(string mail, string code);
     }
 }

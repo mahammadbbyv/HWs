@@ -12,10 +12,11 @@ using System.Windows;
 using System.Windows.Input;
 using Mouse_Shop.Messages;
 using System.Net.Sockets;
+using System.IO;
 
 namespace Mouse_Shop.ViewModel
 {
-    internal class WindowViewModel : ViewModelBase
+    class WindowViewModel : ViewModelBase
     {
         private readonly IMessenger _messenger;
         private ViewModelBase _currentViewModel;
@@ -33,7 +34,9 @@ namespace Mouse_Shop.ViewModel
         }
         public WindowViewModel(IMessenger messenger)
         {
-            CurrentViewModel = App.Container.GetInstance<AuthorizationViewModel>();
+            if (!File.Exists("current_user.json")) { CurrentViewModel = App.Container.GetInstance<AuthorizationViewModel>(); }
+            else { CurrentViewModel = App.Container.GetInstance<StoreViewModel>(); }
+            
             _messenger = messenger;
             _messenger.Register<NavigationMessage>(this, ReceiveMessage);
         }
