@@ -18,7 +18,7 @@ namespace Mouse_Shop.Services.Classes
 {
     internal class PurchaseService : IPurchaseService
     {
-        public string APIKey = "rasimbabayev9g19@gmail.com_73f58053a09e5165fba4d6610c01b873ab1dfd15206a3bcbc30bcbbd79bb1ca540f99f82";
+        public string APIKey = "magagaming12@gmail.com_cb2664467579736bc29cde08b6126e728c0096b572f65d94f26c161e189a901ee59e7e22";
         public Dictionary<string, object> pdf { get; set; } = new();
         public Reciept reciept { get; set; } = new();
         public WebClient WebClient { get; set; } = new();
@@ -36,7 +36,7 @@ namespace Mouse_Shop.Services.Classes
             pdf.Add("header", "");
             pdf.Add("async", false);
             pdf.Add("encrypt", false);
-            pdf.Add("issuer_company", "Maga's Fuel");
+            pdf.Add("issuer_company", "Maga's Mouses");
             //pdf.Add("logo", "telegram-bots-maga.cx.ua/logo.png");
             pdf.Add("issuer_name", "Maga");
             WebClient.Headers.Add("x-api-key", APIKey);
@@ -55,6 +55,7 @@ namespace Mouse_Shop.Services.Classes
             reciept.client_email = user.Mail;
             reciept.client_name = user.Name;
             reciept.total = total;
+            
             pdf.Add("templateData", JsonSerializer.Serialize(reciept));
             string jsonPayload = JsonSerializer.Serialize(pdf);
             string response = WebClient.UploadString("https://api.pdf.co/v1/pdf/convert/from/html", jsonPayload);
