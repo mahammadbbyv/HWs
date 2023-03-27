@@ -7,8 +7,70 @@
         xmlns:ViewModel="clr-namespace:Admin_Mouse_Shop.ViewModel"
         d:DataContext="{d:DesignInstance Type=ViewModel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        xmlns:mD="http://materialdesigninxaml.net/winfx/xaml/themes"
+        AllowsTransparency="True"
+        Title="asd" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowStyle="None" Background="Transparent">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="1"/>
+    </WindowChrome.WindowChrome>
+
+    <Border CornerRadius="15" BorderThickness="0">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LimeGreen" Offset="0.0"/>
+                <GradientStop Color="Gray" Offset="0.9"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid MouseDown="Grid_MouseDown" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Margin="5"
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+
+                <Button Background="Transparent" BorderThickness="0" Foreground="White" Click="Minimize_Click">
+                    <mD:PackIcon Kind="WindowMinimize" Width="15"/>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="White" Click="Maximize_Click">
+                    <mD:PackIcon Kind="WindowMaximize" Width="15" />
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="White" Click="Exit_Click">
+                    <mD:PackIcon Kind="WindowClose" Width="15" />
+                </Button>
+            </StackPanel>
+            <Menu Grid.Row="1">
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Add" Command="{Binding AddViewCommand}" />
+                    <MenuItem Header="Edit" Command="{Binding EditViewCommand}" />
+                    <MenuItem Header="Delete" Command="{Binding DeleteViewCommand}" />
+                </MenuItem>
+            </Menu>
+            <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+            <ItemsControl Grid.Column="2" Grid.Row="1"
+                      ItemsSource="{Binding Products}"
+                      FontSize="20"
+                      FontWeight="DemiBold"
+                      BorderThickness="3 3 0 0" BorderBrush="Black">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Company}" HorizontalAlignment="Left"/>
+                            <Label Content="{Binding Model}" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Border>
 </Window>

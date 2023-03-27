@@ -25,6 +25,8 @@ namespace Mouse_Shop
         protected override void OnStartup(StartupEventArgs e) // virtual void OnStartup
         {
             Register();
+            var windowviewmodel = App.Container.GetInstance<ProductsViewModel>();
+            windowviewmodel.MainOpen();
             MainStartup();
         }
 
@@ -37,6 +39,7 @@ namespace Mouse_Shop
             Container.RegisterSingleton<IVerificationService, VerificationService>();
             Container.RegisterSingleton<IBasketService, BasketService>();
             Container.RegisterSingleton<IPurchaseService, PurchaseService>();
+            Container.RegisterSingleton<ISort, Sort>();
 
             Container.RegisterSingleton<WindowViewModel>();
             Container.RegisterSingleton<AuthorizationViewModel>();

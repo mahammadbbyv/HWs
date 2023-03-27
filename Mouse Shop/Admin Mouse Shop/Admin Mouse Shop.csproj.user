@@ -2,11 +2,35 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="View\AddView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ChangeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\DeleteView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\EditView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\AddView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ChangeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\DeleteView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\EditView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>

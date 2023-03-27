@@ -20,9 +20,10 @@ namespace Mouse_Shop.ViewModel
     class StoreViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        IMessenger _messenger;
-        IPurchaseService _purchaseService;
-        IMyNavigationService _myNavigationService;
+        private readonly IMessenger _messenger;
+        private readonly IPurchaseService _purchaseService;
+        private readonly IMyNavigationService _myNavigationService;
+        private readonly ISort _sort;
         protected void OnPropertyChange(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -64,24 +65,36 @@ namespace Mouse_Shop.ViewModel
                 subtotal += (float)message.Data;
                 string tmp = subtotal.ToString();
                 StringBuilder res = new StringBuilder();
-                res.Append(tmp[0]);
-                res.Append(tmp[1]);
-                int i = 2;
-                while (tmp[i - 2].ToString() != ".") 
+                int i = 0;
+                if (tmp.Contains(".")) 
                 {
-                    res.Append(tmp[i]);
-                    i++;
+                    while (tmp[i].ToString() != ".")
+                    {
+                        res.Append(tmp[i]);
+                        i++;
+                    }
+                    int j = i + 3;
+                    while (j - i > 0 && i < tmp.Length) 
+                    { 
+                        res.Append(tmp[i]);
+                        i++; 
+                    }
+                }
+                else
+                {
+                    while (i < tmp.Length) { res.Append(tmp[i]); i++; }
                 }
                 subtotal = Convert.ToSingle(res.ToString());
             }
         }
-        public StoreViewModel(IMessenger messenger, IMyNavigationService myNavigationService, IPurchaseService purchaseService)
+        public StoreViewModel(IMessenger messenger, IMyNavigationService myNavigationService, IPurchaseService purchaseService, ISort sort)
         {
             _messenger = messenger;
             _myNavigationService = myNavigationService;
             _purchaseService = purchaseService;
             _messenger.Register<DataMessage>(this, ReceiveMessage);
             CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+            _sort = sort;
         }
         public RelayCommand LogOutCommand
         {
@@ -103,6 +116,39 @@ namespace Mouse_Shop.ViewModel
             get => new(() =>
             {
                 CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+                _sort.SortByCategory("All");
+            });
+        }
+        public RelayCommand WirelessOfficeCommand
+        {
+            get => new(() =>
+            {
+                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+                _sort.SortByCategory("WirelessOffice");
+            });
+        }
+        public RelayCommand WirelessGamingCommand
+        {
+            get => new(() =>
+            {
+                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+                _sort.SortByCategory("WirelessGaming");
+            });
+        }
+        public RelayCommand WiredOfficeCommand
+        {
+            get => new(() =>
+            {
+                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+                _sort.SortByCategory("WiredOffice");
+            });
+        }
+        public RelayCommand WiredGamingCommand
+        {
+            get => new(() =>
+            {
+                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
+                _sort.SortByCategory("WiredGaming");
             });
         }
         public RelayCommand PurchaseCommand

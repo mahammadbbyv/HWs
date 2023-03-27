@@ -25,6 +25,8 @@ namespace Admin_Mouse_Shop
         protected override void OnStartup(StartupEventArgs e) // virtual void OnStartup
         {
             Register();
+            var mainViewModel = App.Container.GetInstance<MainViewModel>();
+            mainViewModel.MainOpen();
             MainStartup();
         }
 
@@ -32,8 +34,20 @@ namespace Admin_Mouse_Shop
         {
             Container.RegisterSingleton<IMessenger, Messenger>();
             Container.RegisterSingleton<IMyNavigationService, NavigationService>();
+            Container.RegisterSingleton<IItemsService, ItemsService>();
 
             Container.RegisterSingleton<MainViewModel>();
+            Container.RegisterSingleton<AddViewModel>();
+            Container.RegisterSingleton<EditViewModel>();
+            Container.RegisterSingleton<DeleteViewModel>();
+            Container.RegisterSingleton<ChangeViewModel>();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            var mainViewModel = App.Container.GetInstance<MainViewModel>();
+            mainViewModel.MainClose();
+            base.OnExit(e);
         }
 
         private void MainStartup()

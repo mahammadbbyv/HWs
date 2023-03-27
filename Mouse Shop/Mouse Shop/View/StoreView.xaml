@@ -86,7 +86,7 @@
                             </StackPanel>
                         </MenuItem.Header>
 
-                        <MenuItem FontSize="14">
+                        <MenuItem FontSize="14" Command="{Binding WirelessOfficeCommand}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Office" Padding="0" Margin="2" VerticalAlignment="Center"/>
@@ -95,7 +95,7 @@
                             </MenuItem.Header>
                         </MenuItem>
 
-                        <MenuItem FontSize="14">
+                        <MenuItem FontSize="14" Command="{Binding WirelessGamingCommand}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Gaming" Padding="0" Margin="2" VerticalAlignment="Center"/>
@@ -113,7 +113,7 @@
                             </StackPanel>
                         </MenuItem.Header>
 
-                        <MenuItem FontSize="14">
+                        <MenuItem FontSize="14" Command="{Binding WiredOfficeCommand}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Office" Padding="0" Margin="2" VerticalAlignment="Center"/>
@@ -122,7 +122,7 @@
                             </MenuItem.Header>
                         </MenuItem>
 
-                        <MenuItem FontSize="14">
+                        <MenuItem FontSize="14" Command="{Binding WiredGamingCommand}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Gaming" Padding="0" Margin="2" VerticalAlignment="Center"/>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin_Mouse_Shop.Messages
+namespace Admin_Mouse_Shop.Model
 {
     public class Mouse
     {

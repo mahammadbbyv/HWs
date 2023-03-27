@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mouse_Shop.Messages
+namespace Admin_Mouse_Shop.Messages
 {
     public class DataMessage
     {

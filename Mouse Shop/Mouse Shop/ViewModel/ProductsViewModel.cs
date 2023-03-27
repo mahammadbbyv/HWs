@@ -11,55 +11,17 @@ using GalaSoft.MvvmLight.Views;
 using Mouse_Shop.Services;
 using System.Windows;
 using Mouse_Shop.Messages;
+using System.IO;
+using Mouse_Shop.Services.Interfaces;
 
 namespace Mouse_Shop.ViewModel
 {
     class ProductsViewModel : ViewModelBase
     {
         IMyNavigationService _navigationService;
-        public ObservableCollection<Mouse> Products { get; set; } = new()
-        {
-            new Mouse()
-            {
-                ImagePath = "https://strgimgr.umico.az/sized/840/338545-732dc8904734160a1fce2f2fc8813842.jpg",
-                Model = "Viper",
-                Company = "Razer",
-                DPI = 20000,
-                Wireless = true,
-                Gaming = true,
-                Price = 69.99f
-            },
-            new Mouse()
-            {
-                ImagePath = "https://bytelecom.az/media/2022/04/15/product_images/3838/41MexvlK3YL._AC_SL1000_.jpg",
-                Model = "G305",
-                Company = "Logitech",
-                DPI = 16000,
-                Wireless = true,
-                Gaming = true,
-                Price = 34.99f
-            },
-            new Mouse()
-            {
-                ImagePath = "https://bytelecom.az/media/2022/04/15/product_images/3838/41MexvlK3YL._AC_SL1000_.jpg",
-                Model = "Lol",
-                Company = "gg",
-                DPI = 16000,
-                Wireless = true,
-                Gaming = true,
-                Price = 34.99f
-            },
-            new Mouse()
-            {
-                ImagePath = "https://bytelecom.az/media/2022/04/15/product_images/3838/41MexvlK3YL._AC_SL1000_.jpg",
-                Model = "qwe",
-                Company = "asd",
-                DPI = 16000,
-                Wireless = true,
-                Gaming = true,
-                Price = 34.99f
-            }
-        };
+        private readonly ISerializeService _serializeService;
+
+        public ObservableCollection<Mouse> Products { get; set; } = new();
         public RelayCommand<object> AddCommand
         {
             get => new(param =>
@@ -73,9 +35,15 @@ namespace Mouse_Shop.ViewModel
                 }
             });
         }
-        public ProductsViewModel(IMyNavigationService navigationService)
+        public ProductsViewModel(IMyNavigationService navigationService, ISerializeService serializeService)
         {
             _navigationService = navigationService;
+            _serializeService = serializeService;
+        }
+
+        internal void MainOpen()
+        {
+            Products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
         }
     }
 }

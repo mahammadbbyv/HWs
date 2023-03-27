@@ -32,6 +32,7 @@ namespace Mouse_Shop.ViewModel
         {
             CurrentViewModel = App.Container.GetInstance(message.ViewModelType) as ViewModelBase;
         }
+
         public WindowViewModel(IMessenger messenger)
         {
             if (!File.Exists("current_user.json")) { CurrentViewModel = App.Container.GetInstance<AuthorizationViewModel>(); }

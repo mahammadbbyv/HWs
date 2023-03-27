@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Desktop\Mouse Shop\Admin Mouse Shop\App.xaml
-1348297793
+5-96786015
 
-12-762823279
+21-241626150
 1991996224500
-View\MainView.xaml;
+View\AddView.xaml;View\ChangeView.xaml;View\DeleteView.xaml;View\EditView.xaml;View\MainView.xaml;
 
-False
+True
 

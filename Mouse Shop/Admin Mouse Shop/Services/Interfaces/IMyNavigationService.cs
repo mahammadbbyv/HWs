@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
-using Mouse_Shop.Model;
+using Admin_Mouse_Shop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mouse_Shop.Services.Interfaces
+namespace Admin_Mouse_Shop.Services.Interfaces
 {
     public interface IMyNavigationService
     {
