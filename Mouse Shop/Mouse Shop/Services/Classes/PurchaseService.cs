@@ -27,9 +27,6 @@ namespace Mouse_Shop.Services.Classes
         public PurchaseService(ISerializeService serializeService)
         {
             _serializeService = serializeService;
-        }
-        public void GenerateReciept(ObservableCollection<Product> Products, float total)
-        {
             pdf.Add("templateId", 1);
             pdf.Add("name", "./invoice.pdf");
             pdf.Add("printBackground", true);
@@ -43,6 +40,9 @@ namespace Mouse_Shop.Services.Classes
             //pdf.Add("logo", "telegram-bots-maga.cx.ua/logo.png");
             pdf.Add("issuer_name", "Maga");
             WebClient.Headers.Add("x-api-key", APIKey);
+        }
+        public void GenerateReciept(ObservableCollection<Product> Products, float total)
+        {
             foreach (Product product in Products)
             {
                 reciept.items.Add(new Item()
@@ -60,7 +60,13 @@ namespace Mouse_Shop.Services.Classes
             string response = WebClient.UploadString("https://api.pdf.co/v1/pdf/convert/from/html", jsonPayload);
             JObject json = JObject.Parse(response);
             string resultFileUrl = json["url"].ToString();
-            WebClient.DownloadFile(resultFileUrl, "reciept.pdf");
+            int i = 0;
+            while (File.Exists($"reciept{i}.pdf"))
+            {
+                i++;
+            }
+            WebClient.DownloadFile(resultFileUrl, $"reciept{i}.pdf");
+            pdf.Remove("templateData");
         }
         public void SendReciept()
         {
@@ -74,8 +80,14 @@ namespace Mouse_Shop.Services.Classes
             mail.Body = $"<h3>{user.Name} {user.Surname}, this is your code for reciept!</h3>";
             mail.IsBodyHtml = true;
 
-            System.Net.Mail.Attachment attachment;
-            attachment = new System.Net.Mail.Attachment("reciept.pdf");
+            System.Net.Mail.Attachment attachment; 
+            int i = 0;
+            while (File.Exists($"reciept{i}.pdf"))
+            {
+                i++;
+            }
+            i--;
+            attachment = new System.Net.Mail.Attachment($"reciept{i}.pdf");
             mail.Attachments.Add(attachment);
 
             SmtpServer.UseDefaultCredentials = false;

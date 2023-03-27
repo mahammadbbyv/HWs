@@ -58,7 +58,8 @@ namespace Admin_Mouse_Shop.ViewModel
 
         internal void MainOpen()
         {
-            Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            if(File.Exists(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
+                Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
         }
 
         public MainViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService myNavigationService)

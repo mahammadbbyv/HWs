@@ -33,7 +33,8 @@ namespace Mouse_Shop.Services.Classes
 
         public void SortByCategory(string Case)
         {
-            products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            if(File.Exists(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
+                products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
             var window = App.Container.GetInstance<ProductsViewModel>();
             switch (Case)
             {

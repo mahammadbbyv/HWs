@@ -54,7 +54,7 @@
                                                                 RelativeSource={RelativeSource 
                                                                 Mode=FindAncestor,
                                                                 AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding Mouse}" Grid.Row="3" Width="120" Height="40" Background="LimeGreen" BorderThickness="0">
-                                            <mD:PackIcon Kind="VectorSquareSubtract"/>
+                                            <Label Content="-" Foreground="Black"/>
                                         </Button>
                                     </Grid>
                                 </Grid>
