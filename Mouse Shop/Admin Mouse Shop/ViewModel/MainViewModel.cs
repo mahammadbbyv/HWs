@@ -44,7 +44,6 @@ namespace Admin_Mouse_Shop.ViewModel
 
         internal void MainClose()
         {
-
             File.WriteAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json", JsonSerializer.Serialize(Products));
             File.WriteAllText("last_id.txt", App.Container.GetInstance<AddViewModel>().Id.ToString());
         }

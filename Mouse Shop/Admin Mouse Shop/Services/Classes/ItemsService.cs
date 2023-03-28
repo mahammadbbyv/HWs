@@ -68,8 +68,10 @@ namespace Admin_Mouse_Shop.Services.Classes
         public void Edit(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            _myNavigationService.NavigateTo<ChangeViewModel>(window.Products[Find(Id)]);
+            _myNavigationService.SendChange<ChangeViewModel>(window.Products[Find(Id)]);
+            _myNavigationService.NavigateTo<ChangeViewModel>();
         }
+
         public void Delete(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();

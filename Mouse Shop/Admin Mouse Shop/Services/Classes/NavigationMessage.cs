@@ -31,6 +31,14 @@ namespace Admin_Mouse_Shop.Services.Classes
             });
         }
 
+        public void SendChange<T>(object data) where T : ViewModelBase
+        {
+            _messenger.Send(new ChangeMessage()
+            {
+                Data = data
+            });
+        }
+
         public void NavigateTo<T>(object? data = null) where T : ViewModelBase
         {
             _messenger.Send(new NavigationMessage()

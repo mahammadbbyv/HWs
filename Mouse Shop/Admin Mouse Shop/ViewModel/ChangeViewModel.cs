@@ -30,7 +30,7 @@ namespace Admin_Mouse_Shop.ViewModel
         private readonly IItemsService _itemsService;
         private readonly IMyNavigationService _navigationService;
 
-        private void ReceiveMessage(DataMessage message)
+        private void ReceiveMessage(ChangeMessage message)
         {
             Mouse tmp = (Mouse)message.Data;
             PrevProduct = (Mouse)tmp.Clone();
@@ -42,7 +42,7 @@ namespace Admin_Mouse_Shop.ViewModel
             _messenger = messenger;
             _itemsService = itemsService;
             _navigationService = navigationService;
-            _messenger.Register<DataMessage>(this, ReceiveMessage);
+            _messenger.Register<ChangeMessage>(this, ReceiveMessage);
         }
 
 

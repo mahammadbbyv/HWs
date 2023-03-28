@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj": {}
+    "D:\\Desktop\\FBMS_1221_ru\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj": {}
   },
   "projects": {
-    "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj": {
+    "D:\\Desktop\\FBMS_1221_ru\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
+        "projectUniqueName": "D:\\Desktop\\FBMS_1221_ru\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
         "projectName": "Admin Mouse Shop",
-        "projectPath": "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
+        "projectPath": "D:\\Desktop\\FBMS_1221_ru\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
         "packagesPath": "C:\\Users\\Bemga\\.nuget\\packages\\",
-        "outputPath": "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\obj\\",
+        "outputPath": "D:\\Desktop\\FBMS_1221_ru\\Mouse Shop\\Admin Mouse Shop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
