@@ -28,7 +28,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.7*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
@@ -49,24 +48,33 @@
                     <mD:PackIcon Kind="WindowClose" Width="15" />
                 </Button>
             </StackPanel>
-            <Menu Grid.Row="1">
-                <MenuItem Header="Menu">
-                    <MenuItem Header="Add" Command="{Binding AddViewCommand}" />
-                    <MenuItem Header="Edit" Command="{Binding EditViewCommand}" />
-                    <MenuItem Header="Delete" Command="{Binding DeleteViewCommand}" />
-                </MenuItem>
-            </Menu>
-            <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
-            <ItemsControl Grid.Column="2" Grid.Row="1"
+            <ContentControl Grid.Column="0" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+            <ItemsControl Grid.Column="1" Grid.Row="1"
                       ItemsSource="{Binding Products}"
-                      FontSize="20"
+                      FontSize="14"
                       FontWeight="DemiBold"
                       BorderThickness="3 3 0 0" BorderBrush="Black">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding Company}" HorizontalAlignment="Left"/>
-                            <Label Content="{Binding Model}" HorizontalAlignment="Right"/>
+                            <Label Content="{Binding Model}" />
+                            <Button Command="{Binding DataContext.EditCommand, 
+                                                            RelativeSource={RelativeSource
+                                                            Mode=FindAncestor,
+                                                            AncestorType={x:Type ItemsControl}}}" 
+                                    CommandParameter="{Binding Id}"
+                                    Background="Transparent" BorderThickness="0" Foreground="White">
+                                <mD:PackIcon Kind="Edit" Width="15" />
+                            </Button>
+                            <Button Command="{Binding DataContext.DeleteCommand, 
+                                                            RelativeSource={RelativeSource
+                                                            Mode=FindAncestor,
+                                                            AncestorType={x:Type ItemsControl}}}" 
+                                    CommandParameter="{Binding Id}" 
+                                    Background="Transparent" BorderThickness="0" Foreground="White">
+                                <mD:PackIcon Kind="Remove" />
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

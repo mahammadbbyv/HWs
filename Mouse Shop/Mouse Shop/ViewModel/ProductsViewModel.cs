@@ -43,8 +43,18 @@ namespace Mouse_Shop.ViewModel
 
         internal void MainOpen()
         {
-            if(File.Exists(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
-                Products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            if(File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
+                Products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+        }
+
+        internal void MainClose()
+        {
+            int i = 0;
+            while (File.Exists($"reciept{i}.pdf"))
+            {
+                File.Delete($"reciept{i}.pdf");
+                i++;
+            }
         }
     }
 }

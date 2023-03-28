@@ -9,11 +9,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Admin_Mouse_Shop.ViewModel
 {
     class AddViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        private static int _id = 0;
+        public int Id {
+            get { return _id; }
+            set { _id = value; } }
         private readonly IMyNavigationService _navigationService;
         public AddViewModel(IMyNavigationService navigationService, IItemsService itemsService)
         {
@@ -54,40 +59,35 @@ namespace Admin_Mouse_Shop.ViewModel
         {
             get => new(() =>
             {
+                Product.Id = Id;
+                Id++;
                 _navigationService.SendData<MainViewModel>(Product);
                 Product = new Mouse();
             });
         }
-        public RelayCommand WirelessGamingCommand
+        public RelayCommand<object> CategoryCommand
         {
-            get => new(() =>
+            get => new(param =>
             {
-                Product.Wireless = true;
-                Product.Gaming = true;
-            });
-        }
-        public RelayCommand WiredGamingCommand
-        {
-            get => new(() =>
-            {
-                Product.Wireless = false;
-                Product.Gaming = true;
-            });
-        }
-        public RelayCommand WirelessOfficeCommand
-        {
-            get => new(() =>
-            {
-                Product.Wireless = true;
-                Product.Gaming = false;
-            });
-        }
-        public RelayCommand WiredOfficeCommand
-        {
-            get => new(() =>
-            {
-                Product.Wireless = false;
-                Product.Gaming = false;
+                switch(param as string)
+                {
+                    case "Wireless Gaming":
+                        Product.Wireless = true;
+                        Product.Gaming = true;
+                        break;
+                    case "Wired Gaming":
+                        Product.Wireless = false;
+                        Product.Gaming = true;
+                        break;
+                    case "Wireless Office":
+                        Product.Wireless = true;
+                        Product.Gaming = false;
+                        break;
+                    case "Wired Office":
+                        Product.Wireless = false;
+                        Product.Gaming = false;
+                        break;
+                }
             });
         }
     }

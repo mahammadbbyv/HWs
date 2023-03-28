@@ -71,7 +71,6 @@ namespace Mouse_Shop.Services.Classes
         }
         public void SendReciept()
         {
-            MessageBox.Show("We've sent you your reciept!");
             MailMessage mail = new();
             SmtpClient SmtpServer = new("smtp.gmail.com");
             mail.From = new MailAddress("rasimbabayev9g19@gmail.com");
@@ -97,6 +96,7 @@ namespace Mouse_Shop.Services.Classes
             SmtpServer.Credentials = new System.Net.NetworkCredential("rasimbabayev9g19@gmail.com", "gitobwidmpsvwsdv");
             SmtpServer.EnableSsl = true;
             SmtpServer.SendMailAsync(mail);
+            MessageBox.Show("We've sent you your reciept!");
         }
     }
 }

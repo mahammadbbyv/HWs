@@ -11,10 +11,8 @@
         d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*" />
-            <ColumnDefinition Width="0.45*" />
-            <ColumnDefinition Width="0.45*" />
-            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -22,19 +20,19 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding NewProduct.Company}" mD:HintAssist.Hint="Enter Company" Margin="20" Grid.Column="1"/>
-        <TextBox Text="{Binding NewProduct.Model}" mD:HintAssist.Hint="Enter Model" Margin="20" Grid.Row="1" Grid.Column="1"/>
-        <TextBox Text="{Binding NewProduct.DPI}" mD:HintAssist.Hint="Enter DPI" Margin="20" Grid.Row="2" Grid.Column="1"/>
-        <TextBox Text="{Binding NewProduct.Price}" mD:HintAssist.Hint="Enter Price (as decimal)" Margin="20" Grid.Row="3" Grid.Column="1"/>
+        <TextBox Text="{Binding NewProduct.Company}" mD:HintAssist.Hint="Enter Company" Margin="20" Grid.Column="0"/>
+        <TextBox Text="{Binding NewProduct.Model}" mD:HintAssist.Hint="Enter Model" Margin="20" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding NewProduct.DPI}" mD:HintAssist.Hint="Enter DPI" Margin="20" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Text="{Binding NewProduct.Price}" mD:HintAssist.Hint="Enter Price" Margin="20" Grid.Row="3" Grid.Column="0"/>
         <Button Grid.Row="0" Background="Gray" BorderBrush="Gray" Grid.Column="2" Width="100" Command="{Binding ImagePickCommand}">
             <Label Content="Image.." Padding="0"/>
         </Button>
-        <Menu Grid.Row="1" Grid.Column="2" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Menu Grid.Row="1" Grid.Column="1" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <MenuItem Header="Category">
-                <MenuItem Header="Wireless Gaming" Command="{Binding WirelessGamingCommand}"/>
-                <MenuItem Header="Wired Gaming" Command="{Binding WiredGamingCommand}"/>
-                <MenuItem Header="Wireless Office" Command="{Binding WirelessOfficeCommand}"/>
-                <MenuItem Header="Wired Office" Command="{Binding WiredOfficeCommand}"/>
+                <MenuItem Header="Wireless Gaming" Command="{Binding CategoryCommand}"/>
+                <MenuItem Header="Wired Gaming" Command="{Binding CategoryCommand}"/>
+                <MenuItem Header="Wireless Office" Command="{Binding CategoryCommand}"/>
+                <MenuItem Header="Wired Office" Command="{Binding CategoryCommand}"/>
             </MenuItem>
         </Menu>
         <Button Grid.Row="2" Grid.Column="2" Width="100" Command="{Binding SetCommand}">

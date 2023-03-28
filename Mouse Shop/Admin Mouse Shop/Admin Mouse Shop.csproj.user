@@ -8,12 +8,6 @@
     <Compile Update="View\ChangeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\DeleteView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\EditView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,12 +17,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ChangeView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\DeleteView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\EditView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainView.xaml">

@@ -12,26 +12,18 @@ using System.Windows;
 
 namespace Admin_Mouse_Shop.Services.Classes
 {
-    class ItemsService : IItemsService, INotifyCollectionChanged
+    class ItemsService : IItemsService
     {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
         private readonly IMyNavigationService _myNavigationService;
         public ItemsService(IMyNavigationService myNavigationService)
         {
             _myNavigationService = myNavigationService;
         }
 
-        protected void OnCollectionChange(NotifyCollectionChangedEventArgs e)
-        {
-            if (CollectionChanged != null)
-            {
-                CollectionChanged(this, e);
-            }
-        }
         public void Add(Mouse item)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            if (Find(item) == -1)
+            if (Find(item.Id) == -1)
             {
                 if (item == null || item.Company == null || item.Model == null || item.Price == 0 || item.DPI == 0 || item.ImagePath == null)
                 {
@@ -57,49 +49,33 @@ namespace Admin_Mouse_Shop.Services.Classes
             }
             else
             {
-                window.Products[Find(prevItem)] = newItem;
+                window.Products[Find(prevItem.Id)] = newItem;
             }
         }
 
-        public int Find(Mouse item)
+        public int Find(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
             for (int i = 0; i < window.Products.Count; i++)
             {
-                if (window.Products[i].Model == item.Model && window.Products[i].Company == item.Company)
+                if (window.Products[i].Id == Id)
                 {
                     return i;
                 }
             }
             return -1;
         }
-        public void Edit(string Company, string Model)
+        public void Edit(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            Mouse tmp = new() { Model = Model, Company = Company };
-            if (Find(tmp) != -1)
-            {
-                _myNavigationService.NavigateTo<ChangeViewModel>(window.Products[Find(tmp)]);
-                OnCollectionChange(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, window.Products));
-            }
-            else
-            {
-                MessageBox.Show("There is no such product!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _myNavigationService.NavigateTo<ChangeViewModel>(window.Products[Find(Id)]);
         }
-        public void Delete(string Company, string Model)
+        public void Delete(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            Mouse tmp = new() { Model = Model, Company = Company };
-            if (Find(tmp) != -1)
-            {
-                window.Products.RemoveAt(Find(tmp));
-                OnCollectionChange(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, window.Products));
-            }
-            else
-            {
-                MessageBox.Show("There is no such product!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            var res = MessageBox.Show($"Are you sure you want to delete {window.Products[Find(Id)].Company} {window.Products[Find(Id)].Model}");
+            window.Products.RemoveAt(Find(Id));
+            _myNavigationService.NavigateTo<AddViewModel>();
         }
 
     }

@@ -11,9 +11,9 @@ namespace Admin_Mouse_Shop.Services.Interfaces
     interface IItemsService
     {
         public void Add(Mouse item);
-        public int Find(Mouse item);
-        public void Edit(string Model, string Company);
+        public int Find(int Id);
+        public void Edit(int Id);
         public void Set(Mouse PrevProduct, Mouse NewProduct);
-        public void Delete(string Model, string Company);
+        public void Delete(int Id);
     }
 }

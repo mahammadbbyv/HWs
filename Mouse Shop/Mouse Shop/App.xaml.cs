@@ -30,16 +30,23 @@ namespace Mouse_Shop
             MainStartup();
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            var mainViewModel = App.Container.GetInstance<ProductsViewModel>();
+            mainViewModel.MainClose();
+            base.OnExit(e);
+        }
+
         private void Register()
         {
             Container.RegisterSingleton<IMessenger, Messenger>();
             Container.RegisterSingleton<IMyNavigationService, NavigationService>();
-            Container.RegisterSingleton<IAuthorization, Authorization>();
+            Container.RegisterSingleton<IAuthorizationService, AuthorizationService>();
             Container.RegisterSingleton<ISerializeService, SerializeService>();
             Container.RegisterSingleton<IVerificationService, VerificationService>();
             Container.RegisterSingleton<IBasketService, BasketService>();
             Container.RegisterSingleton<IPurchaseService, PurchaseService>();
-            Container.RegisterSingleton<ISort, Sort>();
+            Container.RegisterSingleton<ISortService, SortService>();
 
             Container.RegisterSingleton<WindowViewModel>();
             Container.RegisterSingleton<AuthorizationViewModel>();

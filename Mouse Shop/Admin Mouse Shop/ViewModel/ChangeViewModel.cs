@@ -7,29 +7,41 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Admin_Mouse_Shop.ViewModel
 {
-    class ChangeViewModel : ViewModelBase
+    class ChangeViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public Mouse NewProduct { get; set; } = new();
-        public Mouse PrevProduct { get; set; } = new();
+        private Mouse _newProduct { get; set; } = new();
+        private Mouse _prevProduct { get; set; } = new(); 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChange(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public Mouse NewProduct { get { return _newProduct; } set { _newProduct = value; OnPropertyChange(nameof(NewProduct)); } }
+        public Mouse PrevProduct { get { return _prevProduct; } set { _prevProduct = value; OnPropertyChange(nameof(PrevProduct)); } }
         private readonly IMessenger _messenger;
         private readonly IItemsService _itemsService;
+        private readonly IMyNavigationService _navigationService;
 
         private void ReceiveMessage(DataMessage message)
         {
-            PrevProduct = (Mouse)message.Data;
-            NewProduct = (Mouse)message.Data;
+            Mouse tmp = (Mouse)message.Data;
+            PrevProduct = (Mouse)tmp.Clone();
+            NewProduct = (Mouse)tmp.Clone();
         }
 
-        public ChangeViewModel(IMessenger messenger, IItemsService itemsService)
+        public ChangeViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService navigationService)
         { 
             _messenger = messenger;
             _itemsService = itemsService;
+            _navigationService = navigationService;
             _messenger.Register<DataMessage>(this, ReceiveMessage);
         }
 
@@ -44,7 +56,7 @@ namespace Admin_Mouse_Shop.ViewModel
                 var result = dialog.ShowDialog();
                 if (result == true)
                 {
-                    NewProduct.ImagePath = (string)dialog.FileName;
+                    NewProduct.ImagePath = dialog.FileName;
                 }
             });
         }
@@ -54,38 +66,32 @@ namespace Admin_Mouse_Shop.ViewModel
             {
                 _itemsService.Set(PrevProduct, NewProduct);
                 NewProduct = new Mouse();
+                _navigationService.NavigateTo<AddViewModel>();
             });
         }
-        public RelayCommand WirelessGamingCommand
+        public RelayCommand<object> CategoryCommand
         {
-            get => new(() =>
+            get => new(param =>
             {
-                NewProduct.Wireless = true;
-                NewProduct.Gaming = true;
-            });
-        }
-        public RelayCommand WiredGamingCommand
-        {
-            get => new(() =>
-            {
-                NewProduct.Wireless = false;
-                NewProduct.Gaming = true;
-            });
-        }
-        public RelayCommand WirelessOfficeCommand
-        {
-            get => new(() =>
-            {
-                NewProduct.Wireless = true;
-                NewProduct.Gaming = false;
-            });
-        }
-        public RelayCommand WiredOfficeCommand
-        {
-            get => new(() =>
-            {
-                NewProduct.Wireless = false;
-                NewProduct.Gaming = false;
+                switch (param as string)
+                {
+                    case "Wireless Gaming":
+                        NewProduct.Wireless = true;
+                        NewProduct.Gaming = true;
+                        break;
+                    case "Wired Gaming":
+                        NewProduct.Wireless = false;
+                        NewProduct.Gaming = true;
+                        break;
+                    case "Wireless Office":
+                        NewProduct.Wireless = true;
+                        NewProduct.Gaming = false;
+                        break;
+                    case "Wired Office":
+                        NewProduct.Wireless = false;
+                        NewProduct.Gaming = false;
+                        break;
+                }
             });
         }
     }

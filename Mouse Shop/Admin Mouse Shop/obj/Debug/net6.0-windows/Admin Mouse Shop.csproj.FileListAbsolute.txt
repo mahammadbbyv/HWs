@@ -29,9 +29,5 @@ D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\Admin Mouse Shop
 D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\ref\Admin Mouse Shop.dll
 D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\AddView.g.cs
 D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\AddView.baml
-D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\DeleteView.g.cs
-D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\EditView.g.cs
-D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\DeleteView.baml
-D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\EditView.baml
 D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\ChangeView.g.cs
 D:\Desktop\Mouse Shop\Admin Mouse Shop\obj\Debug\net6.0-windows\View\ChangeView.baml

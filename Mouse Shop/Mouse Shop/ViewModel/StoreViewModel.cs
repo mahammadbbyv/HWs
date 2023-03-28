@@ -23,7 +23,7 @@ namespace Mouse_Shop.ViewModel
         private readonly IMessenger _messenger;
         private readonly IPurchaseService _purchaseService;
         private readonly IMyNavigationService _myNavigationService;
-        private readonly ISort _sort;
+        private readonly ISortService _sortService;
         protected void OnPropertyChange(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -57,7 +57,29 @@ namespace Mouse_Shop.ViewModel
                     subtotal = 0f; 
                 } else 
                 { 
-                    subtotal -= (float)message.Data; 
+                    subtotal -= (float)message.Data;
+                    string tmp = subtotal.ToString();
+                    StringBuilder res = new StringBuilder();
+                    int i = 0;
+                    if (tmp.Contains("."))
+                    {
+                        while (tmp[i].ToString() != ".")
+                        {
+                            res.Append(tmp[i]);
+                            i++;
+                        }
+                        int j = i + 3;
+                        while (j - i > 0 && i < tmp.Length)
+                        {
+                            res.Append(tmp[i]);
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        while (i < tmp.Length) { res.Append(tmp[i]); i++; }
+                    }
+                    subtotal = Convert.ToSingle(res.ToString());
                 } 
             }
             else 
@@ -87,14 +109,14 @@ namespace Mouse_Shop.ViewModel
                 subtotal = Convert.ToSingle(res.ToString());
             }
         }
-        public StoreViewModel(IMessenger messenger, IMyNavigationService myNavigationService, IPurchaseService purchaseService, ISort sort)
+        public StoreViewModel(IMessenger messenger, IMyNavigationService myNavigationService, IPurchaseService purchaseService, ISortService SortService)
         {
             _messenger = messenger;
             _myNavigationService = myNavigationService;
             _purchaseService = purchaseService;
             _messenger.Register<DataMessage>(this, ReceiveMessage);
             CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-            _sort = sort;
+            _sortService = SortService;
         }
         public RelayCommand LogOutCommand
         {
@@ -111,44 +133,12 @@ namespace Mouse_Shop.ViewModel
                 CurrentViewModel = App.Container.GetInstance<CartViewModel>();
             });
         }
-        public RelayCommand AllCommand
+        public RelayCommand<object> CategoryCommand
         {
-            get => new(() =>
+            get => new(param =>
             {
                 CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-                _sort.SortByCategory("All");
-            });
-        }
-        public RelayCommand WirelessOfficeCommand
-        {
-            get => new(() =>
-            {
-                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-                _sort.SortByCategory("WirelessOffice");
-            });
-        }
-        public RelayCommand WirelessGamingCommand
-        {
-            get => new(() =>
-            {
-                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-                _sort.SortByCategory("WirelessGaming");
-            });
-        }
-        public RelayCommand WiredOfficeCommand
-        {
-            get => new(() =>
-            {
-                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-                _sort.SortByCategory("WiredOffice");
-            });
-        }
-        public RelayCommand WiredGamingCommand
-        {
-            get => new(() =>
-            {
-                CurrentViewModel = App.Container.GetInstance<ProductsViewModel>();
-                _sort.SortByCategory("WiredGaming");
+                _sortService.SortByCategory(param as string);
             });
         }
         public RelayCommand PurchaseCommand
@@ -158,9 +148,11 @@ namespace Mouse_Shop.ViewModel
                 var tmp = App.Container.GetInstance<CartViewModel>();
                 if (tmp.Products.Count == 0) { MessageBox.Show("Cart is empty!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
                 else 
-                { 
+                {
                     _purchaseService.GenerateReciept(tmp.Products, subtotal);
                     _purchaseService.SendReciept();
+                    subtotal = 0;
+                    tmp.Products.Clear();
                 }
             });
         }

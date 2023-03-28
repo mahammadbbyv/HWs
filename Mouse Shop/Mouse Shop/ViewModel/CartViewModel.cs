@@ -45,7 +45,7 @@ namespace Mouse_Shop.ViewModel
         {
             get => new(param =>
             {
-                //MessageBox.Show(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "/ShoeImages/MenImages");
+                //MessageBox.Show(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "/ShoeImages/MenImages");
                 for (int i = 0; i < Products.Count; i++)
                 {
                     var tmp = param as Mouse;

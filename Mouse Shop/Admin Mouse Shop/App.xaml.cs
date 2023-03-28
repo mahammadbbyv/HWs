@@ -38,8 +38,6 @@ namespace Admin_Mouse_Shop
 
             Container.RegisterSingleton<MainViewModel>();
             Container.RegisterSingleton<AddViewModel>();
-            Container.RegisterSingleton<EditViewModel>();
-            Container.RegisterSingleton<DeleteViewModel>();
             Container.RegisterSingleton<ChangeViewModel>();
         }
 

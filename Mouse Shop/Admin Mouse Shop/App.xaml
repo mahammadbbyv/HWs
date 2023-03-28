@@ -15,14 +15,6 @@
                 <View:AddView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type ViewModel:DeleteViewModel}">
-                <View:DeleteView />
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type ViewModel:EditViewModel}">
-                <View:EditView />
-            </DataTemplate>
-
             <DataTemplate DataType="{x:Type ViewModel:ChangeViewModel}">
                 <View:ChangeView />
             </DataTemplate>

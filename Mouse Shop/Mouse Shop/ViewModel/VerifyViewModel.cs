@@ -25,14 +25,14 @@ namespace Mouse_Shop.ViewModel
         private readonly IMessenger _messenger;
         private readonly IVerificationService _verificationService;
         private readonly IMyNavigationService _navigationService;
-        private readonly IAuthorization _authorization;
+        private readonly IAuthorizationService _authorization;
         private readonly ISerializeService _serializeService;
-        public VerifyViewModel(IMessenger messenger, IVerificationService verificationService, IMyNavigationService navigationService, IAuthorization authorization, ISerializeService serializeService)
+        public VerifyViewModel(IMessenger messenger, IVerificationService verificationService, IMyNavigationService navigationService, IAuthorizationService AuthorizationService, ISerializeService serializeService)
         {
             _messenger = messenger;
             _verificationService = verificationService;
             _navigationService = navigationService;
-            _authorization = authorization;
+            _authorization = AuthorizationService;
             _serializeService = serializeService;
         }
         public RelayCommand VerifyCommand
@@ -42,12 +42,12 @@ namespace Mouse_Shop.ViewModel
                 User res = _verificationService.IsMatch(WrittenMail, WrittenCode);
                 if (res != null)
                 {
-                    Users = _serializeService.Deserialize<List<User>>(System.IO.File.ReadAllText("users.json"));
+                    Users = _serializeService.Deserialize<List<User>>(File.ReadAllText("users.json"));
                     int index = Users.FindIndex(x => x.Mail == res.Mail && x.VerifyCode == res.VerifyCode);
                     Users[index].Confirmed = true;
                     MessageBox.Show("You have successfully confirmed your identity!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    System.IO.File.WriteAllText("users.json", string.Empty);
-                    System.IO.File.WriteAllText("users.json", _serializeService.Serialize<List<User>>(Users));
+                    File.WriteAllText("users.json", string.Empty);
+                    File.WriteAllText("users.json", _serializeService.Serialize<List<User>>(Users));
                 }
                 else
                 {

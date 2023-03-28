@@ -13,25 +13,17 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Admin_Mouse_Shop.ViewModel
 {
-    internal class MainViewModel : ViewModelBase, INotifyCollectionChanged
+    internal class MainViewModel : ViewModelBase
     {
         private readonly IMessenger _messenger;
         private readonly IItemsService _itemsService;
         private readonly IMyNavigationService _myNavigationService;
         public ObservableCollection<Mouse> Products { get; set; } = new();
         private ViewModelBase _currentViewModel;
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
-        protected void OnCollectionChange(NotifyCollectionChangedEventArgs e)
-        {
-            if (CollectionChanged != null)
-            {
-                CollectionChanged(this, e);
-            }
-        }
 
         public ViewModelBase CurrentViewModel
         {
@@ -48,21 +40,25 @@ namespace Admin_Mouse_Shop.ViewModel
         public void ReceiveMessage(DataMessage message)
         {
             _itemsService.Add(message.Data as Mouse);
-            OnCollectionChange(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, Products));
         }
 
         internal void MainClose()
         {
-            File.WriteAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json", JsonSerializer.Serialize(Products));
+
+            File.WriteAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json", JsonSerializer.Serialize(Products));
+            File.WriteAllText("last_id.txt", App.Container.GetInstance<AddViewModel>().Id.ToString());
         }
 
         internal void MainOpen()
         {
-            if(File.Exists(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
-                Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
+            {
+                Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+                App.Container.GetInstance<AddViewModel>().Id = Convert.ToInt32(File.ReadAllText("last_id.txt"));
+            }
         }
 
-        public MainViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService myNavigationService)
+            public MainViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService myNavigationService)
         {
             CurrentViewModel = App.Container.GetInstance<AddViewModel>();
             _itemsService = itemsService;
@@ -72,26 +68,42 @@ namespace Admin_Mouse_Shop.ViewModel
             _messenger.Register<DataMessage>(this, ReceiveMessage);
             _myNavigationService = myNavigationService;
         }
-        public RelayCommand AddViewCommand
+
+        public RelayCommand<object> EditCommand
         {
-            get => new(() =>
+            get => new(param =>
             {
-                _myNavigationService.NavigateTo<AddViewModel>();
+                _itemsService.Edit((int)param);
             });
         }
-        public RelayCommand DeleteViewCommand
+
+        public RelayCommand<object> DeleteCommand
         {
-            get => new(() =>
+            get => new(param =>
             {
-                _myNavigationService.NavigateTo<DeleteViewModel>();
+                _itemsService.Delete((int)param);
             });
         }
-        public RelayCommand EditViewCommand
-        {
-            get => new(() =>
-            {
-                _myNavigationService.NavigateTo<EditViewModel>();
-            });
-        }
+        //public RelayCommand AddViewCommand
+        //{
+        //    get => new(() =>
+        //    {
+        //        _myNavigationService.NavigateTo<AddViewModel>();
+        //    });
+        //}
+        //public RelayCommand DeleteViewCommand
+        //{
+        //    get => new(() =>
+        //    {
+        //        _myNavigationService.NavigateTo<DeleteViewModel>();
+        //    });
+        //}
+        //public RelayCommand EditViewCommand
+        //{
+        //    get => new(() =>
+        //    {
+        //        _myNavigationService.NavigateTo<EditViewModel>();
+        //    });
+        //}
     }
 }

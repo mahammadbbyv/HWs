@@ -18,12 +18,12 @@ namespace Mouse_Shop.ViewModel
 {
     class AuthorizationViewModel : ViewModelBase
     {
-        private readonly IAuthorization _authorization;
+        private readonly IAuthorizationService _authorization;
         private readonly IMyNavigationService _navigationService;
         public User user { get; set; } = new();
-        public AuthorizationViewModel(IAuthorization authorization, IMyNavigationService navigationService)
+        public AuthorizationViewModel(IAuthorizationService AuthorizationService, IMyNavigationService navigationService)
         {
-            _authorization = authorization;
+            _authorization = AuthorizationService;
             _navigationService = navigationService;
         }
 
