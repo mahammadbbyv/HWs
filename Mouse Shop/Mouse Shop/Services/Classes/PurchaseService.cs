@@ -80,7 +80,7 @@ namespace Mouse_Shop.Services.Classes
             mail.Body = $"<h3>{user.Name} {user.Surname}, this is your code for reciept!</h3>";
             mail.IsBodyHtml = true;
 
-            System.Net.Mail.Attachment attachment; 
+            System.Net.Mail.Attachment attachment;
             int i = 0;
             while (File.Exists($"reciept{i}.pdf"))
             {

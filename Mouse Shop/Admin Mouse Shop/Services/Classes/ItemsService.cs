@@ -73,9 +73,11 @@ namespace Admin_Mouse_Shop.Services.Classes
         public void Delete(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            var res = MessageBox.Show($"Are you sure you want to delete {window.Products[Find(Id)].Company} {window.Products[Find(Id)].Model}");
-            window.Products.RemoveAt(Find(Id));
-            _myNavigationService.NavigateTo<AddViewModel>();
+            var res = MessageBox.Show($"Are you sure you want to delete {window.Products[Find(Id)].Company} {window.Products[Find(Id)].Model}?\nThis is irreversible!", "Accetpt?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(res == MessageBoxResult.Yes) { 
+                window.Products.RemoveAt(Find(Id));
+                _myNavigationService.NavigateTo<AddViewModel>();
+            }
         }
 
     }

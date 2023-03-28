@@ -57,7 +57,7 @@ namespace Admin_Mouse_Shop.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Admin Mouse Shop;component/view/addview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Admin Mouse Shop;V1.0.0.0;component/view/addview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\AddView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hkD2eahGnfTr3NJ9krSKNSRyc9HF72SIksY/VJOshGBBt0Yu4KS8bewU4C4eepIYUjPQORDIaJ2qNXN0JRBRoA==",
+  "dgSpecHash": "HXsxhaCxuzMwHuvCpHPYv2nWPy2qGABxRsCiVMxZgRuk0oEQF5vMtbf0jQGNCSA2h25aJFsNC90f4+V0aP0hUg==",
   "success": true,
-  "projectFilePath": "D:\\Desktop\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
+  "projectFilePath": "D:\\Desktop\\HWs\\Mouse Shop\\Admin Mouse Shop\\Admin Mouse Shop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bemga\\.nuget\\packages\\materialdesigncolors\\2.1.2\\materialdesigncolors.2.1.2.nupkg.sha512",
     "C:\\Users\\Bemga\\.nuget\\packages\\materialdesignthemes\\4.8.0\\materialdesignthemes.4.8.0.nupkg.sha512",
