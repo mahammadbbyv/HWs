@@ -35,6 +35,7 @@ namespace Admin_Mouse_Shop
             Container.RegisterSingleton<IMessenger, Messenger>();
             Container.RegisterSingleton<IMyNavigationService, NavigationService>();
             Container.RegisterSingleton<IItemsService, ItemsService>();
+            Container.RegisterSingleton<IServerService, ServerService>();
 
             Container.RegisterSingleton<MainViewModel>();
             Container.RegisterSingleton<AddViewModel>();

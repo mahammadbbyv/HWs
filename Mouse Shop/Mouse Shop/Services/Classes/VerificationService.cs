@@ -12,16 +12,16 @@ namespace Mouse_Shop.Services.Classes
     internal class VerificationService : IVerificationService
     {
         private readonly ISerializeService _serializeService;
+        private readonly IServerService _serverService;
         public List<User> Users { get; set; }
-        public VerificationService(ISerializeService serializeService)
+        public VerificationService(ISerializeService serializeService, IServerService serverService)
         {
             _serializeService = serializeService;
+            _serverService = serverService;
         }
         public User IsMatch(string mail, string code)
         {
-            using FileStream fs = new("users.json", FileMode.OpenOrCreate);
-            using StreamReader sr = new StreamReader(fs);
-            Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
+            Users = _serializeService.Deserialize<List<User>>(_serverService.FtpDownloadString("users.json"));
             User res = Users.Find(x => x.Mail == mail && x.VerifyCode.ToString() == code);
             return res;
         }

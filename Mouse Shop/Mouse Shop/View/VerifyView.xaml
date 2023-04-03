@@ -5,32 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mouse_Shop.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             Height="400" Width="750"
              xmlns:mD="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:ViewModel="clr-namespace:Mouse_Shop.ViewModel"
              d:DataContext="{d:DesignInstance Type=ViewModel:VerifyViewModel}"
              Background="Transparent">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.3*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="Please check your email inbox. You should find the message with your verification code. Enter the code down here." FontSize="20" TextWrapping="Wrap"/>
-        <Button Grid.Column="2" Width="100" Command="{Binding BackCommand}">
-            <StackPanel Orientation="Horizontal">
-                <mD:PackIcon Kind="ArrowBack" VerticalAlignment="Center"/>
-                <Label Content="Back" VerticalAlignment="Center" Height="auto" Padding="0"/>
-            </StackPanel>
-        </Button>
-        <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Text="{Binding WrittenMail}" FontSize="20" mD:HintAssist.Hint="E-Mail"/>
-        <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding WrittenCode}" FontSize="20" mD:HintAssist.Hint="Code"/>
-        <Button Grid.Row="2" Grid.Column="2" Width="50" Command="{Binding VerifyCommand}">
-            <mD:PackIcon Kind="Check" />
-        </Button>
-    </Grid>
+    <Border Background="DarkGreen" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="Please check your email inbox. You should find the message with your verification code. Enter the code down here." FontSize="20" TextWrapping="Wrap"/>
+            <Button Grid.Column="2" Width="100" Command="{Binding BackCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <mD:PackIcon Kind="ArrowBack" VerticalAlignment="Center"/>
+                    <Label Content="Back" VerticalAlignment="Center" Height="auto" Padding="0"/>
+                </StackPanel>
+            </Button>
+            <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Text="{Binding WrittenMail}" FontSize="20" mD:HintAssist.Hint="E-Mail"/>
+            <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding WrittenCode}" FontSize="20" mD:HintAssist.Hint="Code"/>
+            <Button Grid.Row="2" Grid.Column="2" Width="50" Command="{Binding VerifyCommand}">
+                <mD:PackIcon Kind="Check" />
+            </Button>
+        </Grid>
+    </Border>
 </UserControl>

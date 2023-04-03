@@ -15,7 +15,7 @@
                 <ItemsControl ItemsSource="{Binding Products}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border CornerRadius="5" BorderThickness="5" Height="300" Width="200" Margin="20">
+                            <Border CornerRadius="5" BorderThickness="5" Height="350" Width="200" Margin="20">
                                 <Border.BorderBrush>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                         <GradientStop Color="Green" Offset="0.0"/>
@@ -24,11 +24,11 @@
                                 </Border.BorderBrush>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="200"/>
+                                        <RowDefinition Height="250"/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Grid>
-                                        <Image Source="{Binding ImagePath}" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding ImageLink}" Stretch="Uniform"/>
 
                                         <Button Grid.Row="0"
                                                         Height="40"
@@ -52,7 +52,6 @@
                                                 <GradientStop Color="Black" Offset="1.0"/>
                                             </LinearGradientBrush>
                                         </Border.Background>
-
                                         <Grid>
                                             <TextBlock Text="{Binding Company}" FontSize="18" Foreground="White" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
                                             <TextBlock Text="{Binding Model}" FontSize="18" Foreground="White" FontWeight="DemiBold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>

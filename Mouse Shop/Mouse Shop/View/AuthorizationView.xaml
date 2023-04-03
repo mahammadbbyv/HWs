@@ -10,82 +10,73 @@
         xmlns:cr="clr-namespace:Mouse_Shop.Converters"
         xmlns:ViewModel="clr-namespace:Mouse_Shop.ViewModel"
         TextOptions.TextRenderingMode="Auto"
-        mc:Ignorable="d" d:Height="450" d:Width="800" d:DataContext="{d:DesignInstance Type=ViewModel:AuthorizationViewModel}">
+        mc:Ignorable="d" Height="400" Width="750" d:DataContext="{d:DesignInstance Type=ViewModel:AuthorizationViewModel}">
     <UserControl.Resources>
         <cr:PasswordConverter x:Key="MyConv"></cr:PasswordConverter>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.25*" />
-            <ColumnDefinition Width="0.25*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"/>
-            <RowDefinition Height="0.25*"/>
-            <RowDefinition Height="0.25*" />
-            <RowDefinition Height="0.25*" />
-            <RowDefinition Height="0.2*"/>
-        </Grid.RowDefinitions>
-        <Border Grid.Row="1" Width="240" Height="40">
-            <TextBox Text="{Binding user.Mail}" mD:HintAssist.Foreground="White" FontSize="16" mD:HintAssist.Hint="E-Mail" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
+    <Border Background="DarkGreen" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.25*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="1" Margin="80 0" Height="40" Text="{Binding user.Mail}" mD:HintAssist.Foreground="White" FontSize="16" mD:HintAssist.Hint="E-Mail" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-        </Border>
-        <Border Grid.Row="2" Width="240" Height="40">
-            <PasswordBox x:Name="PasswordLogin" FontSize="16" mD:HintAssist.Hint="Password" VerticalContentAlignment="Center" Padding="3" mD:BottomDashedLineAdorner.Thickness="0" />
-        </Border>
-        <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordLogin}" Grid.Row="3" Width="120" Height="40" Background="LimeGreen" BorderThickness="0">
-            <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Button>
-        <Border Grid.Row="0" Grid.Column="1" Width="160" Height="40">
-            <TextBox Text="{Binding user.Name}" FontSize="16" mD:HintAssist.Hint="Name" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
+            <PasswordBox Grid.Row="2" Margin="80 0" Height="40" x:Name="PasswordLogin" FontSize="16" mD:HintAssist.Hint="Password" VerticalContentAlignment="Center" Padding="3" mD:BottomDashedLineAdorner.Thickness="0" />
+
+            <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordLogin}" Grid.Row="3" Width="120" Height="40" Background="LimeGreen" BorderThickness="0">
+                <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="20 0" Height="40" Text="{Binding user.Name}" FontSize="16" mD:HintAssist.Hint="Name" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-        </Border>
-        <Border Grid.Row="0" Grid.Column="2" Width="160" Height="40">
-            <TextBox Text="{Binding user.Surname}"  FontSize="16" mD:HintAssist.Hint="Surname" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
+            <TextBox Grid.Row="0" Grid.Column="2" Margin="20 0" Height="40" Text="{Binding user.Surname}" FontSize="16" mD:HintAssist.Hint="Surname" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-        </Border>
-        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Width="240" Height="40">
-            <TextBox Text="{Binding user.Mail}"  FontSize="16" mD:HintAssist.Hint="E-Mail" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="80 0" Height="40" Text="{Binding user.Mail}"  FontSize="16" mD:HintAssist.Hint="E-Mail" VerticalContentAlignment="Center" TextAlignment="Left" Padding="3">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-        </Border>
-        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Width="240" Height="40">
-            <PasswordBox x:Name="Password" FontSize="16" mD:HintAssist.Hint="Password" VerticalContentAlignment="Center" Padding="3" />
-        </Border>
-        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Width="240" Height="40">
-            <PasswordBox x:Name="Confirm" FontSize="16" mD:HintAssist.Hint="Password" VerticalContentAlignment="Center" Padding="3" />
-        </Border>
-        <Button Command="{Binding RegisterCommand}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="120" Height="40" Background="LimeGreen" BorderThickness="0">
-            <Label Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource MyConv}">
-                    <Binding ElementName="Password"/>
-                    <Binding ElementName="Confirm"/>
-                </MultiBinding>
-            </Button.CommandParameter>
-        </Button>
-        <Button Command="{Binding VerifyCommand}" Grid.Row="0" Width="150" Height="40" Background="Gray" BorderThickness="0">
-            <Label Content="Verify account" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Button>
-    </Grid>
+            <PasswordBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="80 0" Height="40" x:Name="Password" FontSize="16" mD:HintAssist.Hint="Password" VerticalContentAlignment="Center" Padding="3" />
+
+            <PasswordBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="80 0" Height="40" x:Name="Confirm" FontSize="16" mD:HintAssist.Hint="Confirm password" VerticalContentAlignment="Center" Padding="3" />
+
+            <Button Command="{Binding RegisterCommand}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="120" Height="40" Background="LimeGreen" BorderThickness="0">
+                <Label Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MyConv}">
+                        <Binding ElementName="Password"/>
+                        <Binding ElementName="Confirm"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Command="{Binding VerifyCommand}" Grid.Row="0" Width="150" Height="40" Background="Gray" BorderThickness="0">
+                <Label Content="Verify account" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+    </Border>
 </UserControl>

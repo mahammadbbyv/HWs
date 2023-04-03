@@ -12,6 +12,7 @@ namespace Admin_Mouse_Shop.Model
     public class Mouse
     {
         public string ImagePath { get; set; }
+        public string ImageLink { get; set; }
         public string Model { get; set; }
         public string Company { get; set; }
         public int? DPI { get; set; } = null;

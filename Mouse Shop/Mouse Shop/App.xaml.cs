@@ -47,6 +47,7 @@ namespace Mouse_Shop
             Container.RegisterSingleton<IBasketService, BasketService>();
             Container.RegisterSingleton<IPurchaseService, PurchaseService>();
             Container.RegisterSingleton<ISortService, SortService>();
+            Container.RegisterSingleton<IServerService, ServerService>();
 
             Container.RegisterSingleton<WindowViewModel>();
             Container.RegisterSingleton<AuthorizationViewModel>();

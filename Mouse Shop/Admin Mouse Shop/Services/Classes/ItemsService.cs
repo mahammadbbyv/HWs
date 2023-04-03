@@ -5,19 +5,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace Admin_Mouse_Shop.Services.Classes
 {
     class ItemsService : IItemsService
     {
         private readonly IMyNavigationService _myNavigationService;
-        public ItemsService(IMyNavigationService myNavigationService)
+        private readonly IServerService _serverService;
+        public ItemsService(IMyNavigationService myNavigationService, IServerService serverService)
         {
             _myNavigationService = myNavigationService;
+            _serverService = serverService;
         }
 
         public void Add(Mouse item)
@@ -31,6 +36,10 @@ namespace Admin_Mouse_Shop.Services.Classes
                 }
                 else
                 {
+                    FileInfo name = new(item.ImagePath);
+                    _serverService.AddImage(item.ImagePath);
+                    item.ImagePath = $"ftp://auris.cityhost.com.ua/www/telegram-bots-maga.cx.ua/Photos/{name.Name}";
+                    item.ImageLink = $"https://www.telegram-bots-maga.cx.ua/Photos/{name.Name}";
                     window.Products.Add(item);
                 }
             }
@@ -49,6 +58,14 @@ namespace Admin_Mouse_Shop.Services.Classes
             }
             else
             {
+                FileInfo tmp = new(newItem.ImagePath);
+                if(prevItem.ImagePath != $"ftp://auris.cityhost.com.ua/www/telegram-bots-maga.cx.ua/Photos/{tmp.Name}") 
+                {
+                    _serverService.DeleteImage(prevItem.ImagePath);
+                    _serverService.AddImage(newItem.ImagePath);
+                    newItem.ImagePath = $"ftp://auris.cityhost.com.ua/www/telegram-bots-maga.cx.ua/Photos/{tmp.Name}";
+                    newItem.ImageLink = $"https://www.telegram-bots-maga.cx.ua/Photos/{tmp.Name}";
+                }
                 window.Products[Find(prevItem.Id)] = newItem;
             }
         }
@@ -75,10 +92,11 @@ namespace Admin_Mouse_Shop.Services.Classes
         public void Delete(int Id)
         {
             var window = App.Container.GetInstance<MainViewModel>();
-            var res = MessageBox.Show($"Are you sure you want to delete {window.Products[Find(Id)].Company} {window.Products[Find(Id)].Model}?\nThis is irreversible!", "Accetpt?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if(res == MessageBoxResult.Yes) { 
-                window.Products.RemoveAt(Find(Id));
+            var res = MessageBox.Show($"Are you sure you want to delete {window.Products[Find(Id)].Company} {window.Products[Find(Id)].Model}?\nThis is irreversible!", "Accept?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(res == MessageBoxResult.Yes) {
                 _myNavigationService.NavigateTo<AddViewModel>();
+                _serverService.DeleteImage(window.Products[Find(Id)].ImagePath);
+                window.Products.RemoveAt(Find(Id));
             }
         }
 

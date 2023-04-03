@@ -22,18 +22,16 @@ namespace Mouse_Shop.ViewModel
         public List<User> Users { get; set; }
         public string WrittenCode { get; set; }
         public string WrittenMail { get; set; }
-        private readonly IMessenger _messenger;
         private readonly IVerificationService _verificationService;
         private readonly IMyNavigationService _navigationService;
-        private readonly IAuthorizationService _authorization;
         private readonly ISerializeService _serializeService;
-        public VerifyViewModel(IMessenger messenger, IVerificationService verificationService, IMyNavigationService navigationService, IAuthorizationService AuthorizationService, ISerializeService serializeService)
+        private readonly IServerService _serverService;
+        public VerifyViewModel(IVerificationService verificationService, IMyNavigationService navigationService, ISerializeService serializeService, IServerService serverService)
         {
-            _messenger = messenger;
             _verificationService = verificationService;
             _navigationService = navigationService;
-            _authorization = AuthorizationService;
             _serializeService = serializeService;
+            _serverService = serverService;
         }
         public RelayCommand VerifyCommand
         {
@@ -42,16 +40,12 @@ namespace Mouse_Shop.ViewModel
                 User res = _verificationService.IsMatch(WrittenMail, WrittenCode);
                 if (res != null)
                 {
-                    Users = _serializeService.Deserialize<List<User>>(File.ReadAllText("users.json"));
-                    int index = Users.FindIndex(x => x.Mail == res.Mail && x.VerifyCode == res.VerifyCode);
-                    Users[index].Confirmed = true;
-                    MessageBox.Show("You have successfully confirmed your identity!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    File.WriteAllText("users.json", string.Empty);
-                    File.WriteAllText("users.json", _serializeService.Serialize<List<User>>(Users));
+                    if (!res.Confirmed) { Users = _serializeService.Deserialize<List<User>>(_serverService.FtpDownloadString("users.json")); int index = Users.FindIndex(x => x.Mail == res.Mail && x.VerifyCode == res.VerifyCode); Users[index].Confirmed = true; MessageBox.Show("You have successfully confirmed your identity!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information); _serverService.FtpUploadString(_serializeService.Serialize<List<User>>(Users), "users.json"); }
+                    else{ MessageBox.Show("Your identity was already confirmed!"); }
                 }
                 else
                 {
-                    MessageBox.Show("This code ot this mail is not valid!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("This code is not valid!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         }

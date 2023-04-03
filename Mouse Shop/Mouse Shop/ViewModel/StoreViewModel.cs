@@ -150,7 +150,6 @@ namespace Mouse_Shop.ViewModel
                 else 
                 {
                     _purchaseService.GenerateReciept(tmp.Products, subtotal);
-                    _purchaseService.SendReciept();
                     subtotal = 0;
                     tmp.Products.Clear();
                 }

@@ -4,6 +4,13 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+.username.txt
+*.username.txt
+username.txt
+.password.txt
+*.password.txt
+password.txt
+
 *.rsuser
 *.suo
 *.user

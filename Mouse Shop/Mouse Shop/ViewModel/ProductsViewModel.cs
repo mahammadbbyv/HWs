@@ -13,13 +13,21 @@ using System.Windows;
 using Mouse_Shop.Messages;
 using System.IO;
 using Mouse_Shop.Services.Interfaces;
+using Mouse_Shop.Services.Classes;
 
 namespace Mouse_Shop.ViewModel
 {
     class ProductsViewModel : ViewModelBase
     {
-        IMyNavigationService _navigationService;
+        private readonly IMyNavigationService _navigationService;
         private readonly ISerializeService _serializeService;
+        private readonly IServerService _serverService;
+        public ProductsViewModel(IMyNavigationService navigationService, ISerializeService serializeService, IServerService serverService)
+        {
+            _navigationService = navigationService;
+            _serializeService = serializeService;
+            _serverService = serverService;
+        }
 
         public ObservableCollection<Mouse> Products { get; set; } = new();
         public RelayCommand<object> AddCommand
@@ -35,16 +43,10 @@ namespace Mouse_Shop.ViewModel
                 }
             });
         }
-        public ProductsViewModel(IMyNavigationService navigationService, ISerializeService serializeService)
-        {
-            _navigationService = navigationService;
-            _serializeService = serializeService;
-        }
 
-        internal void MainOpen()
+        public void MainOpen()
         {
-            if(File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
-                Products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            Products = _serializeService.Deserialize<ObservableCollection<Mouse>>(_serverService.FtpDownloadString("products.json"));
         }
 
         internal void MainClose()

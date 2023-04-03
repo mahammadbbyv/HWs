@@ -22,25 +22,17 @@ namespace Mouse_Shop.Services.Classes
         public List<User> Users { get; set; } = new();
         private readonly ISerializeService _serializeService;
         private readonly IMyNavigationService _navigationService;
-        private readonly IMessenger _messenger = new Messenger();
-        public AuthorizationService(ISerializeService serializeService, IMyNavigationService navigationService, IMessenger messenger)
+        private readonly IServerService _serverService;
+        public AuthorizationService(ISerializeService serializeService, IMyNavigationService navigationService, IServerService serverService)
         {
             _serializeService = serializeService;
             _navigationService = navigationService;
-            _messenger = messenger;
+            _serverService = serverService;
         }
 
         public void Authorize(User user)
         {
-            using FileStream fs = new("users.json", FileMode.OpenOrCreate);
-            using StreamReader sr = new(fs);
-            if (sr.ReadToEnd() != string.Empty)
-            {
-                fs.Position = 0;
-                Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
-            }
-            sr.Close();
-            fs.Close();
+            Users = _serializeService.Deserialize<List<User>>(_serverService.FtpDownloadString("users.json"));
             if (CheckExists(user)) { 
                 var result = Users.Find(x => x.Mail == user.Mail && x.Password == user.Password);
                 if (result != null && result.Confirmed && user.Password == result.Password)
@@ -48,7 +40,7 @@ namespace Mouse_Shop.Services.Classes
                     _navigationService.NavigateTo<StoreViewModel>();
                     File.WriteAllText("current_user.json", _serializeService.Serialize<User>(result));
                 }
-                else { MessageBox.Show("Password is incorrect!"); }
+                else { MessageBox.Show(result == null ? "There is no such mail registered or password doesn't match the registered account!" : "This mail was not verified yet!"); }
             }
             else
             {
@@ -61,8 +53,6 @@ namespace Mouse_Shop.Services.Classes
         {
             if (!CheckExists(user) && CheckInputs(user, confirm))
             {
-                using FileStream fs = new("users.json", FileMode.OpenOrCreate, FileAccess.Write);
-                using StreamWriter sw = new(fs);
                 MessageBox.Show("We've sent you an email verification!");
                 MailMessage mail = new();
                 SmtpClient SmtpServer = new("smtp.gmail.com");
@@ -82,7 +72,7 @@ namespace Mouse_Shop.Services.Classes
                 SmtpServer.SendMailAsync(mail);
                 user.VerifyCode = code;
                 Users.Add(user);
-                sw.Write(JsonSerializer.Serialize(Users));
+                _serverService.FtpUploadString(JsonSerializer.Serialize(Users), "users.json");
             }
             else if (CheckExists(user))
             {
@@ -93,27 +83,15 @@ namespace Mouse_Shop.Services.Classes
 
         public bool CheckExists(User user)
         {
-            using FileStream fs = new("users.json", FileMode.OpenOrCreate, FileAccess.Read);
-            using StreamReader sr = new(fs);
-            if (sr.ReadToEnd() != string.Empty)
-            {
-                fs.Position = 0;
-                Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
-            }
+            Users = _serializeService.Deserialize<List<User>>(_serverService.FtpDownloadString("users.json"));
             User res = Users.Find(x => x.Mail == user.Mail);
             return res != null;
         }
         public User GetUser(string mail, string password)
         {
-            using FileStream fs = new("users.json", FileMode.OpenOrCreate, FileAccess.Read);
-            using StreamReader sr = new(fs);
             if (mail != null && password != null)
             {
-                fs.Position = 0;
-                if (sr.ReadToEnd() != string.Empty)
-                {
-                    Users = _serializeService.Deserialize<List<User>>(sr.ReadToEnd());
-                }
+                Users = _serializeService.Deserialize<List<User>>(_serverService.FtpDownloadString("users.json"));
                 User res = Users.Find(x => x.Mail == mail && x.Password == password);
                 if (!res.Confirmed)
                 {
@@ -138,9 +116,9 @@ namespace Mouse_Shop.Services.Classes
             {
                 if (Regex.IsMatch(user.Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}"))
                 {
-                    if (user.Name.Length > 3)
+                    if (user.Name != null && user.Name.Length > 3)
                     {
-                        if (user.Surname.Length > 3)
+                        if (user.Surname != null && user.Surname.Length > 3)
                         {
                             if (user.Password == confirm)
                             {

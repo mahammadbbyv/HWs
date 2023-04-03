@@ -21,7 +21,8 @@ namespace Admin_Mouse_Shop.ViewModel
     {
         private readonly IMessenger _messenger;
         private readonly IItemsService _itemsService;
-        private readonly IMyNavigationService _myNavigationService;
+        private readonly IServerService _serverService;
+
         public ObservableCollection<Mouse> Products { get; set; } = new();
         private ViewModelBase _currentViewModel;
 
@@ -44,20 +45,17 @@ namespace Admin_Mouse_Shop.ViewModel
 
         internal void MainClose()
         {
-            File.WriteAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json", JsonSerializer.Serialize(Products));
+            _serverService.FtpUploadString(JsonSerializer.Serialize(Products), "products.json");
             File.WriteAllText("last_id.txt", App.Container.GetInstance<AddViewModel>().Id.ToString());
         }
 
         internal void MainOpen()
         {
-            if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
-            {
-                Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
-                App.Container.GetInstance<AddViewModel>().Id = Convert.ToInt32(File.ReadAllText("last_id.txt"));
-            }
+            Products = JsonSerializer.Deserialize<ObservableCollection<Mouse>>(_serverService.FtpDownloadString("products.json"));
+            App.Container.GetInstance<AddViewModel>().Id = Convert.ToInt32(File.ReadAllText("last_id.txt"));
         }
 
-            public MainViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService myNavigationService)
+        public MainViewModel(IMessenger messenger, IItemsService itemsService, IMyNavigationService myNavigationService, IServerService serverService)
         {
             CurrentViewModel = App.Container.GetInstance<AddViewModel>();
             _itemsService = itemsService;
@@ -65,7 +63,7 @@ namespace Admin_Mouse_Shop.ViewModel
             _messenger = messenger;
             _messenger.Register<NavigationMessage>(this, ReceiveMessage);
             _messenger.Register<DataMessage>(this, ReceiveMessage);
-            _myNavigationService = myNavigationService;
+            _serverService = serverService;
         }
 
         public RelayCommand<object> EditCommand
@@ -83,26 +81,5 @@ namespace Admin_Mouse_Shop.ViewModel
                 _itemsService.Delete((int)param);
             });
         }
-        //public RelayCommand AddViewCommand
-        //{
-        //    get => new(() =>
-        //    {
-        //        _myNavigationService.NavigateTo<AddViewModel>();
-        //    });
-        //}
-        //public RelayCommand DeleteViewCommand
-        //{
-        //    get => new(() =>
-        //    {
-        //        _myNavigationService.NavigateTo<DeleteViewModel>();
-        //    });
-        //}
-        //public RelayCommand EditViewCommand
-        //{
-        //    get => new(() =>
-        //    {
-        //        _myNavigationService.NavigateTo<EditViewModel>();
-        //    });
-        //}
     }
 }

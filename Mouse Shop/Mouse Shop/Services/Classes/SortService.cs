@@ -16,6 +16,7 @@ namespace Mouse_Shop.Services.Classes
     {
         public ObservableCollection<Mouse> products = new();
         private readonly ISerializeService _serializeService;
+        private readonly IServerService _serverService;
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
         protected void OnCollectionChange(NotifyCollectionChangedEventArgs e)
@@ -26,15 +27,15 @@ namespace Mouse_Shop.Services.Classes
             }
         }
 
-        public SortService(ISerializeService serializeService)
+        public SortService(ISerializeService serializeService, IServerService serverService)
         {
             _serializeService = serializeService;
+            _serverService = serverService;
         }
 
         public void SortByCategory(string Case)
         {
-            if(File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"))
-                products = _serializeService.Deserialize<ObservableCollection<Mouse>>(File.ReadAllText(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()).ToString() + "\\products.json"));
+            products = _serializeService.Deserialize<ObservableCollection<Mouse>>(_serverService.FtpDownloadString("products.json"));
             var window = App.Container.GetInstance<ProductsViewModel>();
             switch (Case)
             {
