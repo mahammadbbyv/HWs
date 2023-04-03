@@ -4,9 +4,14 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+.file.txt
+*.file.txt
+file.txt
+
 .username.txt
 *.username.txt
 username.txt
+
 .password.txt
 *.password.txt
 password.txt
@@ -24,6 +29,7 @@ password.txt
 mono_crash.*
 
 # Build results
+
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
