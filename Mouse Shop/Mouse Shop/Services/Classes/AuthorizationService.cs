@@ -112,41 +112,44 @@ namespace Mouse_Shop.Services.Classes
 
         public bool CheckInputs(User user, string confirm)
         {
-            if (Regex.IsMatch(user.Mail, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+            if (user.Mail != null && user.Password != null && user.Name != null && user.Surname != null)
             {
-                if (Regex.IsMatch(user.Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}"))
+                if (Regex.IsMatch(user.Mail, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
                 {
-                    if (user.Name != null && user.Name.Length > 3)
+                    if (Regex.IsMatch(user.Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}"))
                     {
-                        if (user.Surname != null && user.Surname.Length > 3)
+                        if (user.Name != null && user.Name.Length > 3)
                         {
-                            if (user.Password == confirm)
+                            if (user.Surname != null && user.Surname.Length > 3)
                             {
-                                return true;
+                                if (user.Password == confirm)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Passwords don't match!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("Passwords don't match!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("Surname is too short!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Surname is too short!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Name is too short!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Name is too short!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Password doesn't match to our conditions!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Password doesn't match to our conditions!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("E-Mail doesn't match to our conditions!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-            }
-            else
-            {
-                MessageBox.Show("E-Mail doesn't match to our conditions!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             return false;
         }
