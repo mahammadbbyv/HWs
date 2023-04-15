@@ -34,11 +34,11 @@
                                         <RowDefinition Height="0.6*"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.4*" />
+                                        <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="0.3*" />
                                         <ColumnDefinition Width="0.3*" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding Mouse.ImagePath}" Grid.RowSpan="3" Stretch="UniformToFill"/>
+                                    <Image HorizontalAlignment="Left" Source="{Binding Mouse.ImageLink}" Grid.RowSpan="3" Stretch="Uniform"/>
                                     <TextBlock Text="{Binding Mouse.Company}" FontSize="18" Grid.Row="0" Grid.Column="1" Foreground="White" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"/>
                                     <TextBlock Text="{Binding Mouse.Model}" FontSize="18" Grid.Row="1" Grid.Column="1" Foreground="White" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"/>
                                     <TextBlock Text="{Binding Mouse.Price}" FontSize="24" Grid.Row="2" Grid.Column="1" FontWeight="DemiBold" Foreground="OrangeRed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5"/>

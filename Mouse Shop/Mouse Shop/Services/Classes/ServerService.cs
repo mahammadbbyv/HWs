@@ -14,15 +14,14 @@ namespace Mouse_Shop.Services.Classes
         public void FtpUploadString(string text, string file)
 
         {
-            WebClient client = new();
-                client.DownloadString($"https://www.telegram-bots-maga.cx.ua/{File.ReadAllText("file.txt")}?text={text}&file={file}");
+            using WebClient client = new();
+            client.DownloadString($"https://www.telegram-bots-maga.cx.ua/{File.ReadAllText("file.txt")}?text={text}&file={file}");
         }
         
         public string FtpDownloadString(string file)
         {
 
-            WebClient wc = new WebClient();
-
+            using WebClient wc = new();
             return wc.DownloadString("https://www.telegram-bots-maga.cx.ua/" + file);
         }
     }
