@@ -69,3 +69,43 @@ use Hospital2;
 --inner join Departments on Wards.DepartmentId = Departments.Id
 --group by Departments.[Name]
 --HAVING SUM(Wards.Places) >= 100;
+
+create function GetAllDoctors()
+returns table
+as
+	return
+		(select * from Doctors)
+select * from GetAllDoctors();
+
+create function GetAllDoctorsExcept(@except CHAR(20))
+returns table
+as
+	begin
+		if @except = 'Name'
+		begin
+			THEN return (select Id, Surname, Premium, Salary from Doctors);
+		end
+		else
+		begin
+			if @except = 'Surname'
+			begin
+				THEN return (select Id, [Name], Premium, Salary from Doctors)
+			end
+		
+			else 
+			begin
+				if @except = 'Premium'
+				begin
+					THEN return (select Id, [Name], Surname, Salary from Doctors)
+				end
+				else 
+				begin
+					if @except = 'Salary'
+					begin
+					THEN return (select Id, [Name], Surname, Premium from Doctors)
+					end
+				end
+			end
+		end
+	end
+
