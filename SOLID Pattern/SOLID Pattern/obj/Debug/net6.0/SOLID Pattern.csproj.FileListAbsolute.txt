@@ -1,5 +1,0 @@
-D:\Desktop\SOLID Pattern\SOLID Pattern\obj\Debug\net6.0\SOLID Pattern.csproj.AssemblyReference.cache
-D:\Desktop\SOLID Pattern\SOLID Pattern\obj\Debug\net6.0\SOLID Pattern.GeneratedMSBuildEditorConfig.editorconfig
-D:\Desktop\SOLID Pattern\SOLID Pattern\obj\Debug\net6.0\SOLID Pattern.AssemblyInfoInputs.cache
-D:\Desktop\SOLID Pattern\SOLID Pattern\obj\Debug\net6.0\SOLID Pattern.AssemblyInfo.cs
-D:\Desktop\SOLID Pattern\SOLID Pattern\obj\Debug\net6.0\SOLID Pattern.csproj.CoreCompileInputs.cache
