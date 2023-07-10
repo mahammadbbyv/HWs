@@ -1,0 +1,17 @@
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\API Ipify.exe
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\API Ipify.deps.json
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\API Ipify.runtimeconfig.json
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\API Ipify.dll
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\API Ipify.pdb
+D:\Desktop\API Ipify\API Ipify\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.csproj.AssemblyReference.cache
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.AssemblyInfoInputs.cache
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.AssemblyInfo.cs
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.csproj.CoreCompileInputs.cache
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.csproj.CopyComplete
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.dll
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\refint\API Ipify.dll
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.pdb
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\API Ipify.genruntimeconfig.cache
+D:\Desktop\API Ipify\API Ipify\obj\Debug\net6.0\ref\API Ipify.dll

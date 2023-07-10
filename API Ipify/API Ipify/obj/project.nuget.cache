@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "n06kQalzeLdcil0ugrCAde9e0SqI5GhEeVvpfXygptBcdt5aUqu66XYwR+kXrhK+HWsg5MKLX/+BI0dDsXDaJQ==",
+  "success": true,
+  "projectFilePath": "D:\\Desktop\\API Ipify\\API Ipify\\API Ipify.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bemga\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
