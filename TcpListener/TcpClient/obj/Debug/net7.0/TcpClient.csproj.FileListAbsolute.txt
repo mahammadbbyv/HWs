@@ -1,0 +1,15 @@
+D:\Desktop\TcpListener\TcpClient\bin\Debug\net7.0\TcpClient.exe
+D:\Desktop\TcpListener\TcpClient\bin\Debug\net7.0\TcpClient.deps.json
+D:\Desktop\TcpListener\TcpClient\bin\Debug\net7.0\TcpClient.runtimeconfig.json
+D:\Desktop\TcpListener\TcpClient\bin\Debug\net7.0\TcpClient.dll
+D:\Desktop\TcpListener\TcpClient\bin\Debug\net7.0\TcpClient.pdb
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.csproj.AssemblyReference.cache
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.AssemblyInfoInputs.cache
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.AssemblyInfo.cs
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.csproj.CoreCompileInputs.cache
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.dll
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\refint\TcpClient.dll
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.pdb
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\TcpClient.genruntimeconfig.cache
+D:\Desktop\TcpListener\TcpClient\obj\Debug\net7.0\ref\TcpClient.dll
