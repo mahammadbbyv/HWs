@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UYTJHUm47b01ixabgrSk/9PWtgvUc+2+tKAeYImL57Ls5Xmn2lB+Foh1Ph+Nr36y5foxt8wHFOP92nH1KiP3FA==",
+  "dgSpecHash": "C5EP3AlRRY4uG6d3zd6z3q73jziAJDrVqCzmz1fwifkCn7Kd5htVCQ9frB7HnN+gRo02GJMxBIncHWtMTdIobg==",
   "success": true,
-  "projectFilePath": "D:\\Desktop\\TcpListener\\TcpClient\\TcpClient.csproj",
+  "projectFilePath": "D:\\Desktop\\FBMS_1221_ru\\TcpListener\\TcpClient\\TcpClient.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Desktop\\TcpListener\\TcpClient\\TcpClient.csproj",
+      "projectUniqueName": "D:\\Desktop\\FBMS_1221_ru\\TcpListener\\TcpClient\\TcpClient.csproj",
       "projectName": "TcpClient",
-      "projectPath": "D:\\Desktop\\TcpListener\\TcpClient\\TcpClient.csproj",
+      "projectPath": "D:\\Desktop\\FBMS_1221_ru\\TcpListener\\TcpClient\\TcpClient.csproj",
       "packagesPath": "C:\\Users\\Bemga\\.nuget\\packages\\",
-      "outputPath": "D:\\Desktop\\TcpListener\\TcpClient\\obj\\",
+      "outputPath": "D:\\Desktop\\FBMS_1221_ru\\TcpListener\\TcpClient\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

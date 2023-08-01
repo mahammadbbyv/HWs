@@ -1,0 +1,15 @@
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\bin\Debug\net7.0\TcpListenerProject.exe
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\bin\Debug\net7.0\TcpListenerProject.deps.json
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\bin\Debug\net7.0\TcpListenerProject.runtimeconfig.json
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\bin\Debug\net7.0\TcpListenerProject.dll
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\bin\Debug\net7.0\TcpListenerProject.pdb
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.csproj.AssemblyReference.cache
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.AssemblyInfoInputs.cache
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.AssemblyInfo.cs
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.csproj.CoreCompileInputs.cache
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.dll
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\refint\TcpListenerProject.dll
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.pdb
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\TcpListenerProject.genruntimeconfig.cache
+D:\Desktop\FBMS_1221_ru\TcpListener\TcpListenerProject\obj\Debug\net7.0\ref\TcpListenerProject.dll
