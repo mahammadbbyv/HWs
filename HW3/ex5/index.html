@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculateStatistics() {
+            const inputElement = document.getElementById('numbersInput');
+            const numbers = inputElement.value.split(',').map(num => parseInt(num.trim(), 10));
+
+            let positiveCount = 0;
+            let negativeCount = 0;
+            let zeroCount = 0;
+            let evenCount = 0;
+            let oddCount = 0;
+
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] > 0) {
+                positiveCount++;
+                } else if (numbers[i] < 0) {
+                negativeCount++;
+                } else {
+                zeroCount++;
+                }
+
+                if (numbers[i] % 2 === 0) {
+                evenCount++;
+                } else {
+                oddCount++;
+                }
+            }
+
+            const outputElement = document.getElementById('output');
+            outputElement.innerHTML = `
+                <p>Positive numbers: ${positiveCount}</p>
+                <p>Negative numbers: ${negativeCount}</p>
+                <p>Zeros: ${zeroCount}</p>
+                <p>Even numbers: ${evenCount}</p>
+                <p>Odd numbers: ${oddCount}</p>
+            `;
+        }
+
+    </script>
+    <style>
+        .container {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="numbersInput">Enter 10 numbers (separated by commas): </label>
+        <input type="text" id="numbersInput" placeholder="e.g., 1, 2, -3, 0, ...">
+        <button onclick="calculateStatistics()">Calculate Statistics</button>
+    
+        <div id="output"></div>
+    </div>
+</body>
+</html>

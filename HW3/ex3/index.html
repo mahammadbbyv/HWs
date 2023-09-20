@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+        const userInput = prompt("Enter a number:");
+        
+        const number = parseInt(userInput);
+        
+        if (isNaN(number)) {
+            alert("Invalid input. Please enter a valid number.");
+        } else {
+            const divisors = [];
+            for (let i = 1; i <= number; i++) {
+                if (number % i === 0) {
+                divisors.push(i);
+                }
+            }
+
+            alert("Divisors of " + number + " are: " + divisors.join(", "));
+        }
+    </script>
+<body>
+    
+</body>
+</html>

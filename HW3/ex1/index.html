@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function rangeSum(a, b) {
+            let sum = 0;
+            while (a < b){
+                a++;
+                sum += a;
+            }
+            while (a > b){
+                b++;
+                sum += b;
+            }
+            return sum;
+        }
+
+        const num1 = parseInt(prompt('Enter num1: '));
+        const num2 = parseInt(prompt('Enter num2: '));
+
+        if (!isNaN(num1) && !isNaN(num2)) {
+            const rs = rangeSum(num1, num2);
+            alert(`Range sum is ${rs}`);
+        } else {
+            alert('You haven\'t entered any number.');
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
