@@ -18,7 +18,7 @@ app.get('/getWords', (req, res) => {
       if(req.query.randomWord){
         fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
           var result = JSON.parse(data);
-          let response = {ok: "true", result: result[between(0, result.lengths)]};
+          let response = {ok: "true", result: result[between(0, result.length)]};
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
           res.write(JSON.stringify(response));
           res.end();
