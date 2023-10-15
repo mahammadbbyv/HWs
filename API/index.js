@@ -193,7 +193,14 @@ app.get('/deletePack', (req, res) => {
         fs.readFile('IDs.json', "utf-8", (err, data) => {
           let ids = JSON.parse(data);
           console.log(ids[findPack(ids, req.query.fileName)]);
-          delete ids[findPack(ids, req.query.fileName)];
+          let tmp = [];
+          for(let i = 0, j = 0; i < ids.length; i++, j++){
+            if(ids[i].filename != req.query.fileName){
+              tmp[j] = ids[i];
+            }else{
+              i++;
+            }
+          }
           fs.unlink(`./IDs.json`, function (err) {
             if (err) {
               result = {ok: "false"};
@@ -201,7 +208,7 @@ app.get('/deletePack', (req, res) => {
             };
             console.log('Deleted! IDs');
           });
-          fs.appendFile(`./IDs.json`, JSON.stringify(ids), function (err) {
+          fs.appendFile(`./IDs.json`, JSON.stringify(tmp), function (err) {
             if (err) {
               result = {ok: "false"};
               res.send(result)
