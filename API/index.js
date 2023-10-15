@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 const fs = require('fs');
 app.use(bodyParser.json());
+app.use(cors());
 function between(min, max) {
   return Math.floor(
     Math.random() * (max - min) + min
@@ -231,13 +233,6 @@ app.get('/deletePack', (req, res) => {
     });
   }
 });
-const cors = require('cors');
-const corsOptions ={
-  origin: "https://wordpacksapi.onrender.com/getTopPacks", 
-  credentials: true,            //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-}
-app.use(cors(corsOptions))
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
