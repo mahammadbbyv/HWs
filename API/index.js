@@ -24,7 +24,7 @@ function checkId(arr, id){
 
 function findPack(arr, id){
   for(let i = 0; i < arr.length; i++){
-    if(arr[i].fileName == fileName){
+    if(arr[i].filename == filename){
       return i;
     }
   }
