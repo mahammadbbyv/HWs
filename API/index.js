@@ -70,10 +70,11 @@ app.get('/getTopPacks', (req, res) => {
         return -1;
       }
     });
-    let arr = (req.query.arr ? JSON.parse(req.query.arr) : []);
-    let end = arr.length + 10;
+    let leng = (req.query.length ? JSON.parse(req.query.arr) : []);
+    let end = leng + 10;
     console.log(tmp);
-    for(let i = arr.length; i < end && i < tmp.length; i++){
+    let arr = [];
+    for(let i = 0; i < end && i < tmp.length; i++){
       arr[i] = tmp[i];
     }
     res.writeHead(200, {'Content-Type': 'charset=utf-8'});
