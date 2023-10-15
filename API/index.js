@@ -13,15 +13,6 @@ function between(min, max) {
   )
 }
 
-function checkId(arr, id){
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i].id == id){
-      return true;
-    }
-  }
-  return false;
-}
-
 function findPack(arr, filename){
   for(let i = 0; i < arr.length; i++){
     if(arr[i].filename == filename){
@@ -117,42 +108,33 @@ app.get('/createPack', (req, res) => {
       if(exists2){
         fs.readFile('IDs.json', "utf-8", (err, data) => {
           let file = JSON.parse(data);
-          if(!checkId(file, req.query.id)){
-            let ID = req.query.id;
-            let Words = req.query.content;
-            let Login = req.query.login;
-            let Password = req.query.password;
-            let content = {id: ID, words: Words, login: Login, password: Password}
-            fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
-              if (err) {
-                result = {ok: "false", reason: err};
-                res.send(result)
-              };
-              console.log('Saved!' + content);
-            });
-            result = {ok: "true"};
-            res.write(JSON.stringify(result));
-            res.end();
-            file[file.length] = {id: req.query.id, filename: req.query.fileName, usage: 0};
-            fs.unlinkSync("./IDs.json");
-            fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
-              if (err) {
-                result = {ok: "false", reason: err};
-                res.send(result)
-              };
-              console.log('ID addedd!');
-            });
-          }
-          else{
-            result = {ok: "false", reason: "There is already library with such an ID!"};
-            res.write(JSON.stringify(result));
-            res.end();
-          }
+          let Words = req.query.content;
+          let Login = req.query.login;
+          let Password = req.query.password;
+          let content = {words: Words, login: Login, password: Password}
+          fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
+            if (err) {
+              result = {ok: "false", reason: err};
+              res.send(result)
+            };
+            console.log('Saved!' + content);
+          });
+          result = {ok: "true"};
+          res.write(JSON.stringify(result));
+          res.end();
+          file[file.length] = {filename: req.query.fileName, usage: 0};
+          fs.unlinkSync("./IDs.json");
+          fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
+            if (err) {
+              result = {ok: "false", reason: err};
+              res.send(result)
+            };
+            console.log('ID addedd!');
+          });
         });
       }else{
         let file = [];
-        let ID = req.query.id;
-        file[file.length] = {id: req.query.id, filename: req.query.fileName, usage: 0};
+        file[file.length] = {filename: req.query.fileName, usage: 0};
         fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
           if (err) {
             result = {ok: "false"};
@@ -163,7 +145,7 @@ app.get('/createPack', (req, res) => {
         let Words = req.query.content;
         let Login = req.query.login;
         let Password = req.query.password;
-        let content = {id: ID, words: Words, login: Login, password: Password}
+        let content = {words: Words, login: Login, password: Password}
         fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
           if (err) {
             result = {ok: "false"};
