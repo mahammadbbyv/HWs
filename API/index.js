@@ -22,7 +22,7 @@ function checkId(arr, id){
   return false;
 }
 
-function findPack(arr, id){
+function findPack(arr, filename){
   for(let i = 0; i < arr.length; i++){
     if(arr[i].filename == filename){
       return i;
@@ -38,7 +38,7 @@ app.get('/getWords', (req, res) => {
         let file = JSON.parse(data);
         fs.readFile(`IDs.json`, "utf-8", (err, id) => {
           let ids = JSON.parse(id);
-          ids[findPack(req.query.fileName)]["usage"] += 1;
+          ids[findPack(ids, req.query.fileName)]["usage"] += 1;
         });
         if(req.query.randomWord){
           let response = {ok: "true", result: file[between(0, file.length)]};
