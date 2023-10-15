@@ -70,7 +70,7 @@ app.get('/getTopPacks', (req, res) => {
         return -1;
       }
     });
-    let leng = (req.query.length ? JSON.parse(req.query.arr) : []);
+    let leng = (req.query.length ? req.query.length : 0);
     let end = leng + 10;
     console.log(tmp);
     let arr = [];
