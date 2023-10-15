@@ -232,18 +232,13 @@ app.get('/deletePack', (req, res) => {
   }
 });
 const cors = require('cors');
-const whitelist = ['http://developer1.com', 'http://developer2.com']
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error())
-    }
-  }
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
 }
 app.use(cors({
-    origin: 'https://www.section.io'
+    origin: '*'
 }));
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
