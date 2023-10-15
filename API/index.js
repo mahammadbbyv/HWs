@@ -10,23 +10,37 @@ function between(min, max) {
     Math.random() * (max - min) + min
   )
 }
+
+function checkId(arr, id){
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i].id == id){
+      return true;
+    }
+  }
+  return false;
+}
+
 app.get('/getWords', (req, res) => {
     const exists = fs.existsSync(`./${req.query.fileName}.json`);
     if (exists) {
       fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
+        
         let file = JSON.parse(data);
-        console.log(file.password);
-          if(req.query.randomWord){
-            let response = {ok: "true", result: file[between(0, file.length)]};
-            res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-            res.write(JSON.stringify(response));
-            res.end();
-          }
-          else{
-            res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-            res.write(file.words);
-            res.end();
-          }
+        fs.readFile(`IDs.json`, "utf-8", (err, id) => {
+          let ids = JSON.parse(id);
+          ids[file[req.query.fileName]["id"]]["usage"] += 1
+        });
+        if(req.query.randomWord){
+          let response = {ok: "true", result: file[between(0, file.length)]};
+          res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+          res.write(JSON.stringify(response));
+          res.end();
+        }
+        else{
+          res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+          res.write(file.words);
+          res.end();
+        }
       });
     }
     else{
@@ -35,6 +49,38 @@ app.get('/getWords', (req, res) => {
       res.write(JSON.stringify(response));
       res.end();
     }
+});
+
+app.get('/getTopPacks', (req, res) => {
+  fs.readFile(`IDs.json`, "utf-8", (err, id) => {
+    let tmp = JSON.parse(id).sort((a, b) => {
+      if (a.usage > b.usage) {
+        return -1;
+      }
+    });
+    let arr = (req.query.arr ? JSON.parse(req.query.arr) : []);
+    let end = arr.length + 10;
+    console.log(tmp);
+    for(let i = arr.length; i < end && i < tmp.length; i++){
+      arr[i] = tmp[i];
+    }
+    res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+    res.write(JSON.stringify(arr));
+    res.end();
+    // fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
+    //   let file = JSON.parse(data);
+    //   if(req.query.randomWord){
+    //     let response = {ok: "true", result: file[between(0, file.length)]};
+    //     res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+    //     res.write(JSON.stringify(response));
+    //     res.end();
+    //   } else{
+    //     res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+    //     res.write(file.words);
+    //     res.end();
+    //   }
+    // });
+  });
 });
 
 app.get('/createPack', (req, res) => {
@@ -52,7 +98,7 @@ app.get('/createPack', (req, res) => {
       if(exists2){
         fs.readFile('IDs.json', "utf-8", (err, data) => {
           let file = JSON.parse(data);
-          if(!(req.query.id in file)){
+          if(!checkId(file, req.query.id)){
             let ID = req.query.id;
             let Words = req.query.content;
             let Login = req.query.login;
@@ -68,7 +114,7 @@ app.get('/createPack', (req, res) => {
             result = {ok: "true"};
             res.write(JSON.stringify(result));
             res.end();
-            file[req.query.id] = req.query.fileName;
+            file[file.length] = {id: req.query.id, filename: req.query.fileName, usage: 0};
             fs.unlinkSync("./IDs.json");
             fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
               if (err) {
@@ -85,9 +131,9 @@ app.get('/createPack', (req, res) => {
           }
         });
       }else{
-        let file = {};
+        let file = [];
         let ID = req.query.id;
-        file[ID] = req.query.fileName;
+        file[file.length] = {id: req.query.id, filename: req.query.fileName, usage: 0};
         fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
           if (err) {
             result = {ok: "false"};
