@@ -192,9 +192,8 @@ app.get('/deletePack', (req, res) => {
         
         fs.readFile('IDs.json', "utf-8", (err, data) => {
           let ids = JSON.parse(data);
-          console.log(ids[file.id]);
-          console.log(file.id);
-          delete ids[file.id];
+          console.log(ids[findPack(ids, req.query.fileName)]);
+          delete ids[findPack(ids, req.query.fileName)];
           fs.unlink(`./IDs.json`, function (err) {
             if (err) {
               result = {ok: "false"};
