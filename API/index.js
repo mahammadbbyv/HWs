@@ -43,7 +43,7 @@ app.get('/getWords', (req, res) => {
           fs.unlinkSync("./IDs.json");
           fs.appendFile(`./IDs.json`, JSON.stringify(ids), function (err) {
             if (err) {
-              result = {ok: "false", reason: err};
+              result = {ok: false, reason: err};
               res.send(result)
             };
             console.log('ID addedd!');
@@ -65,7 +65,7 @@ app.get('/getWords', (req, res) => {
       });
     }
     else{
-      response = {ok: "false", reason: "There is no such library!"};
+      response = {ok: false, reason: "There is no such library!"};
       res.writeHead(200, {'Content-Type': 'charset=utf-8'});
       res.write(JSON.stringify(response));
       res.end();
@@ -111,7 +111,7 @@ app.get('/createPack', (req, res) => {
     const exists = fs.existsSync(`./${req.query.fileName}.json`);
     console.log(exists);
     if(exists){
-        result = {ok: "false", reason: "Library with such name already exists!"};
+        result = {ok: false, reason: "Library with such name already exists!"};
         res.write(JSON.stringify(result));
         res.end();
     } 
@@ -126,7 +126,7 @@ app.get('/createPack', (req, res) => {
           let content = {words: Words, username: Username, password: Password}
           fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
             if (err) {
-              result = {ok: "false", reason: err};
+              result = {ok: false, reason: err};
               res.send(result)
             };
             console.log('Saved!' + content);
@@ -138,7 +138,7 @@ app.get('/createPack', (req, res) => {
           fs.unlinkSync("./IDs.json");
           fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
             if (err) {
-              result = {ok: "false", reason: err};
+              result = {ok: false, reason: err};
               res.send(result)
             };
             console.log('ID addedd!');
@@ -149,7 +149,7 @@ app.get('/createPack', (req, res) => {
         file[file.length] = {filename: req.query.fileName, usage: 0};
         fs.appendFile(`./IDs.json`, JSON.stringify(file), function (err) {
           if (err) {
-            result = {ok: "false"};
+            result = {ok: false};
             res.send(result)
           };
           console.log('ID addedd!');
@@ -160,7 +160,7 @@ app.get('/createPack', (req, res) => {
         let content = {words: Words, username: Username, password: Password}
         fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
           if (err) {
-            result = {ok: "false"};
+            result = {ok: false};
             res.send(result)
           };
           console.log('Saved!' + content);
@@ -172,7 +172,7 @@ app.get('/createPack', (req, res) => {
     }
   }
   else{
-    response = {ok: "false", reason: "You are not registered!"};
+    response = {ok: false, reason: "You are not registered!"};
     res.write(JSON.stringify(response));
     res.end();
   }
@@ -182,7 +182,7 @@ app.get('/deletePack', (req, res) => {
   result;
   const exists = fs.existsSync(`./${req.query.fileName}.json`);
   if(!exists){
-      result = {ok: "false", reason: "Library with such name does not exist!"};
+      result = {ok: false, reason: "Library with such name does not exist!"};
       res.write(JSON.stringify(result));
       res.end();
   } 
@@ -193,7 +193,7 @@ app.get('/deletePack', (req, res) => {
       {
         fs.unlink(`./${req.query.fileName}.json`, function (err) {
           if (err) {
-            result = {ok: "false"};
+            result = {ok: false};
             res.send(result)
           };
           console.log('Deleted! ' + req.query.fileName);
@@ -212,14 +212,14 @@ app.get('/deletePack', (req, res) => {
           }
           fs.unlink(`./IDs.json`, function (err) {
             if (err) {
-              result = {ok: "false"};
+              result = {ok: false};
               res.send(result)
             };
             console.log('Deleted! IDs');
           });
           fs.appendFile(`./IDs.json`, JSON.stringify(tmp), function (err) {
             if (err) {
-              result = {ok: "false"};
+              result = {ok: false};
               res.send(result)
             };
             console.log('ID addedd!');
@@ -231,7 +231,7 @@ app.get('/deletePack', (req, res) => {
       }
       else
       {
-        response = {ok: "false", reason: "Wrong username or password!"};
+        response = {ok: false, reason: "Wrong username or password!"};
         console.log(req.query.username + " " + req.query.password);
         console.log(file.username + " " + file.password);
 
@@ -255,10 +255,11 @@ app.get('/addUser', (req, res) => {
           let users = [{username: req.query.username, password: req.query.password}];
           fs.appendFile(`./users.json`, JSON.stringify(users), function (err) {
             if (err) {
-              result = {ok: "false"};
+              result = {ok: false};
               res.send(result)
             };
             console.log('User created addedd!');
+            result = {ok: true};
           });
         }else{
           result = {ok: false, reason: "Passwords do not match!"};
@@ -281,18 +282,19 @@ app.get('/addUser', (req, res) => {
               users[users.length] = {username: req.query.username, password: req.query.password};
               fs.unlink(`./users.json`, function (err) {
                 if (err) {
-                  result = {ok: "false"};
+                  result = {ok: false};
                   res.send(result)
                 };
                 console.log('Deleted! users');
               });
               fs.appendFile(`./users.json`, JSON.stringify(users), function (err) {
                 if (err) {
-                  result = {ok: "false"};
+                  result = {ok: false};
                   res.send(result);
                 };
                 console.log('User created addedd!');
               });
+              result = {ok: true};
             }else{
               result = {ok: false, reason: "Passwords do not match!"};
             }
