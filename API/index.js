@@ -270,7 +270,7 @@ app.get('/addUser', (req, res) => {
       result = {ok: false, reason: "Username is not valid!"};
     }
   }else{
-    fs.readFile('IDs.json', "utf-8", (err, data) => {
+    fs.readFile('./users.json', "utf-8", (err, data) => {
       if(!checkExists(JSON.parse(data), req.query.username)){
         var usernameRegexPattern =/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
         if(usernameRegexPattern.test(req.query.username)){
@@ -311,6 +311,32 @@ app.get('/addUser', (req, res) => {
   }
   res.write(result);
   res.end();
+});
+
+app.get('/checkLogIn', (req, res) => {
+  fs.readFile('./users.json', "utf-8", (err, data) => {
+    let users = JSON.parse(data);
+    if(checkExists(users, req.query.username)){
+      let i = 0;
+      for(i; i < users.length; i++){
+        if(users[i].username == req.query.username){
+          break;
+        }
+      }
+      if(users[i].password == req.query.password){
+        res.write(JSON.stringify({ok: true}));
+        res.end();
+      }
+      else{
+        res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
+        res.end();
+      }
+    }
+    else{
+      res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
+      res.end();
+    }
+  });
 });
 
 app.listen(PORT, () => {
