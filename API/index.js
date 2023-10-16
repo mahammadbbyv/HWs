@@ -290,9 +290,7 @@ app.get('/addUser', (req, res) => {
                 if (err) {
                   result = {ok: false};
                   res.send(result)
-                };result = {ok: true};
-                res.write(JSON.stringify(result));
-                res.end();
+                };
               });
               fs.appendFile(`./users.json`, JSON.stringify(users), function (err) {
                 if (err) {
@@ -301,6 +299,8 @@ app.get('/addUser', (req, res) => {
                 };
               });
               result = {ok: true};
+              res.write(JSON.stringify(result));
+              res.end();
             }else{
               result = {ok: false, reason: "Passwords do not match!"};
               res.write(JSON.stringify(result));
