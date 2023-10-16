@@ -259,7 +259,6 @@ app.get('/addUser', (req, res) => {
               res.send(result)
             };
             console.log('User created addedd!');
-            result = {ok: true};
           });
         }else{
           result = {ok: false, reason: "Passwords do not match!"};
@@ -270,6 +269,9 @@ app.get('/addUser', (req, res) => {
     }else{
       result = {ok: false, reason: "Username is not valid!"};
     }
+    result = {ok: true};
+    res.write(JSON.stringify(result));
+    res.end();
   }else{
     fs.readFile('./users.json', "utf-8", (err, data) => {
       if(!checkExists(JSON.parse(data), req.query.username)){
@@ -292,9 +294,6 @@ app.get('/addUser', (req, res) => {
                   result = {ok: false};
                   res.send(result);
                 };
-                result = {ok: true};
-                res.write(JSON.stringify(result));
-                res.end();
                 console.log('User created addedd!');
               });
               result = {ok: true};
@@ -312,7 +311,9 @@ app.get('/addUser', (req, res) => {
         result = {ok: false, reason: "Such username already exists!"};
       }
     });
-    
+    result = {ok: true};
+    res.write(JSON.stringify(result));
+    res.end();
   }
 });
 
