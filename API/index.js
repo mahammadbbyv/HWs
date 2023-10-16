@@ -341,6 +341,23 @@ app.get('/checkLogIn', (req, res) => {
   });
 });
 
+app.get('/getUserPacks', (req, res) => {
+  fs.readFile('IDs.json', "utf-8", (err, data) => {
+    let arr = JSON.parse(data);
+    let tmp = [];
+    for(let i = 0; i < arr.length; i++){
+      fs.readFile(`${arr[i].fileName}.json`, "utf-8", (err, data) => {
+        let pack = JSON.parse(data);
+        if(pack.username == req.query.username){
+          tmp[tmp.length] = pack;
+        }
+      });
+    }
+    res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+    res.write(JSON.stringify(tmp));
+    res.end();
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
