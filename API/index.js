@@ -121,9 +121,9 @@ app.get('/createPack', (req, res) => {
         fs.readFile('IDs.json', "utf-8", (err, data) => {
           let file = JSON.parse(data);
           let Words = req.query.content;
-          let Login = req.query.login;
+          let Username = req.query.username;
           let Password = req.query.password;
-          let content = {words: Words, login: Login, password: Password}
+          let content = {words: Words, username: Username, password: Password}
           fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
             if (err) {
               result = {ok: "false", reason: err};
@@ -155,9 +155,9 @@ app.get('/createPack', (req, res) => {
           console.log('ID addedd!');
         });
         let Words = req.query.content;
-        let Login = req.query.login;
+        let Username = req.query.username;
         let Password = req.query.password;
-        let content = {words: Words, login: Login, password: Password}
+        let content = {words: Words, username: Username, password: Password}
         fs.appendFile(`./${req.query.fileName}.json`, JSON.stringify(content), function (err) {
           if (err) {
             result = {ok: "false"};
@@ -189,7 +189,7 @@ app.get('/deletePack', (req, res) => {
   else {
     fs.readFile(`./${req.query.fileName}.json`, "utf-8", (err, data) => {
       let file = JSON.parse(data);
-      if(req.query.login == file.login && req.query.password == file.password)
+      if(req.query.username == file.username && req.query.password == file.password)
       {
         fs.unlink(`./${req.query.fileName}.json`, function (err) {
           if (err) {
@@ -232,8 +232,8 @@ app.get('/deletePack', (req, res) => {
       else
       {
         response = {ok: "false", reason: "Wrong username or password!"};
-        console.log(req.query.login + " " + req.query.password);
-        console.log(file.login + " " + file.password);
+        console.log(req.query.username + " " + req.query.password);
+        console.log(file.username + " " + file.password);
 
         res.writeHead(200, {'Content-Type': 'charset=utf-8'});
         res.write(JSON.stringify(response));
@@ -309,7 +309,7 @@ app.get('/addUser', (req, res) => {
     });
     
   }
-  res.write(result);
+  res.write(JSON.stringify(result));
   res.end();
 });
 
