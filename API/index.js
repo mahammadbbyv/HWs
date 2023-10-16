@@ -346,9 +346,9 @@ app.get('/getUserPacks', (req, res) => {
     let arr = JSON.parse(data);
     let tmp = [];
     for(let i = 0; i < arr.length; i++){
-      fs.readFile(`./${arr[i].fileName}.json`, "utf-8", (err, data) => {
-        let pack = JSON.parse(data);
-        console.log(data);
+      fs.readFile(`./${arr[i].fileName}.json`, "utf-8", (err, data2) => {
+        let pack = JSON.parse(data2);
+        console.log(data2);
         if(pack.username == req.query.username){
           tmp[tmp.length] = pack;
         }
