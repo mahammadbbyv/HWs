@@ -344,6 +344,7 @@ app.get('/checkLogIn', (req, res) => {
 app.get('/getUserPacks', (req, res) => {
   fs.readFile('./IDs.json', "utf-8", (err, data) => {
     let arr = JSON.parse(data);
+    console.log(arr.length);
     let tmp = [];
     for(let i = 0; i < arr.length; i++){
       fs.readFile(`./${arr[i].fileName}.json`, "utf-8", (err, data2) => {
