@@ -292,6 +292,9 @@ app.get('/addUser', (req, res) => {
                   result = {ok: false};
                   res.send(result);
                 };
+                result = {ok: true};
+                res.write(JSON.stringify(result));
+                res.end();
                 console.log('User created addedd!');
               });
               result = {ok: true};
@@ -311,8 +314,6 @@ app.get('/addUser', (req, res) => {
     });
     
   }
-  res.write(JSON.stringify(result));
-  res.end();
 });
 
 app.get('/checkLogIn', (req, res) => {
