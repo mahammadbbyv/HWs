@@ -257,24 +257,18 @@ app.get('/addUser', (req, res) => {
             if (err) {
               result = {ok: false};
               res.send(result)
-            };result = {ok: true};
-            res.write(JSON.stringify(result));
-            res.end();
+            };
+            console.log('User created addedd!');
+            result = {ok: true};
           });
         }else{
           result = {ok: false, reason: "Passwords do not match!"};
-          res.write(JSON.stringify(result));
-          res.end();
         }
       }else{
       result = {ok: false, reason: "Password is not valid!"};
-      res.write(JSON.stringify(result));
-      res.end();
     }
     }else{
       result = {ok: false, reason: "Username is not valid!"};
-      res.write(JSON.stringify(result));
-      res.end();
     }
   }else{
     fs.readFile('./users.json', "utf-8", (err, data) => {
@@ -291,36 +285,28 @@ app.get('/addUser', (req, res) => {
                   result = {ok: false};
                   res.send(result)
                 };
+                console.log('Deleted! users');
               });
               fs.appendFile(`./users.json`, JSON.stringify(users), function (err) {
                 if (err) {
                   result = {ok: false};
                   res.send(result);
                 };
+                console.log('User created addedd!');
               });
               result = {ok: true};
-              res.write(JSON.stringify(result));
-              res.end();
             }else{
               result = {ok: false, reason: "Passwords do not match!"};
-              res.write(JSON.stringify(result));
-              res.end();
             }
           }
           else{
           result = {ok: false, reason: "Password is not valid!"};
-          res.write(JSON.stringify(result));
-          res.end();
           }
         }else{
           result = {ok: false, reason: "Username is not valid!"};
-          res.write(JSON.stringify(result));
-          res.end();
         }
       }else{
         result = {ok: false, reason: "Such username already exists!"};
-        res.write(JSON.stringify(result));
-        res.end();
       }
     });
     
@@ -356,23 +342,19 @@ app.get('/checkLogIn', (req, res) => {
 });
 
 app.get('/getUserPacks', (req, res) => {
-  fs.readFile('./IDs.json', "utf-8", (err, data) => {
-    let arr = JSON.parse(data);
-    let tmp = [];
-    for(let i = 0; i < arr.length; i++){
-      fs.readFile(`./${arr[i].fileName}.json`, "utf-8", (err, data2) => {
-        let pack = JSON.parse(data2);
-        console.log(data2);
-        if(pack.username == req.query.username){
-          tmp[tmp.length] = pack;
-          console.log(pack);
-        }
-      });
+  let ids = JSON.parse(fs.readFileSync("IDs.json"));
+  var tmp = [];
+  for(let i = 0; i < ids.length; i++){
+    let result = fs.readFileSync(`./${ids[i].filename}.json`);
+    let pack = JSON.parse(result);
+    if(pack.username == req.query.username){
+      tmp[tmp.length] = pack;
     }
-    res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-    res.write(JSON.stringify(tmp));
-    res.end();
-  });
+  }
+  res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+  let pack = JSON.parse(fs.readFileSync(`./asd.json`));
+  res.write(JSON.stringify(tmp));
+  res.end();
 });
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
