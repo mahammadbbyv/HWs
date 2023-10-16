@@ -107,7 +107,7 @@ app.get('/getTopPacks', (req, res) => {
 
 app.get('/createPack', (req, res) => {
   if(req.query.isLogged){
-    result;
+    var result;
     const exists = fs.existsSync(`./${req.query.fileName}.json`);
     console.log(exists);
     if(exists){
