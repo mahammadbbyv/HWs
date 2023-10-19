@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 const fs = require('fs');
+const cors = require('cors');
+
 app.use(bodyParser.json());
 app.use(cors());
 function between(min, max) {
