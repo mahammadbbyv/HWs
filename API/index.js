@@ -359,6 +359,13 @@ app.get('/getUserPacks', (req, res) => {
   res.write(JSON.stringify(tmp));
   res.end();
 });
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://telegram-bots-maga.cx.ua');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+  });
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
