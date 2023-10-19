@@ -261,18 +261,24 @@ app.get('/addUser', (req, res) => {
             };
             console.log('User created addedd!');
           });
+          result = {ok: true};
+          res.write(JSON.stringify(result));
+          res.end();
         }else{
           result = {ok: false, reason: "Passwords do not match!"};
+          res.write(JSON.stringify(result));
+          res.end();
         }
       }else{
       result = {ok: false, reason: "Password is not valid!"};
+      res.write(JSON.stringify(result));
+      res.end();
     }
     }else{
       result = {ok: false, reason: "Username is not valid!"};
+      res.write(JSON.stringify(result));
+      res.end();
     }
-    result = {ok: true};
-    res.write(JSON.stringify(result));
-    res.end();
   }else{
     fs.readFile('./users.json', "utf-8", (err, data) => {
       if(!checkExists(JSON.parse(data), req.query.username)){
@@ -298,50 +304,62 @@ app.get('/addUser', (req, res) => {
                 console.log('User created addedd!');
               });
               result = {ok: true};
+              res.write(JSON.stringify(result));
+              res.end();
             }else{
               result = {ok: false, reason: "Passwords do not match!"};
+              res.write(JSON.stringify(result));
+              res.end();
             }
           }
           else{
           result = {ok: false, reason: "Password is not valid!"};
+          res.write(JSON.stringify(result));
+          res.end();
           }
         }else{
           result = {ok: false, reason: "Username is not valid!"};
+          res.write(JSON.stringify(result));
+          res.end();
         }
       }else{
         result = {ok: false, reason: "Such username already exists!"};
+        res.write(JSON.stringify(result));
+        res.end();
       }
     });
-    result = {ok: true};
-    res.write(JSON.stringify(result));
-    res.end();
   }
 });
 
 app.get('/checkLogIn', (req, res) => {
-  fs.readFile('./users.json', "utf-8", (err, data) => {
-    let users = JSON.parse(data);
-    if(checkExists(users, req.query.username)){
-      let i = 0;
-      for(i; i < users.length; i++){
-        if(users[i].username == req.query.username){
-          break;
+  if(fs.existsSync(`./users.json`)){
+    fs.readFile('./users.json', "utf-8", (err, data) => {
+      let users = JSON.parse(data);
+      if(checkExists(users, req.query.username)){
+        let i = 0;
+        for(i; i < users.length; i++){
+          if(users[i].username == req.query.username){
+            break;
+          }
         }
-      }
-      if(users[i].password == req.query.password){
-        res.write(JSON.stringify({ok: true}));
-        res.end();
+        if(users[i].password == req.query.password){
+          res.write(JSON.stringify({ok: true}));
+          res.end();
+        }
+        else{
+          res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
+          res.end();
+        }
       }
       else{
         res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
         res.end();
       }
-    }
-    else{
-      res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
-      res.end();
-    }
-  });
+    });
+  }else{
+    res.write(JSON.stringify({ok: false, reason: "Username or password is wrong."}));
+    res.end();
+  }
 });
 
 app.get('/getUserPacks', (req, res) => {
