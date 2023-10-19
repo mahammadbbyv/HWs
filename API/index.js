@@ -93,7 +93,7 @@ app.get('/getTopPacks', (req, res) => {
     });
   }
   else{
-    res.write("{}");
+    res.write("[]");
     res.end();
   }
 });
@@ -370,7 +370,7 @@ app.get('/getUserPacks', (req, res) => {
     res.end();
   }
   else{
-    res.write("{}");
+    res.write("[]");
     res.end();
   }
 });
