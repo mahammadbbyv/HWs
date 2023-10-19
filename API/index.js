@@ -33,8 +33,7 @@ function checkExists(arr, username){
 }
 
 app.get('/getWords', (req, res) => {
-    const exists = fs.existsSync(`./${req.query.fileName}.json`);
-    if (exists) {
+    if (fs.existsSync(`./${req.query.fileName}.json`)) {
       fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
         
         let file = JSON.parse(data);
@@ -74,36 +73,29 @@ app.get('/getWords', (req, res) => {
 });
 
 app.get('/getTopPacks', (req, res) => {
-  fs.readFile(`IDs.json`, "utf-8", (err, id) => {
-    let tmp = JSON.parse(id).sort((a, b) => {
-      if (a.usage > b.usage) {
-        return -1;
+  if(fs.existsSync(`./IDs.json`)){
+    fs.readFile(`IDs.json`, "utf-8", (err, id) => {
+      let tmp = JSON.parse(id).sort((a, b) => {
+        if (a.usage > b.usage) {
+          return -1;
+        }
+      });
+      let leng = (req.query.length ? req.query.length : 0);
+      let end = leng + 10;
+      console.log(tmp);
+      let arr = [];
+      for(let i = 0; i < end && i < tmp.length; i++){
+        arr[i] = tmp[i];
       }
+      res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+      res.write(JSON.stringify(arr));
+      res.end();
     });
-    let leng = (req.query.length ? req.query.length : 0);
-    let end = leng + 10;
-    console.log(tmp);
-    let arr = [];
-    for(let i = 0; i < end && i < tmp.length; i++){
-      arr[i] = tmp[i];
-    }
-    res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-    res.write(JSON.stringify(arr));
+  }
+  else{
+    res.write("{}");
     res.end();
-    // fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
-    //   let file = JSON.parse(data);
-    //   if(req.query.randomWord){
-    //     response = {ok: "true", result: file[between(0, file.length)]};
-    //     res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-    //     res.write(JSON.stringify(response));
-    //     res.end();
-    //   } else{
-    //     res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-    //     res.write(file.words);
-    //     res.end();
-    //   }
-    // });
-  });
+  }
 });
 
 app.get('/createPack', (req, res) => {
@@ -245,9 +237,7 @@ app.get('/deletePack', (req, res) => {
 });
 
 app.get('/addUser', (req, res) => {
-  const exists = fs.existsSync(`./users.json`);
-  var result = {};
-  if(!exists){
+  if(!fs.existsSync(`./users.json`)){
     var usernameRegexPattern =/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/;
     if(usernameRegexPattern.test(req.query.username)){
       var passwordRegexPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
@@ -261,21 +251,23 @@ app.get('/addUser', (req, res) => {
             };
             console.log('User addedd!');
           });
-          result = {ok: true};
+          let result = {ok: true};
           res.write(JSON.stringify(result));
           res.end();
         }else{
-          result = {ok: false, reason: "Passwords do not match!"};
+          let result = {ok: false, reason: "Passwords do not match!"};
           res.write(JSON.stringify(result));
           res.end();
         }
-      }else{
-      result = {ok: false, reason: "Password is not valid!"};
-      res.write(JSON.stringify(result));
-      res.end();
+      }
+      else{
+        let result = {ok: false, reason: "Password is not valid!"};
+        res.write(JSON.stringify(result));
+        res.end();
+      }
     }
-    }else{
-      result = {ok: false, reason: "Username is not valid!"};
+    else{
+      let result = {ok: false, reason: "Username is not valid!"};
       res.write(JSON.stringify(result));
       res.end();
     }
@@ -298,27 +290,27 @@ app.get('/addUser', (req, res) => {
               });
               fs.appendFile(`./users.json`, JSON.stringify(users), function (err) {
                 if (err) {
-                  result = {ok: false};
+                  let result = {ok: false};
                   res.send(result);
                 };
                 console.log('User addedd!');
               });
-              result = {ok: true};
+              let result = {ok: true};
               res.write(JSON.stringify(result));
               res.end();
             }else{
-              result = {ok: false, reason: "Passwords do not match!"};
+              let result = {ok: false, reason: "Passwords do not match!"};
               res.write(JSON.stringify(result));
               res.end();
             }
           }
           else{
-          result = {ok: false, reason: "Password is not valid!"};
-          res.write(JSON.stringify(result));
-          res.end();
+            let result = {ok: false, reason: "Password is not valid!"};
+            res.write(JSON.stringify(result));
+            res.end();
           }
         }else{
-          result = {ok: false, reason: "Username is not valid!"};
+          let result = {ok: false, reason: "Username is not valid!"};
           res.write(JSON.stringify(result));
           res.end();
         }
@@ -363,18 +355,24 @@ app.get('/checkLogIn', (req, res) => {
 });
 
 app.get('/getUserPacks', (req, res) => {
-  let ids = JSON.parse(fs.readFileSync("IDs.json"));
-  var tmp = [];
-  for(let i = 0; i < ids.length; i++){
-    let result = fs.readFileSync(`./${ids[i].filename}.json`);
-    let pack = JSON.parse(result);
-    if(pack.username == req.query.username){
-      tmp[tmp.length] = pack;
+  if(fs.existsSync(`./IDs.json`)){
+    let ids = JSON.parse(fs.readFileSync("IDs.json"));
+    var tmp = [];
+    for(let i = 0; i < ids.length; i++){
+      let result = fs.readFileSync(`./${ids[i].filename}.json`);
+      let pack = JSON.parse(result);
+      if(pack.username == req.query.username){
+        tmp[tmp.length] = pack;
+      }
     }
+    res.writeHead(200, {'Content-Type': 'charset=utf-8'});
+    res.write(JSON.stringify(tmp));
+    res.end();
   }
-  res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-  res.write(JSON.stringify(tmp));
-  res.end();
+  else{
+    res.write("{}");
+    res.end();
+  }
 });
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://telegram-bots-maga.cx.ua');
