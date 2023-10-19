@@ -172,10 +172,9 @@ app.get('/createPack', (req, res) => {
 });
 
 app.get('/deletePack', (req, res) => {
-  result;
   const exists = fs.existsSync(`./${req.query.fileName}.json`);
   if(!exists){
-      result = {ok: false, reason: "Library with such name does not exist!"};
+      let result = {ok: false, reason: "Library with such name does not exist!"};
       res.write(JSON.stringify(result));
       res.end();
   } 
@@ -218,18 +217,18 @@ app.get('/deletePack', (req, res) => {
             console.log('ID addedd!');
           });
         });
-        result = {ok: "true"};
+        let result = {ok: "true"};
         res.write(JSON.stringify(result));
         res.end();
       }
       else
       {
-        response = {ok: false, reason: "Wrong username or password!"};
+        let result = {ok: false, reason: "Username or password is wrong."};
         console.log(req.query.username + " " + req.query.password);
         console.log(file.username + " " + file.password);
 
         res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-        res.write(JSON.stringify(response));
+        res.write(JSON.stringify(result));
         res.end();
       }
     });
