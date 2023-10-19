@@ -373,7 +373,6 @@ app.get('/getUserPacks', (req, res) => {
     }
   }
   res.writeHead(200, {'Content-Type': 'charset=utf-8'});
-  let pack = JSON.parse(fs.readFileSync(`./asd.json`));
   res.write(JSON.stringify(tmp));
   res.end();
 });
