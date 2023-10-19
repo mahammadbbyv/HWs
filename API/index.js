@@ -362,6 +362,7 @@ app.get('/getUserPacks', (req, res) => {
       let result = fs.readFileSync(`./${ids[i].filename}.json`);
       let pack = JSON.parse(result);
       if(pack.username == req.query.username){
+        pack["filename"] = ids[i].filename;
         tmp[tmp.length] = pack;
       }
     }
