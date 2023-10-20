@@ -37,18 +37,20 @@ app.get('/getWords', (req, res) => {
       fs.readFile(`${req.query.fileName}.json`, "utf-8", (err, data) => {
         
         let file = JSON.parse(data);
-        fs.readFile(`IDs.json`, "utf-8", (err, id) => {
-          let ids = JSON.parse(id);
-          ids[findPack(ids, req.query.fileName)].usage += 1;
-          fs.unlinkSync("./IDs.json");
-          fs.appendFile(`./IDs.json`, JSON.stringify(ids), function (err) {
-            if (err) {
-              result = {ok: false, reason: err};
-              res.send(result)
-            };
-            console.log('ID addedd!');
+        if(req.query.isBot){
+          fs.readFile(`IDs.json`, "utf-8", (err, id) => {
+            let ids = JSON.parse(id);
+            ids[findPack(ids, req.query.fileName)].usage += 1;
+            fs.unlinkSync("./IDs.json");
+            fs.appendFile(`./IDs.json`, JSON.stringify(ids), function (err) {
+              if (err) {
+                result = {ok: false, reason: err};
+                res.send(result)
+              };
+              console.log('ID addedd!');
+            });
           });
-        });
+        }
         if(req.query.randomWord){
           file.words = JSON.parse(file.words);
           response = {ok: "true", result: file.words[between(0, file.words.length)]};
