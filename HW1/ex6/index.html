@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+<body>
+    <script>
+        let usd = prompt("Enter USD you want to convert.");
+        fetch(`https://api.fastforex.io/convert?api_key=415756ac59-018a0c991c-s2x99p&from=USD&to=EUR&amount=${usd}`)
+        .then((res) => res.json())
+        .then((data) => {
+            alert(`EUR: ${data.result.EUR}`);
+        });
+    </script>
+</body>
+</html>
