@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 300px;
+            margin: 20% auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline;
+            cursor: pointer;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -50px;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+        }
+
+        .chat-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .chat-body {
+            padding: 10px;
+        }
+
+        .close-chat {
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to our E-commerce Website</h1>
+    
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <p>This is a modal window.</p>
+        </div>
+    </div>
+
+    <p class="tooltip">Hover over me for a tooltip
+        <span class="tooltip-text">This is a tooltip</span>
+    </p>
+
+    <button class="chat-button" id="openChat">Chat with Seller</button>
+
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            Chat with Seller
+            <span class="close-chat" id="closeChat">&times;</span>
+        </div>
+        <div class="chat-body">
+            Chat messages will go here.
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var closeModal = document.getElementById("closeModal");
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        var tooltip = document.querySelector(".tooltip");
+        var tooltipText = document.querySelector(".tooltip-text");
+
+        tooltip.onmouseover = function() {
+            tooltipText.style.visibility = "visible";
+        }
+
+        tooltip.onmouseout = function() {
+            tooltipText.style.visibility = "hidden";
+        }
+
+        var chatPopup = document.getElementById("chatPopup");
+        var openChatButton = document.getElementById("openChat");
+        var closeChatButton = document.getElementById("closeChat");
+
+        openChatButton.onclick = function() {
+            chatPopup.style.display = "block";
+        }
+
+        closeChatButton.onclick = function() {
+            chatPopup.style.display = "none";
+        }
+    </script>
+</body>
+</html>
