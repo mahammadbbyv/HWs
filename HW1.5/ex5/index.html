@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const userInput = prompt("Введите пятизначное число:");
+
+        const digits = userInput.split('');
+
+        if (digits[0] === digits[4] && digits[1] === digits[3]) {
+            alert("Введенное число является палиндромом.");
+        } else {
+            alert("Введенное число не является палиндромом.");
+        }
+
+    </script>
+</body>
+</html>

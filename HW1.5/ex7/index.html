@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let purchaseAmount = parseFloat(prompt("Enter the purchase amount:"));
+
+        if (purchaseAmount >= 200 && purchaseAmount < 300) {
+            let discount = purchaseAmount * 0.03;
+            let discountedAmount = purchaseAmount - discount;
+            alert(`Total amount to pay with a 3% discount: $${discountedAmount.toFixed(2)}`);
+        } else if (purchaseAmount >= 300 && purchaseAmount < 500) {
+            let discount = purchaseAmount * 0.05;
+            let discountedAmount = purchaseAmount - discount;
+            alert(`Total amount to pay with a 5% discount: $${discountedAmount.toFixed(2)}`);
+        } else if (purchaseAmount >= 500) {
+            let discount = purchaseAmount * 0.07;
+            let discountedAmount = purchaseAmount - discount;
+            alert(`Total amount to pay with a 7% discount: $${discountedAmount.toFixed(2)}`);
+        } else {
+            alert(`Total amount to pay: $${purchaseAmount.toFixed(2)}`);
+        }
+
+    </script>
+</body>
+</html>

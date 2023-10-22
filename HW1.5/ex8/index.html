@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./script.js"></script>
+</head>
+<body>
+    <script>
+        let circumference = parseFloat(prompt("Enter the circumference of the circle:"));
+        let perimeter = parseFloat(prompt("Enter the perimeter of the square:"));
+
+        let radius = circumference / (2 * Math.PI);
+        let sideLength = perimeter / 4;
+
+        if (radius * 2 <= sideLength) {
+            console.log("The circle can fit inside the square.");
+        } else {
+            console.log("The circle cannot fit inside the square.");
+        }
+
+    </script>
+</body>
+</html>

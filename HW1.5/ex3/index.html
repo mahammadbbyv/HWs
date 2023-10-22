@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num = prompt("Enter a 3-digit number.");
+        let digit1 = parseInt(num[2]);
+        let digit2 = parseInt(num[1]);
+        let digit3 = parseInt(num[0]);
+        alert(((digit1 == digit2) || (digit1 == digit3) || (digit2 == digit3)) ? "There is a digit that is repeated at least once." : " There are no digits that are repeated.")
+    </script>
+</body>
+</html>

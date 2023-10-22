@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let score = 0;
+
+        function askQuestion(question, options) {
+        const answer = prompt(question + '\n' + options.join('\n'));
+            if (options.includes(answer)) {
+                score += 2;
+            }
+        }
+
+        askQuestion("What is the capital of France?", ["Paris", "London", "Berlin"]);
+        askQuestion("Which planet is known as the Red Planet?", ["Mars", "Venus", "Jupiter"]);
+        askQuestion("What is the largest mammal in the world?", ["Blue whale", "Elephant", "Giraffe"]);
+
+        alert("Your total score is: " + score + " points");
+    </script>
+</body>
+</html>

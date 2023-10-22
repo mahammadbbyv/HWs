@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getNextDate() {
+            var inputDate = new Date();
+            var day = parseInt(prompt("Enter the day:"));
+            var month = parseInt(prompt("Enter the month:")) - 1; // Month is 0-based
+            var year = parseInt(prompt("Enter the year:"));
+
+            inputDate.setFullYear(year, month, day);
+
+            var nextDate = new Date(inputDate);
+            nextDate.setDate(nextDate.getDate() + 1);
+
+            var nextDay = nextDate.getDate();
+            var nextMonth = nextDate.getMonth() + 1; // Month is 0-based, so add 1
+            var nextYear = nextDate.getFullYear();
+
+            console.log("Next Date: " + nextDay + "/" + nextMonth + "/" + nextYear);
+        }
+
+        getNextDate();
+
+    </script>
+</body>
+</html>
