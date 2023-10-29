@@ -1,0 +1,12 @@
+﻿<Window x:Class="ToDoList.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoList.View"
+        xmlns:ViewModel="clr-namespace:ToDoList.ViewModel"
+        d:DataContext="{d:DesignInstance Type=ViewModel:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainView" Height="450" Width="800">
+    <ContentControl Content="{Binding CurrentViewModel}" />
+</Window>

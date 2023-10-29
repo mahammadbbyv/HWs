@@ -1,0 +1,46 @@
+﻿<Window x:Class="Maga.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maga"
+        mc:Ignorable="d"
+        xmlns:mD="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox mD:HintAssist.Hint="FileName" x:Name="FileName" FontSize="20" HorizontalAlignment="Left" Width="150" Margin="20 0" />
+        <TextBox mD:HintAssist.Hint="FontSize" x:Name="FontSizeee" TextChanged="FontSize_TextChanged" HorizontalAlignment="Right" FontSize="20" Width="150" Margin="20 0" />
+        <RichTextBox x:Name="body" Grid.Row="1" VerticalContentAlignment="Top"/>
+        <StackPanel Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center">
+            <Button Click="Add_Click" Height="30" Margin="20 10" FontSize="20" Padding="0">
+                <mD:PackIcon Kind="Add"/>
+            </Button>
+            <ScrollViewer x:Name="filing" Height="200" VerticalScrollBarVisibility="Hidden" Margin="20 10" FontSize="20" Padding="10 0 0 0">
+                <ItemsControl Padding="0" ItemsSource="{Binding Files}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"/>
+                                <Button Click="Button_Click">
+                                    <mD:PackIcon Kind="Edit"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Button Height="30" Margin="20 10" FontSize="20" Padding="0">
+                <mD:PackIcon Kind="Remove"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

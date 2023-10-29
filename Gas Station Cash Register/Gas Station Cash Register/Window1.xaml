@@ -1,0 +1,17 @@
+﻿<Window x:Class="Gas_Station_Cash_Register.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gas_Station_Cash_Register"
+        mc:Ignorable="d"
+        Title="Window1" Height="200" Width="400" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="email" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="@gmail.com" TextAlignment="Left" VerticalContentAlignment="Center"/>
+        <Button Click="Button_Click" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Send" Width="50" Height="40"/>
+    </Grid>
+</Window>

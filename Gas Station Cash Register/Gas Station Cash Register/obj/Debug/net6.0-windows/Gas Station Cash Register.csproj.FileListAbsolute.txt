@@ -1,0 +1,32 @@
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Gas Station Cash Register.exe
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Gas Station Cash Register.deps.json
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Gas Station Cash Register.runtimeconfig.json
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Gas Station Cash Register.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Gas Station Cash Register.pdb
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.csproj.AssemblyReference.cache
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register_MarkupCompile.cache
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register_MarkupCompile.lref
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.g.resources
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.AssemblyInfoInputs.cache
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.AssemblyInfo.cs
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.csproj.CoreCompileInputs.cache
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.csproj.CopyComplete
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\refint\Gas Station Cash Register.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.pdb
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Gas Station Cash Register.genruntimeconfig.cache
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\ref\Gas Station Cash Register.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\FluentEmail.Core.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\SendGrid.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\StarkbankEcdsa.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Window1.g.cs
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\obj\Debug\net6.0-windows\Window1.baml
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\EASendMail.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\System.Security.Cryptography.Pkcs.dll
+C:\Users\Bemga\OneDrive\Рабочий стол\Gas Station Cash Register\Gas Station Cash Register\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
