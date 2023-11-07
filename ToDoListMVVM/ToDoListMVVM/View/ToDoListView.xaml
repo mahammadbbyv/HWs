@@ -18,7 +18,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Button HorizontalAlignment="Center" Grid.Column="2" Command="{Binding AddCommand}">
+        <Button HorizontalAlignment="Right" Margin="10 0" Grid.Column="2" Command="{Binding AddCommand}">
             <mD:PackIcon Kind="Add" />
         </Button>
         <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
