@@ -55,21 +55,10 @@ namespace Calculator
 
         private void OperationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (textNum.Content.ToString() != string.Empty)
-            {
-                string gettext = sender.ToString();
-                gettext = gettext[32].ToString();
-                int num = Convert.ToInt32(textNum.Content);
-                nums.Add(num);
-                textEq.Content += num.ToString();
-                textEq.Content += gettext;
-                textNum.Content = string.Empty;
-                textError.Content = string.Empty;
-            }
-            else
-            {
-                textError.Content = "Enter Values!!!";
-            }
+            string gettext = sender.ToString();
+            textEq.Content += gettext;
+            textNum.Content = string.Empty;
+            textError.Content = string.Empty;
         }
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
@@ -79,7 +68,6 @@ namespace Calculator
                 Window1 window = new();
                 window.Show();
             }
-            if(textNum.Content.ToString() != string.Empty) { 
                 textEq.Content += textNum.Content.ToString();
                 var result = new Interpreter().Eval(textEq.Content.ToString());
                 textNum.Content = result.ToString();
@@ -91,11 +79,6 @@ namespace Calculator
                         textNum.FontSize *= 0.8;
                     }
                 }
-            }
-            else
-            {
-                textError.Content = "Enter Value!!!";
-            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

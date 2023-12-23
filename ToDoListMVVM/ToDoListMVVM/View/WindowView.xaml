@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         AllowsTransparency="True"
         xmlns:mD="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:viewmodel="clr-namespace:ToDoListMVVM.ViewModel"
-        d:DataContext="{d:DesignInstance Type=viewmodel:WindowVM}"
+        xmlns:ViewModel="clr-namespace:ToDoListMVVM.ViewModel"
+        d:DataContext="{d:DesignInstance Type=ViewModel:WindowVM}"
         Title="Mouse Shop" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowStyle="None" Background="Transparent" d:Background="White">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="1"/>

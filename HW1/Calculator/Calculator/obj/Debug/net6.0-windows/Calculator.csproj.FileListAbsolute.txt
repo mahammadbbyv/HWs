@@ -24,3 +24,29 @@ C:\Users\Bemga\OneDrive\Рабочий стол\Calculator\Calculator\obj\Debug\
 C:\Users\Bemga\OneDrive\Рабочий стол\Calculator\Calculator\bin\Debug\net6.0-windows\DynamicExpresso.Core.dll
 C:\Users\Bemga\OneDrive\Рабочий стол\Calculator\Calculator\obj\Debug\net6.0-windows\Window1.g.cs
 C:\Users\Bemga\OneDrive\Рабочий стол\Calculator\Calculator\obj\Debug\net6.0-windows\Window1.baml
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\Calculator.exe
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\Calculator.deps.json
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\Calculator.runtimeconfig.json
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\Calculator.dll
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\Calculator.pdb
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\NCalc.dll
+D:\Desktop\HWs\HW1\Calculator\Calculator\bin\Debug\net6.0-windows\DynamicExpresso.Core.dll
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.csproj.AssemblyReference.cache
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\MainWindow.g.cs
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Window1.g.cs
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\App.g.cs
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator_MarkupCompile.cache
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator_MarkupCompile.lref
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\MainWindow.baml
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Window1.baml
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.g.resources
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.AssemblyInfoInputs.cache
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.AssemblyInfo.cs
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.csproj.CoreCompileInputs.cache
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.csproj.CopyComplete
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.dll
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\refint\Calculator.dll
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.pdb
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\Calculator.genruntimeconfig.cache
+D:\Desktop\HWs\HW1\Calculator\Calculator\obj\Debug\net6.0-windows\ref\Calculator.dll
