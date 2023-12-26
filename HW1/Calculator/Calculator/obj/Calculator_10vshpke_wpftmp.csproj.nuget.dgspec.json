@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bemga\\OneDrive - ITM STEP MMC\\Desktop\\HWs\\WeatherAPI\\WebApplication3\\WebApplication3.csproj": {}
+    "D:\\Desktop\\HWs\\HW1\\Calculator\\Calculator\\Calculator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bemga\\OneDrive - ITM STEP MMC\\Desktop\\HWs\\WeatherAPI\\WebApplication3\\WebApplication3.csproj": {
+    "D:\\Desktop\\HWs\\HW1\\Calculator\\Calculator\\Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bemga\\OneDrive - ITM STEP MMC\\Desktop\\HWs\\WeatherAPI\\WebApplication3\\WebApplication3.csproj",
-        "projectName": "WebApplication3",
-        "projectPath": "C:\\Users\\Bemga\\OneDrive - ITM STEP MMC\\Desktop\\HWs\\WeatherAPI\\WebApplication3\\WebApplication3.csproj",
+        "projectUniqueName": "D:\\Desktop\\HWs\\HW1\\Calculator\\Calculator\\Calculator.csproj",
+        "projectName": "Calculator",
+        "projectPath": "D:\\Desktop\\HWs\\HW1\\Calculator\\Calculator\\Calculator.csproj",
         "packagesPath": "C:\\Users\\Bemga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bemga\\OneDrive - ITM STEP MMC\\Desktop\\HWs\\WeatherAPI\\WebApplication3\\obj\\",
+        "outputPath": "D:\\Desktop\\HWs\\HW1\\Calculator\\Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
             "projectReferences": {}
           }
         },
@@ -42,8 +42,18 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "CoreCLR-NCalc": {
+              "target": "Package",
+              "version": "[2.2.110, )"
+            },
+            "DynamicExpresso.Core": {
+              "target": "Package",
+              "version": "[2.13.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,11 +66,11 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
