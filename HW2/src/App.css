@@ -20,6 +20,17 @@
   animation: show 1s linear;
 }
 
+input{
+  border: unset;
+  border-radius: 10px;
+  padding: 0 0 0 10px;
+  height: 40px;
+}
+
+input:active{
+  border: unset;
+}
+
 .modal {
   position: relative;
   padding: 20px;

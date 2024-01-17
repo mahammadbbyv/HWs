@@ -10,6 +10,7 @@ function Users({setShowModal, array}) {
             {array.map((item) => {
             return(
                     <li>
+                        <p>Id {item.id}</p>
                         <p>{item.name}</p>
                         <p>{item.username}</p>
                         <p>{item.email}</p>
