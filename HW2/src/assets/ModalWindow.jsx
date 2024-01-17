@@ -14,7 +14,7 @@ function ModalWindow({setShowModal, setArray, array}) {
             <input onChange={(val) => obj.name = val.target.value} type="text" placeholder="Name"/>
             <input onChange={(val) => obj.username = val.target.value} type="username" placeholder="Username"/>
             <input onChange={(val) => obj.email = val.target.value} type="email" placeholder="E-Mail"/>
-            <button onClick={() => setArray([...array, obj])}>Add</button>
+            <button onClick={() => {setArray([...array, obj]); setShowModal(false)}}>Add</button>
         </div>
         </div>
     )

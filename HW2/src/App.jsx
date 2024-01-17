@@ -66,17 +66,12 @@ function App() {
       "email": "Rey.Padberg@karina.biz"
     }
   ])
-  let obj = {
-    "name": "Clementina DuBuque",
-    "username": "Moriah.Stanton",
-    "email": "Rey.Padberg@karina.biz"
-  }
   const [showModal, setShowModal] = useState(false)
 
   return (
     <>
-      <Users setShowModal={setShowModal} array={array} setArray={setArray} /><button onClick={() => setArray([...array, obj])}>PLUS</button>
-      {showModal ? <ModalWindow setShowModal={setShowModal} /> : null}
+      <Users setShowModal={setShowModal} array={array} />
+      {showModal ? <ModalWindow setShowModal={setShowModal} array={array} setArray={setArray} /> : null}
     </>
   )
 }
