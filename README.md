@@ -1,0 +1,1 @@
+-- Project_Hack4Good_Pharmaceuticals open this folder in vsc and type in terminal npm run dev
