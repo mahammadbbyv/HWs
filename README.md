@@ -3,6 +3,6 @@ npm i\
 npm i html-react-parser\
 npm i react-icons\
 npm run dev\
-\
+
 
 copy those 4 commands and paste them in terminal
