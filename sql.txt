@@ -1,0 +1,80 @@
+use [PharmacyDB]
+
+create table Pharmacies (
+    PharmacyId int identity(1,1) primary key,
+    Name nvarchar(max),
+    PhoneNumber nvarchar(20) not null,
+    Email nvarchar(100) not null,
+    Password nvarchar(150) not null,
+    IsEmailVerified bit not null,
+    IsPharmacyVerified bit not null,
+    Address nvarchar(500) not null,
+    City nvarchar(100) not null,
+    EmailCode int not null,
+)
+
+create table Products (
+    ProductId int identity(1,1) primary key,
+    Name nvarchar(max) not null check (Name <> '')
+)
+
+create table PharmacyProduct(
+    PharmacyId int,
+    ProductId int,
+    primary key (PharmacyId, ProductId),
+    foreign key (PharmacyId) references Pharmacies(PharmacyId),
+    foreign key (ProductId) references Products(ProductId)
+)
+
+create table BanList(
+    BanIpAddress nvarchar(50) not null,
+    Date datetime not null,
+)
+
+--Delete PharmacyProduct by productId and pharmacyId
+declare @PharmacyIdToDelete int = 0;
+declare @ProductIdToDelete int = 0;
+
+delete from PharmacyProduct where PharmacyId = @PharmacyIdToDelete AND ProductId = @ProductIdToDelete;
+
+--Insert PharmacyProduct by productId and pharmacyId
+declare @PharmacyIdToInsert int = 0;
+declare @ProductIdToInsert int = 0;
+
+insert into PharmacyProduct (PharmacyId, ProductId) values (@PharmacyIdToInsert, @ProductIdToInsert);
+
+--Update Pharmacy based on Id
+declare @PharmacyIdToUpdate int = 0;
+declare @NewName nvarchar(max) = '';
+declare @NewPhoneNumber nvarchar(20) = '';
+declare @NewEmail nvarchar(100) = '';
+declare @NewPassword nvarchar(150) = '';
+declare @NewAddress nvarchar(500) = '';
+declare @NewCity nvarchar(100) = '';
+
+update Pharmacies set Name = @NewName, PhoneNumber = @NewPhoneNumber, Email = @NewEmail, Password = @NewPassword, Address = @NewAddress, City = @NewCity where PharmacyId = @PharmacyIdToUpdate;
+
+--Insert Pharmacy
+declare @NewEmail nvarchar(100) = '';
+declare @NewPassword nvarchar(150) = '';
+declare @NewPhoneNumber nvarchar(20) = '';
+declare @NewEmailCode int = 0;
+
+insert into Pharmacies (Name, PhoneNumber, Email, Password, IsEmailVerified, IsPharmacyVerified, Address, City, EmailCode) values ('', @NewPhoneNumber, @NewEmail, @NewPassword, false, false, '', '', @NewEmailCode);
+
+--Select all products pharmacy
+declare @PharmacyId int = 0;
+
+select P.ProductId, P.Name AS ProductName from PharmacyProduct AS PP join Products as P on PP.ProductId = P.ProductId where PP.PharmacyId = @PharmacyId;
+
+--select pharmacy based on email
+select PharmacyId, Email, Password from Pharmacies where Email = '';
+
+--insert to BanList
+insert into BanList (BanIpAddress, Date) values ('', 0);
+
+--select EmailCode based on email
+select EmailCode from Pharmacies where Email = '';
+
+--Filter
+declare @ProductName nvarchar(max) = 'Name'; declare @PharmacyCity nvarchar(100) = 'City'; select P.PharmacyId, P.Name as PharmacyName, P.PhoneNumber, P.Email, P.Address, P.City, PR.ProductId, PR.Name as ProductName from Pharmacies as P join PharmacyProduct as PP on P.PharmacyId = PP.PharmacyId join Products as PR on PP.ProductId = PR.ProductId where PR.Name = @ProductName and P.City = @PharmacyCity and P.IsPharmacyVerified = true;

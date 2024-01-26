@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#root{
+    --text-color: #2f313f;
+    --text-color-transparent: #2f313f4c;
+    --bg-color: #EEEEEE;
+    --main-color: #9CFFAC;
+    --main-dark-color: #6FAF79;
+    --second-color: #FFFFFF;
+    --tw-backdrop-blur: blur(24px);
+    --neutral-color: #061a371b;
+    --text-light-color: #121d2b99;
+}
+
+.pharmacy-editor-container{
+    width: 100%;
+    margin: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    border-radius: 20px;
+    border-bottom: 3px solid var(--text-light-color);
+    box-shadow: 0  0 6px var(--text-color);
+    backdrop-filter: var(--tw-backdrop-blur);
+}
+
+.pharmacy-editor-container h3{
+    padding-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 22px;
+    text-align: left;
+    border-bottom: 2px solid var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.pharmacy-inputs-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-bottom: 1rem;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-box input{
+    border-radius: 10px;
+    border: 2px solid var(--text-color);
+    padding: 5px 15px;
+}
+
+.submit-button{
+    margin-top: 3.5rem;
+    padding: 0;
+    border: 4px solid var(--neutral-color);
+    border-radius: 30px;
+    height: fit-content;
+}

@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#root{
+    --text-color: #2f313f;
+    --text-color-transparent: #2f313f4c;
+    --bg-color: #EEEEEE;
+    --main-color: #9CFFAC;
+    --main-dark-color: #6FAF79;
+    --second-color: #FFFFFF;
+    --tw-backdrop-blur: blur(24px);
+    --card-color: #23ba8f2b;
+    --text-light-color: #121d2b15;
+    --login-color: #7979792d;
+    --tw-blur: blur(20px);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.verify-box{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+    align-items: center;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    box-shadow: 0  5px 6px var(--text-color);
+    border-radius: 10px;
+}
+
+.verify-title{
+    padding: 1rem;
+    width: fit-content;
+    border-bottom: 2px solid var(--text-color);
+}
+
+.verify-content{
+    padding: 1rem;
+    width: fit-content;
+}
+
+.verify-input{
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    border-bottom: 3px solid var(--text-light-color);
+    box-shadow: 0  5px 6px var(--text-color);
+    border-radius: 10px;
+    width: fit-content;
+}

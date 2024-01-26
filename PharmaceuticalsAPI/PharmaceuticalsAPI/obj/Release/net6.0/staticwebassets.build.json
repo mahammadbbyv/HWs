@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "TbRjw0JbbdwyAXYX2NkK2bkN9ogNpDuhRdm0uhBPzTM=",
+  "Source": "PharmaceuticalsAPI",
+  "BasePath": "_content/PharmaceuticalsAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,8 @@
+.pageNotFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 10%;
+    padding-right: 10%;
+}

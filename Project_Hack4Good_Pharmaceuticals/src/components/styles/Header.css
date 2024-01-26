@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Poppins:wght@700&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#root{
+    --text-color: #2B2A2A;
+    --text-color-transparent: #2b2a2a5d;
+    --text-color-light-transparent: #ffffff2d;
+    --bg-color: #EEEEEE;
+    --main-color: #9CFFAC;
+    --main-dark-color: #6FAF79;
+    --second-color: #FFFFFF;
+    --tw-blur: blur(20px);
+}
+
+.header{
+    backdrop-filter: var(--tw-blur);
+    width: 100%;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap: 350px;
+    background: var(--text-color-light-transparent);
+    z-index: 1000;
+}
+
+.navbar{
+    display: flex;
+    width: 10%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 45px;
+    height: 70px;
+    font-size: 18px;
+}
+
+.i-logo-image{
+    width: 45px;
+    height: 45px;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+a{
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+a:hover{
+    color: var(--text-color-transparent);
+}
