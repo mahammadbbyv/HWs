@@ -7,24 +7,24 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';//cookies
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 function Register(){
     const [email, setEmail] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [cookies, setCookie] = useCookies(["email"]);
     async function register(){
         if(password === confirmPassword){
-            // use fetch with params in query
             
             setPhoneNumber(phoneNumber.replace('+', ''));
             const res = await fetch(`https://magab17-001-site1.ltempurl.com/register?email=${email}&password=${password}&phonenumber=${phoneNumber}&confirmPassword=${confirmPassword}`)
-            console.log(res)
             const data = await res.json()
-            console.log(data)
             if(data.ok){
                 toast.success('Successfully registered!')
+                setCookie('email', email)
                 setTimeout(() => {
                     window.location.href = '/verifyEmail'
                 }, 3000)
@@ -44,11 +44,10 @@ function Register(){
                 <div className="register-container">
                     <div className="register">
                         <h2>Register</h2>
-                        <input placeholder="E-Mail..." onChange={(val) => setEmail(val.target.value)}/>
+                        <input type='email' placeholder="E-Mail..." onChange={(val) => setEmail(val.target.value)}/>
                         <PhoneInput
                             placeholder="Enter phone number..."
                             value={phoneNumber}
-                            
                             onChange={setPhoneNumber}/>
                         <input type='password' placeholder="Password..." onChange={(val) => setPassword(val.target.value)}/>
                         <input type='password' placeholder="Confirm Password..." onChange={(val) => setConfirmPassword(val.target.value)} />

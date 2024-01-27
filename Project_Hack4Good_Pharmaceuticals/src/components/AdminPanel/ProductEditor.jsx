@@ -25,12 +25,11 @@ function ProductEditor({setProduct}){
         <>
         <div className='product-editor-container'>
             <h2>Product Addition</h2>
-            <div>
+            <div className='product-editor'>
                 <SearchBar setSearch={setSearch}/>
                 {results && results.length > 0 && <SearchResultsList results={results} setProduct={setProduct} />}
             </div>
-        </div>
-        
+        </div>  
         </>
     )
 }

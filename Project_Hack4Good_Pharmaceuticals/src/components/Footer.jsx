@@ -13,8 +13,8 @@ function Footer(){
 
                     <div className="footer-box">
                         <h3>Contact Details</h3>
-                        <a href="#">rasimbabayev9g19@gmail.com</a>
-                        <a href="#">morujov48@gmail.com</a>
+                        <a href="mailto: rasimbabayev9g19@gmail.com">rasimbabayev9g19@gmail.com</a>
+                        <a href="mailto: morujov48@gmail.com">morujov48@gmail.com</a>
                     </div>
                 </div>
             </section>

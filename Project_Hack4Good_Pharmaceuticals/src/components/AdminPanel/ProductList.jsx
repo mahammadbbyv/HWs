@@ -1,35 +1,39 @@
-import './styles/ProductList.css'
 import { useEffect, useState } from 'react'
+import './styles/ProductList.css'
+import reloadImg from '../../assets/reload-circular-arrow-symbol.png'
+import axios from 'axios'
 
-function ProductList({product}){
-    const [products, setProducts] = useState([])
-
-    useEffect(() =>{
-        const getData = async () => {
-          try {
-            if(product.length == 0) return setResults([])
-            const res = await fetch(`https://magab17-001-site1.ltempurl.com/getPharmacies/Baku/${product}`)
-            const data = await res.json()
-            return setProducts(data)
-          } catch (err) {
-            console.log(err)
-          }
+function ProductList({id, removeProduct}){
+  const [products, setProducts] = useState([])
+  const [reload, setReload] = useState(true)
+  useEffect(() => {
+      async function getData(){
+          await axios.get(`https://magab17-001-site1.ltempurl.com/getPharmacyPharmaceuticals/${id}`)
+          .then(res => {
+            setProducts(res.data.res)
+            return;
+          })
         }
-        getData()
-    }, [product])
-    
+      getData();
+  },[reload]);
     return(
-        <>
-        <div className='product-list-container'>
+      <>
+      <div className='product-list-container'>
+          <div className='product-list-header'>
             <h2>Products List</h2>
-            {products.map((item) => (
-                <div className='product'>
-                    <h4>{item.name}</h4>
-                </div>
-            ))}
-        </div>
-        </>
-    )
+            <button onClick={() => setReload(!reload)}>
+              <img src={reloadImg}/>
+            </button>
+          </div>
+          {!products ? <h4>No products</h4> : products.map((item) => (
+            <div className='product' key={item.Id}>
+                  <h2 >{item.Name}</h2>
+                  <button onClick={() => {setReload(!reload); removeProduct(item.Name)}}>Remove</button>
+              </div>
+          ))}
+      </div>
+      </>
+  )
 }
 
 export default ProductList

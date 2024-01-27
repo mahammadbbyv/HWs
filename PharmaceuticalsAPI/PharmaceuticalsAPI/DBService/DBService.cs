@@ -40,7 +40,7 @@ public class DBService : IDBService
                 var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
                 conn.Open();
                 string code = new Random().Next(0, 999999).ToString("000000");
-                using SqlCommand cmd2 = new($"insert into Pharmacies (Name, PhoneNumber, Email, Password, IsEmailVerified, IsPharmacyVerified, Address, City, EmailCode) values ('', '{phoneNumber}', '{email}', '{passwordHash}', 0, 0, '', '', {code});", conn);
+                using SqlCommand cmd2 = new($"insert into Pharmacies (Name, PhoneNumber, Email, Password, IsEmailVerified, IsPharmacyVerified, Address, City, EmailCode) values ('', '+{phoneNumber}', '{email}', '{passwordHash}', 0, 0, '', '', {code});", conn);
                 cmd2.ExecuteNonQuery();
                 MailMessage mail = new();
                 SmtpClient SmtpServer = new("smtp.gmail.com");
@@ -73,7 +73,6 @@ public class DBService : IDBService
         var tokenS = handler.ReadToken(token) as JwtSecurityToken;
         var emailFromToken = tokenS.Claims.First(claim => claim.Type == "Email").Value;
         var passwordFromToken = tokenS.Claims.First(claim => claim.Type == "Password").Value;
-        //check if token is expired
         bool isExpired = tokenS.ValidTo < DateTime.UtcNow;
         if(isExpired)
         {
@@ -89,7 +88,8 @@ public class DBService : IDBService
             {
                 if (BCrypt.Net.BCrypt.Verify(passwordFromToken, reader.GetString(0)))
                 {
-                    using SqlCommand cmd2 = new($"select PharmacyId, Name, Address, PhoneNumber, Email, City from Pharmacies where Email = '{emailFromToken}'", conn);
+                    reader.Close();
+                    using SqlCommand cmd2 = new($"select PharmacyId, Name, Address, PhoneNumber, Email, City, IsPharmacyVerified from Pharmacies where Email = '{emailFromToken}'", conn);
                     using SqlDataReader reader2 = cmd2.ExecuteReader();
                     if (reader2.Read())
                     {
@@ -99,6 +99,7 @@ public class DBService : IDBService
                         var phoneNumber = reader2.GetString(3);
                         var email = reader2.GetString(4);
                         var city = reader2.GetString(5);
+                        var IsVerified = reader2.GetBoolean(6);
                         var pharmacy = new Pharmacy()
                         {
                             Id = pharmacyId,
@@ -106,10 +107,10 @@ public class DBService : IDBService
                             Address = address,
                             PhoneNumber = phoneNumber,
                             Email = email,
-                            City = city
+                            City = city,
+                            IsVerified = IsVerified
                         };
                         reader2.Close();
-                        //get pharmaceuticals of this products
                         using SqlCommand cmd3 = new($"select P.ProductId, P.Name from Products as P join PharmacyProduct as PP on P.ProductId = PP.ProductId where PP.PharmacyId = {pharmacyId}", conn);
                         using SqlDataReader reader3 = cmd3.ExecuteReader();
                         var pharmaceuticals = new List<Pharmaceuticals>();
@@ -121,7 +122,7 @@ public class DBService : IDBService
                                 Name = reader3.GetString(1)
                             });
                         }
-                        return JsonSerializer.Serialize(new { res = pharmacy, pharmaceuticals = pharmaceuticals, ok = true });
+                        return JsonSerializer.Serialize(new { res = pharmacy, pharmaceuticals = pharmaceuticals.ToArray(), ok = true });
                     }
                 }
             }
@@ -198,8 +199,11 @@ public class DBService : IDBService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
+                new Claim("Id", Guid.NewGuid().ToString()),
                 new Claim("Email", email),
-                new Claim("Password", password)
+                new Claim("Password", password),
+                new Claim(JwtRegisteredClaimNames.Jti,
+                    Guid.NewGuid().ToString())
             }),
             Expires = DateTime.UtcNow.AddHours(1.5),
             Issuer = issuer,
@@ -208,7 +212,7 @@ public class DBService : IDBService
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         var tokenString = tokenHandler.WriteToken(token);
-        return JsonSerializer.Serialize(new { res = "Logged in successfully!", ok = true, token = tokenString });
+        return JsonSerializer.Serialize(new { res = $"Logged in successfully! {email} {password}", ok = true, token = tokenString });
     }
 
     public string VerifyEmail(string email, string code)
@@ -251,7 +255,7 @@ public class DBService : IDBService
         var tokenS = handler.ReadToken(token) as JwtSecurityToken;
         var emailFromToken = tokenS.Claims.First(claim => claim.Type == "Email").Value;
         var passwordFromToken = tokenS.Claims.First(claim => claim.Type == "Password").Value;
-        //check if token is expired
+
         bool isExpired = tokenS.ValidTo < DateTime.UtcNow;
         if(isExpired)
         {
@@ -265,62 +269,92 @@ public class DBService : IDBService
         {
             if (BCrypt.Net.BCrypt.Verify(passwordFromToken, reader.GetString(0)))
             {
-                using SqlCommand cmd2 = new($"select PharmacyId, Name, Address, PhoneNumber, Email, City from Pharmacies where Email = '{emailFromToken}'", conn);
-                using SqlDataReader reader2 = cmd2.ExecuteReader();
-                if (reader2.Read())
-                {
-                    var pharmacyId = reader2.GetInt32(0);
-                    var name = reader2.GetString(1);
-                    var address = reader2.GetString(2);
-                    var phoneNumber = reader2.GetString(3);
-                    var email = reader2.GetString(4);
-                    var city = reader2.GetString(5);
-                    var pharmacy = new Pharmacy()
-                    {
-                        Id = pharmacyId,
-                        Name = name,
-                        Address = address,
-                        PhoneNumber = phoneNumber,
-                        Email = email,
-                        City = city
-                    };
-                    return JsonSerializer.Serialize(new { res = "Logged in successfully!", ok = true, pharmacy = pharmacy });
-                }
+                return JsonSerializer.Serialize(new { res = "Logged in successfully!", ok = true });
             }
         }
-        return null;
+        return JsonSerializer.Serialize(new { res = "Error", ok = false });
     }
 
-    public string UpdatePharmacy(string email, string name, string address, string city, string phoneNumber, string token)
+    public string UpdatePharmacy(string pharmacyId, string name, string address, string city, string phoneNumber, string token)
     {
         try
         {
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(token);
             var tokenS = handler.ReadToken(token) as JwtSecurityToken;
-            var emailFromToken = tokenS.Claims.First(claim => claim.Type == "Email").Value;
-            if (emailFromToken == email)
+            bool isExpired = tokenS.ValidTo < DateTime.UtcNow;
+            if(isExpired)
             {
-                using SqlConnection conn = new("Data Source=SQL8004.site4now.net;Initial Catalog=db_aa4553_piyadb;User Id=db_aa4553_piyadb_admin;Password=Fl1ck_Maga");
-                conn.Open();
-                using SqlCommand cmd = new($"update Pharmacies set Name = '{name}', Address = '{address}', City = '{city}', PhoneNumber = '{phoneNumber}' where Email = '{email}'", conn);
-                cmd.ExecuteNonQuery();
-                return JsonSerializer.Serialize(new { res = "Updated successfully!", ok = true });
+                return JsonSerializer.Serialize(new {res = "Token is expired.", ok=false});
             }
-            else
-            {
-                return JsonSerializer.Serialize(new { res = "You are not authorized to update this pharmacy.", ok = false });
-            }
+            using SqlConnection conn = new("Data Source=SQL8004.site4now.net;Initial Catalog=db_aa4553_piyadb;User Id=db_aa4553_piyadb_admin;Password=Fl1ck_Maga");
+            conn.Open();
+            using SqlCommand cmd = new($"update Pharmacies set Name = '{name}', Address = '{address}', City = '{city}', PhoneNumber = '{phoneNumber}' where PharmacyId = {pharmacyId}", conn);
+            cmd.ExecuteNonQuery();
+            return JsonSerializer.Serialize(new { res = "Updated successfully!", ok = true });
         }
         catch (Exception e)
         {
-            return e.Message;
+            return JsonSerializer.Serialize(new { res = e.Message, ok = false });
         }
     }
 
-    public bool AddPharmaceuticalToPharmacy(string name, string pharmacyId, string key, string ipaddress)
+    public string AddPharmaceuticalToPharmacy(string name, string pharmacyId, string token)
     {
-        return false;
+        using SqlConnection conn = new("Data Source=SQL8004.site4now.net;Initial Catalog=db_aa4553_piyadb;User Id=db_aa4553_piyadb_admin;Password=Fl1ck_Maga");
+        conn.Open();
+        var handler = new JwtSecurityTokenHandler();
+        var jsonToken = handler.ReadToken(token);
+        var tokenS = handler.ReadToken(token) as JwtSecurityToken;
+        bool isExpired = tokenS.ValidTo < DateTime.UtcNow;
+        if (isExpired)
+        {
+            return JsonSerializer.Serialize(new { res = "Token is expired.", ok = false });
+        }
+        using SqlCommand cmd = new($"select ProductId, Name from Products where Name = '{name}'", conn);
+        using SqlDataReader reader = cmd.ExecuteReader();
+        if (reader.Read())
+        {
+            var pharmaceutical = new Pharmaceuticals()
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1)
+            };
+            reader.Close();
+            using SqlCommand cmd2 = new($"insert into PharmacyProduct (PharmacyId, ProductId) values ({pharmacyId}, {pharmaceutical.Id})", conn);
+            cmd2.ExecuteNonQuery();
+            return JsonSerializer.Serialize(new { res = "Added successfully!", ok = true });
+        }
+        return JsonSerializer.Serialize(new { res = "Error.", ok = false });
+    }
+
+    public string RemovePharmaceuticalFromPharmacy(string name, string pharmacyId, string token)
+    {
+        using SqlConnection conn = new("Data Source=SQL8004.site4now.net;Initial Catalog=db_aa4553_piyadb;User Id=db_aa4553_piyadb_admin;Password=Fl1ck_Maga");
+        conn.Open();
+        var handler = new JwtSecurityTokenHandler();
+        var jsonToken = handler.ReadToken(token);
+        var tokenS = handler.ReadToken(token) as JwtSecurityToken;
+        bool isExpired = tokenS.ValidTo < DateTime.UtcNow;
+        if (isExpired)
+        {
+            return JsonSerializer.Serialize(new { res = "Token is expired.", ok = false });
+        }
+        using SqlCommand cmd = new($"select ProductId, Name from Products where Name = '{name}'", conn);
+        using SqlDataReader reader = cmd.ExecuteReader();
+        if (reader.Read())
+        {
+            var pharmaceutical = new Pharmaceuticals()
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1)
+            };
+            reader.Close();
+            using SqlCommand cmd2 = new($"delete from PharmacyProduct where PharmacyId = {pharmacyId} and ProductId = {pharmaceutical.Id}", conn);
+            cmd2.ExecuteNonQuery();
+            return JsonSerializer.Serialize(new { res = "Deleted successfully!", ok = true });
+        }
+        return JsonSerializer.Serialize(new { res = "Error.", ok = false });
     }
 
     public object GetPharmacyPharmaceuticals(string pharmacyId)
@@ -341,37 +375,13 @@ public class DBService : IDBService
                 });
             }
             conn.Close();
-            return pharmaceuticals;
+            return JsonSerializer.Serialize(new {res = pharmaceuticals.ToArray(), ok=true});
         }
         catch (Exception e)
         {
-            return e.Message;
+            return JsonSerializer.Serialize(new { res = e.Message, ok = false});
         }
     }
-
-//    create table Pharmacies(
-//    PharmacyId int identity(1,1) primary key,
-//    Name nvarchar(max) not null check(Name<> ''),
-//    PhoneNumber nvarchar(20) not null,
-//    Email nvarchar(100) not null,
-//    Password nvarchar(150) not null,
-//    IsEmailVerified bit not null,
-//    IsPharmacyVerified bit not null,
-//    Address nvarchar(500) not null,
-//    City nvarchar(100) not null,
-//)
-//create table Products(
-//    ProductId int identity(1,1) primary key,
-//    Name nvarchar(max) not null check(Name<> '')
-//)
-//create table PharmacyProduct(
-//    PharmacyId int,
-//    ProductId int,
-//    primary key (PharmacyId, ProductId),
-//    foreign key (PharmacyId) references Pharmacies(PharmacyId),
-//    foreign key (ProductId) references Products(ProductId)
-//)
-
 
     public object GetPharmaceuticals(string includes)
     {
@@ -407,7 +417,7 @@ public class DBService : IDBService
             using SqlConnection conn = new("Data Source=SQL8004.site4now.net;Initial Catalog=db_aa4553_piyadb;User Id=db_aa4553_piyadb_admin;Password=Fl1ck_Maga");
             conn.Open();
             var pharmacies = new List<Pharmacy>();
-            using SqlCommand cmd = new($"declare @ProductName nvarchar(max) = '{pharmaceutical}'; declare @PharmacyCity nvarchar(100) = '{city}';select P.PharmacyId, P.Name as PharmacyName, P.PhoneNumber, P.Email, P.Address, P.City, PR.ProductId, PR.Name as ProductName from Pharmacies as P join PharmacyProduct as PP on P.PharmacyId = PP.PharmacyId join Products as PR on PP.ProductId = PR.ProductId where PR.Name = @ProductName and P.City = @PharmacyCity;", conn);
+            using SqlCommand cmd = new($"declare @ProductName nvarchar(max) = '{pharmaceutical}'; declare @PharmacyCity nvarchar(max) = '{city}';select P.PharmacyId, P.Name as PharmacyName, P.PhoneNumber, P.Email, P.Address, P.City, PR.ProductId, PR.Name as ProductName from Pharmacies as P join PharmacyProduct as PP on P.PharmacyId = PP.PharmacyId join Products as PR on PP.ProductId = PR.ProductId where PR.Name = @ProductName and P.City = @PharmacyCity and P.IsPharmacyVerified = 1;", conn);
             using SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {

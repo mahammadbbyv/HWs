@@ -22,6 +22,56 @@
     --text-light-color: #121d2b99;
 }
 
+.modal-container {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    animation: show 1s linear;
+    z-index: 1001;
+}
+.modal {
+    position: relative;
+    height: 90%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+    border: 2px solid white;
+}
+
+.modal::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.modal::-webkit-scrollbar
+{
+	width: 12px;
+}
+
+.modal::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.modal img{
+    width: 500px;
+}
+
 .admin-container{
     background-image: url('../../../assets/star-of-life.png');
     background-repeat: no-repeat;

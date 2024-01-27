@@ -55,6 +55,12 @@
     gap: 10px;
 }
 
+.input-box .address{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .input-box input{
     border-radius: 10px;
     border: 2px solid var(--text-color);
@@ -62,9 +68,48 @@
 }
 
 .submit-button{
-    margin-top: 3.5rem;
+    display: flex;
+    justify-content: center;
+    width: 115px;
     padding: 0;
     border: 4px solid var(--neutral-color);
     border-radius: 30px;
     height: fit-content;
+}
+
+.last-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.last-column h4{
+    font-size: 20px;
+}
+
+.pharmacy-editor-container .results-list{
+    background: transparent;
+    border: 5px solid var(--neutral-color);
+    z-index: 500;
+}
+
+.pharmacy-editor-container .results-list::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.location-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pharmacy-editor-container .search-input-box{
+    background-color: transparent;
+    width: 100%;
+    margin: 0;
+    border-radius: 10px;
+    border: 2px solid var(--text-color);
+    padding: 5px 15px;
 }

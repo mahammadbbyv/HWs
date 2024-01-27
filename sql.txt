@@ -1,6 +1,4 @@
-use [PharmacyDB]
-
-create table Pharmacies (
+сreate table Pharmacies (
     PharmacyId int identity(1,1) primary key,
     Name nvarchar(max),
     PhoneNumber nvarchar(20) not null,

@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(options =>
         (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = false,
+        ValidateLifetime = true,
         ValidateIssuerSigningKey = true
     };
 });
@@ -46,7 +46,6 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAnyOrigins");
 
 app.UseHttpsRedirection();
-// create mappost register that takes in email, phone number, password, confirm password from body
 app.MapGet("/register", [AllowAnonymous] (string email, string phoneNumber, string password, string confirmPassword) =>
 {
     try
@@ -70,15 +69,33 @@ app.MapGet("/login", [AllowAnonymous] (string email, string password, string ipa
 
 app.MapGet("/loginWithToken", [AllowAnonymous] (string token) =>
 {
-    var issuer = builder.Configuration["Jwt:Issuer"];
-    var audience = builder.Configuration["Jwt:Audience"];
-    var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
     DBService dbService = new();
     return dbService.LoginWithToken(token);
 });
 
+app.MapGet("/addPharmaceuticalToPharmacy", (string name, string pharmacyId, string token) =>
+{
+    DBService dbService = new();
+    return dbService.AddPharmaceuticalToPharmacy(name, pharmacyId, token);
+});
+
+app.MapGet("/removePharmaceuticalFromPharmacy", (string name, string pharmacyId, string token) =>
+{
+    DBService dbService = new();
+    return dbService.RemovePharmaceuticalFromPharmacy(name, pharmacyId, token);
+});
+
+app.MapGet("/updatePharmacy", (string pharmacyId, string name, string phoneNumber, string address, string city, string token) =>
+{
+    DBService dbService = new();
+    return dbService.UpdatePharmacy(pharmacyId, name, address, city, phoneNumber, token);
+});
+
 app.MapGet("/getPharmacy", (string token) =>
 {
+    var issuer = builder.Configuration["Jwt:Issuer"];
+    var audience = builder.Configuration["Jwt:Audience"];
+    var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
     DBService dbService = new();
     return dbService.GetPharmacy(token);
 });

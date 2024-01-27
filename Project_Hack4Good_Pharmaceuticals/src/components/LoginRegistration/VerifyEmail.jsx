@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 import OtpInput from 'react-otp-input';
-import './style/Verify.css'
+import './style/Verify.css' //cookie import
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 function Verify(){
-    async function verifyEmail(email, code){
+    const [cookies, setCookie] = useCookies(["email"]);
+    async function verifyEmail(code){
         try {
-        fetch('https://api.ipify.org?format=json')
-        .then(response => response.json())
-        .then(data => setIPAddress(data.ip))
-        .catch(error => console.log(error))
-        console.log(ipAddress)
-        const res = await fetch(`https://magab17-001-site1.ltempurl.com/verifyEmail?email=${email}&code=${code}`)
-        const data = await res.json()
-        console.log(data)
-        if(data.ok){
-            navigate('/login');
-        }else{
-            alert(data.message)
-        }
+            console.log(cookies.email)
+            const res = await fetch(`https://magab17-001-site1.ltempurl.com/verifyEmail?email=${cookies.email}&code=${code}`)
+            const data = await res.json()
+            if(data.ok){
+                window.location.href = '/login'
+            }else{
+                alert(data.message)
+            }
         } catch (err) {
         console.log(err)
         }
@@ -26,7 +23,7 @@ function Verify(){
     function handleChange(otp){
         setOtp(otp);
         if(otp.length === 6){
-            
+            verifyEmail(otp)
         }
     }
     return(

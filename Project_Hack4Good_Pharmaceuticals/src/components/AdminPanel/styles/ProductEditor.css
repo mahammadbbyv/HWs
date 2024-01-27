@@ -23,6 +23,9 @@
 }
 
 .product-editor-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     width: 100%;
     margin: 10px;
     padding: 10px 20px;
@@ -40,6 +43,12 @@
     text-align: left;
     border-bottom: 2px solid var(--text-color);
     margin-bottom: 1rem;
+}
+
+.product-editor{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .product-editor-container .search-input-box{

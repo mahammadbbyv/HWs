@@ -14,7 +14,6 @@ function SearchPharmaceuticals({setProduct}){
             if(search.length == 0) return setResults([])
             const res = await fetch(`https://magab17-001-site1.ltempurl.com/getProducts/${search}`)
             const data = await res.json()
-            console.log(data)
             return setResults(data)
           } catch (err) {
             console.log(err)
