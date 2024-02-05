@@ -1,0 +1,164 @@
+[
+    {
+        "place_id": 183653851,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 11291854474,
+        "boundingbox": [
+            "40.3827714",
+            "40.3828714",
+            "49.8775122",
+            "49.8776122"
+        ],
+        "lat": "40.3828214",
+        "lon": "49.8775622",
+        "display_name": "Asra YK \\ Bakı Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "landuse",
+        "type": "residential",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183654125,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 11291854475,
+        "boundingbox": [
+            "40.3830411",
+            "40.3831411",
+            "49.8775149",
+            "49.8776149"
+        ],
+        "lat": "40.3830911",
+        "lon": "49.8775649",
+        "display_name": "Laçın Minimarket \\ Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "shop",
+        "type": "convenience",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653876,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 11291854473,
+        "boundingbox": [
+            "40.3829369",
+            "40.3830369",
+            "49.8774197",
+            "49.8775197"
+        ],
+        "lat": "40.3829869",
+        "lon": "49.8774697",
+        "display_name": "Dalğa Aptek \\ Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "amenity",
+        "type": "pharmacy",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653720,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 4109375389,
+        "boundingbox": [
+            "40.3817382",
+            "40.3818382",
+            "49.8774031",
+            "49.8775031"
+        ],
+        "lat": "40.3817882",
+        "lon": "49.8774531",
+        "display_name": "Embassy of Kazakhstan, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "office",
+        "type": "diplomatic",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653903,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 4972041925,
+        "boundingbox": [
+            "40.3830661",
+            "40.3831661",
+            "49.877745",
+            "49.877845"
+        ],
+        "lat": "40.3831161",
+        "lon": "49.877795",
+        "display_name": "Vkusnyashka Şirniyyat \\ Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "shop",
+        "type": "confectionery",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653825,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 6414170311,
+        "boundingbox": [
+            "40.3830928",
+            "40.3831928",
+            "49.8779462",
+            "49.8780462"
+        ],
+        "lat": "40.3831428",
+        "lon": "49.8779962",
+        "display_name": "iClean Kimyavi Təmizləmə \\ \\ Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "shop",
+        "type": "dry_cleaning",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653800,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 5163019121,
+        "boundingbox": [
+            "40.3824896",
+            "40.3825896",
+            "49.8777443",
+            "49.8778443"
+        ],
+        "lat": "40.3825396",
+        "lon": "49.8777943",
+        "display_name": "Erudit M müasir uşaq bağçası \\ Xətai, 14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "amenity",
+        "type": "kindergarten",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653772,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 355446574,
+        "boundingbox": [
+            "40.382707",
+            "40.3832734",
+            "49.8773371",
+            "49.8786589"
+        ],
+        "lat": "40.383023550000004",
+        "lon": "49.87768071696823",
+        "display_name": "14, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "building",
+        "type": "yes",
+        "importance": 0.31001
+    },
+    {
+        "place_id": 183653813,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 355875477,
+        "boundingbox": [
+            "40.3822534",
+            "40.382734",
+            "49.8780586",
+            "49.8786918"
+        ],
+        "lat": "40.3825864",
+        "lon": "49.878516619011975",
+        "display_name": "14/7, Nəcəfqulu Rəfiyev küçəsi, Khatay Raion, Baku City, Baku Ekonomic Zone, 1025, Azerbaijan",
+        "class": "building",
+        "type": "yes",
+        "importance": 0.30001
+    }
+]
