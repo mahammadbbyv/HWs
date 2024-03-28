@@ -8,7 +8,7 @@
     IsPharmacyVerified bit not null,
     Address nvarchar(500) not null,
     City nvarchar(100) not null,
-    EmailCode int not null,
+    EmailCode nvarchar(max) not null,
 )
 
 create table Products (
