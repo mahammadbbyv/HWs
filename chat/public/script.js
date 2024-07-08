@@ -22,6 +22,7 @@ friendsList.forEach((item) => {
                 if (data.array) {
                     data.array.forEach((item) => {
                         let div = document.createElement('div')
+                        div.id = item.message_id + item.from+item.to
                         div.classList.add(item.from === me ? 'from' : 'to')
                         if(item.file !== null){
                             let img = document.createElement('img');
@@ -31,6 +32,26 @@ friendsList.forEach((item) => {
                         let p = document.createElement('p')
                         p.innerText = item.letter + '---' + item.time
                         div.appendChild(p)
+                        let button = document.createElement('button')
+                        button.innerText = 'Delete'
+                        button.onclick = () => {
+                            fetch('http://localhost:3000/deleteMessage', {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({id: item.message_id})
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                if(data.text === 'Success'){
+                                    console.log(div.id)
+                                    document.getElementById(div.id).remove();
+                                    return;
+                                }
+                            })
+                        }
+                        div.appendChild(button)
                         chatList.appendChild(div)
                     })
 
@@ -92,6 +113,7 @@ friendsList.forEach((item) => {
                         chatList.innerHTML = ''
                         data.array.forEach((item) => {
                             let div = document.createElement('div')
+                            div.id = item.message_id + item.from+item.to
                             div.classList.add(item.from === me ? 'from' : 'to')
                             if(item.file !== null){
                                 console.log(item.file)
@@ -99,6 +121,26 @@ friendsList.forEach((item) => {
                             let p = document.createElement('p')
                             p.innerText = item.letter + '---' + item.time
                             div.appendChild(p)
+                            let button = document.createElement('button')
+                            button.innerText = 'Delete'
+                            button.onclick = () => {
+                                fetch('http://localhost:3000/deleteMessage', {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({id: item.message_id})
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if(data.text === 'Success'){
+                                        console.log(div.id)
+                                        document.getElementById(div.id).remove();
+                                        return;
+                                    }
+                                })
+                            }
+                            div.appendChild(button)
                             chatList.appendChild(div)
                         })
                     }
@@ -119,6 +161,7 @@ friendsList.forEach((item) => {
                         chatList.innerHTML = ''
                         data.array.forEach((item) => {
                             let div = document.createElement('div')
+                            div.id = item.message_id + item.from+item.to
                             div.classList.add(item.from === me ? 'from' : 'to')
                             if(item.file !== null){
                                 let img = document.createElement('img');
@@ -128,6 +171,27 @@ friendsList.forEach((item) => {
                             let p = document.createElement('p')
                             p.innerText = item.letter + '---' + item.time
                             div.appendChild(p)
+                            let button = document.createElement('button')
+                            button.innerText = 'Delete'
+                            button.onclick = () => {
+                                fetch('http://localhost:3000/deleteMessage', {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({id: item.message_id})
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    
+                                    if(data.text === 'Success'){
+                                        console.log(div.id)
+                                        document.getElementById(div.id).remove();
+                                        return;
+                                    }
+                                })
+                            }
+                            div.appendChild(button)
                             chatList.appendChild(div)
                         })
                     }
@@ -189,6 +253,7 @@ friendsList.forEach((item) => {
                         chatList.innerHTML = ''
                         data.array.forEach((item) => {
                             let div = document.createElement('div')
+                            div.id = item.message_id + item.from+item.to
                             div.classList.add(item.from === me ? 'from' : 'to')
                             if(item.file !== null){
                                 let img = document.createElement('img');
@@ -198,6 +263,26 @@ friendsList.forEach((item) => {
                             let p = document.createElement('p')
                             p.innerText = item.letter + '---' + item.time
                             div.appendChild(p)
+                            let button = document.createElement('button')
+                            button.innerText = 'Delete'
+                            button.onclick = () => {
+                                fetch('http://localhost:3000/deleteMessage', {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({id: item.message_id})
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if(data.text === 'Success'){
+                                        console.log(div.id)
+                                        document.getElementById(div.id).remove();
+                                        return;
+                                    }
+                                })
+                            }
+                            div.appendChild(button)
                             chatList.appendChild(div)
                         })
                     }

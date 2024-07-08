@@ -80,7 +80,7 @@ app.post('/letter-sending', (req,res) => {
                                 letter.message_id = result.recordset.length + 1
                                 let date = new Date()
                                 letter.time = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-                                let query = `INSERT INTO Messages VALUES (${letter.message_id}, ${chat_id}, '${letter.letter}', null, '${letter.from}', '${letter.to}', '${letter.time}')`
+                                let query = `INSERT INTO Messages VALUES (${chat_id}, '${letter.letter}', null, '${letter.from}', '${letter.to}', '${letter.time}')`
                                 request.query(query, (err) => {
                                     if(err){
                                         console.log(err)
@@ -105,7 +105,6 @@ app.post('/letter-sending', (req,res) => {
 
 app.post('/send-photo', fileUpload({ createParentPath: true }), (req, res) => {
     if(req.body){
-        // get message and chat name from query
         let message = req.query.message
         let from = req.query.from
         let to = req.query.to
@@ -154,6 +153,25 @@ app.post('/send-photo', fileUpload({ createParentPath: true }), (req, res) => {
         }
         )
     }
+});
+
+app.delete('/deleteMessage', (req, res) => {
+    let message_id = req.body.id
+    console.log(message_id)
+    mssql.connect(connectionString, (err) => {
+        if(err){
+            console.log(err)
+        }else{
+            let request = new mssql.Request()
+            request.query(`DELETE FROM Messages WHERE message_id = ${message_id}`, (err) => {
+                if(err){
+                    console.log(err)
+                }else{
+                    res.json({text:'Success'})
+                }
+            })
+        }
+    })
 });
 
 app.get('/getImage', (req, res) => {
