@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <button id="deleteAll">ClearAllData</button>
+    <ul id="friends"></ul>
+
+    
+    <section id="chatContainer">
+
+    </section>
+    <script src="script.js"></script>
+    <script>
+        const deleteAll = document.getElementById('deleteAll');
+        deleteAll.addEventListener('click', () => {
+            fetch('http://localhost:3000/clearAllData', {
+                method: 'DELETE'
+            })
+        });
+    </script>
+</body>
+</html>
